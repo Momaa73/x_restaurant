@@ -23,7 +23,6 @@ spark.sql("CREATE NAMESPACE IF NOT EXISTS my_catalog.bronze")
 # Reservations_raw
 spark.sql("""
 CREATE TABLE IF NOT EXISTS my_catalog.bronze.Reservations_raw (
-    -- customer_id INT,
     reservation_id STRING,
     customer_name STRING,
     phone_number STRING,
