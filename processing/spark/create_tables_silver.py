@@ -16,39 +16,61 @@ spark = SparkSession.builder \
 spark.sql("CREATE NAMESPACE IF NOT EXISTS my_catalog.silver")
 
 
-spark.sql("""CREATE TABLE IF NOT EXISTS my_catalog.silver.customers (
-    customer_id STRING,  -- phone_number will serve as the ID
+spark.sql("""
+CREATE TABLE IF NOT EXISTS my_catalog.silver.customers (
+    customer_id INT,  -- phone_number will serve as the ID
     customer_name STRING,
     phone_number STRING,
-    checkins_count INT
+    feedback_count INT
 ) USING iceberg;
 """)
 
-spark.sql("""CREATE TABLE IF NOT EXISTS my_catalog.silver.dim_branch (
+spark.sql("""
+CREATE TABLE IF NOT EXISTS my_catalog.silver.dim_shift_managers (
+    shift_manager_id INT,
+    name STRING,
+    phone_number STRING,
+    branch_id INT,
+) USING iceberg
+""")
+
+spark.sql("""
+CREATE TABLE my_catalog.silver.dim_shift_schedule (
+    manager_id STRING,
     branch_id STRING,
-    branch_name STRING,
-    city STRING,
-    address STRING,
-    capacity INT,
-    manager_name STRING,
-    opening_date DATE,
-    closing_date DATE,
+    start_date TIMESTAMP,
+    end_date TIMESTAMP,
     is_current BOOLEAN
 ) USING iceberg;
 """)
 
-spark.sql("""CREATE TABLE IF NOT EXISTS my_catalog.silver.table_details (
-    table_id STRING,            -- PRIMARY KEY
-    branch_id STRING,           -- FK → dim_branch.branch_id
-    location_type_id STRING,    -- e.g., Indoor / Outdoor / Covered
-    table_type STRING,          -- e.g., Round / Bar / Regular
-    table_number STRING,        -- Optional logical number
-    seat_count INT,             -- Number of seats
-    is_current STRING           -- 'Y' / 'N'
+spark.sql("""
+CREATE TABLE IF NOT EXISTS my_catalog.silver.dim_branch (
+    branch_id INT,
+    branch_name STRING,
+    city STRING,
+    address STRING,
+    capacity INT,
+    opening_date DATE,
+    closing_date DATE,
+    is_update BOOLEAN
 ) USING iceberg;
 """)
 
-spark.sql("""CREATE TABLE IF NOT EXISTS my_catalog.silver.dim_time_of_day (
+spark.sql("""
+CREATE TABLE IF NOT EXISTS my_catalog.silver.table_details (
+    table_id INT,            -- PRIMARY KEY
+    branch_id INT,           -- FK → dim_branch.branch_id
+    location_type_id INT,    -- e.g., Indoor / Outdoor / Covered
+    table_type STRING,          -- e.g., Round / Bar / Regular
+    table_number STRING,        -- Optional logical number
+    seat_count INT,             -- Number of seats
+    is_update BOOLEAN        
+) USING iceberg;
+""")
+
+spark.sql("""
+CREATE TABLE IF NOT EXISTS my_catalog.silver.dim_time_of_day (
     time_id STRING,         -- M / L / E
     time_label STRING       -- Morning / Lunch / Evening
 ) USING iceberg;
@@ -57,12 +79,13 @@ spark.sql("""CREATE TABLE IF NOT EXISTS my_catalog.silver.dim_time_of_day (
 # feedback_cleaned
 spark.sql("""
 CREATE TABLE IF NOT EXISTS my_catalog.silver.feedback_cleaned (
-    feedback_id STRING,
-    customer_id STRING,
-    branch_id STRING,
+    feedback_id INT,
+    customer_id INT,
+    branch_id INT,
+    feedback_text STRING,
     text_length INT,
     is_holiday BOOLEAN,
-    holiday_type STRING,
+    holiday_name STRING,
     shift_manager STRING,
     ingestion_time TIMESTAMP
 ) USING iceberg;
@@ -71,13 +94,17 @@ CREATE TABLE IF NOT EXISTS my_catalog.silver.feedback_cleaned (
 # checkins_cleaned
 spark.sql("""
 CREATE TABLE IF NOT EXISTS my_catalog.silver.checkins_cleaned (
-    checkin_id STRING,
-    branch_id STRING,
-    table_id STRING,
-    checkin_time TIMESTAMP,
-    guests_count INT,
+    checkin_id INT,
+    customer_id INT,
+    phone_number STRING,
+    branch_id INT,
+    table_id INT,
     is_prebooked BOOLEAN,
     time_of_day_id STRING,
+    guests_count INT,
+    shift_manager STRING,
+    is_holiday BOOLEAN,
+    holiday_name STRING,
     ingestion_time TIMESTAMP
 ) USING iceberg;
 """)
@@ -88,13 +115,15 @@ CREATE TABLE IF NOT EXISTS my_catalog.silver.reservations_cleaned (
     reservation_id STRING,
     customer_id STRING,
     branch_id STRING,
-    reservation_date DATE,
-    reservation_time STRING,
+    reservation_time TIMESTAMP,
     guests_count INT,
     status STRING,
-    did_arrive BOOLEAN,
+    arrival_status STRING,
     checkin_id STRING,
     lead_time_minutes INT,
+    is_holiday BOOLEAN,
+    holiday_name STRING,
+    is_updated BOOLEAN,
     ingestion_time TIMESTAMP
 ) USING iceberg;
 """)
