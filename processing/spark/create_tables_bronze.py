@@ -63,8 +63,8 @@ print("Creating Feedback_raw table...")
 
 spark.sql("""
 CREATE TABLE IF NOT EXISTS my_catalog.bronze.Feedback_raw (
-    feedback_id STRING, 
-    branch_id STRING,             
+    feedback_id INT, 
+    branch_id INT,             
     customer_id INT,
     phone_number STRING,   
     customer_name STRING, 

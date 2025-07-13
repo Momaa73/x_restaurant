@@ -30,14 +30,14 @@ CREATE TABLE IF NOT EXISTS my_catalog.silver.dim_shift_managers (
     shift_manager_id INT,
     name STRING,
     phone_number STRING,
-    branch_id INT,
+    branch_id INT
 ) USING iceberg
 """)
 
 spark.sql("""
 CREATE TABLE my_catalog.silver.dim_shift_schedule (
-    manager_id STRING,
-    branch_id STRING,
+    manager_id INT,
+    branch_id INT,
     start_date TIMESTAMP,
     end_date TIMESTAMP,
     is_current BOOLEAN
@@ -112,18 +112,18 @@ CREATE TABLE IF NOT EXISTS my_catalog.silver.checkins_cleaned (
 # reservations_cleaned
 spark.sql("""
 CREATE TABLE IF NOT EXISTS my_catalog.silver.reservations_cleaned (
-    reservation_id STRING,
-    customer_id STRING,
-    branch_id STRING,
+    reservation_id INT,
+    customer_id INT,
+    branch_id INT,
     reservation_time TIMESTAMP,
     guests_count INT,
     status STRING,
     arrival_status STRING,
-    checkin_id STRING,
+    checkin_id INT,
     lead_time_minutes INT,
     is_holiday BOOLEAN,
     holiday_name STRING,
-    is_updated BOOLEAN,
+    is_update BOOLEAN,
     ingestion_time TIMESTAMP
 ) USING iceberg;
 """)
