@@ -33,8 +33,8 @@ CREATE TABLE IF NOT EXISTS my_catalog.bronze.Reservations_raw (
     created_at TIMESTAMP,
     limited_hours BOOLEAN,
     hours_if_limited FLOAT,
-    table_type STRING,
-    table_location STRING
+    table_type STRING,-----------------------------------------delete
+    table_location STRING-----------------------------------------delete and add table_id
 ) USING iceberg
 """)
 

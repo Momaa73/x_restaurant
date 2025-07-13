@@ -1,64 +1,92 @@
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import from_json, col
-from pyspark.sql.types import StructType, StringType, IntegerType, TimestampType
+from pyspark.sql.types import *
 
-# Initialize Spark session
+# Kafka topic names
+TOPICS = {
+    "reservations": "reservations_topic",
+    "checkins": "checkins_topic",
+    "feedback": "feedback_topic"
+}
+
+# Spark session
 spark = SparkSession.builder \
     .appName("StreamToBronze") \
+    .config("spark.jars.packages", "org.apache.iceberg:iceberg-spark-runtime-3.5_2.12:1.5.0,org.apache.spark:spark-sql-kafka-0-10_2.12:3.5.0") \
     .config("spark.sql.catalog.my_catalog", "org.apache.iceberg.spark.SparkCatalog") \
     .config("spark.sql.catalog.my_catalog.type", "hadoop") \
     .config("spark.sql.catalog.my_catalog.warehouse", "s3a://warehouse/") \
+    .config("spark.hadoop.fs.s3a.endpoint", "http://minio:9000") \
+    .config("spark.hadoop.fs.s3a.access.key", "admin") \
+    .config("spark.hadoop.fs.s3a.secret.key", "password") \
+    .config("spark.hadoop.fs.s3a.path.style.access", "true") \
     .getOrCreate()
 
-spark.sparkContext.setLogLevel("WARN")
+# Define schemas
+reservation_schema = StructType([
+    StructField("reservation_id", IntegerType()),
+    StructField("customer_id", IntegerType()),
+    StructField("customer_name", StringType()),
+    StructField("phone_number", StringType()),
+    StructField("branch_id", IntegerType()),
+    StructField("reservation_time", TimestampType()),
+    StructField("guests_count", IntegerType()),
+    StructField("created_at", TimestampType()),
+    StructField("limited_hours", BooleanType()),
+    StructField("hours_if_limited", FloatType()),
+    StructField("table_type", StringType()),
+    StructField("table_location", StringType())
+])
 
-# Define schemas for the topics
-reservations_schema = StructType() \
-    .add("reservation_id", StringType()) \
-    .add("customer_id", StringType()) \
-    .add("branch_id", StringType()) \
-    .add("reservation_time", TimestampType()) \
-    .add("table_type", StringType())
+checkin_schema = StructType([
+    StructField("checkin_id", IntegerType()),
+    StructField("customer_id", IntegerType()),
+    StructField("phone_number", StringType()),
+    StructField("branch_id", IntegerType()),
+    StructField("table_id", IntegerType()),
+    StructField("is_prebooked", BooleanType()),
+    StructField("checkin_time", TimestampType()),
+    StructField("guests_count", IntegerType()),
+    StructField("shift_manager", StringType())
+])
 
-checkins_schema = StructType() \
-    .add("checkin_id", StringType()) \
-    .add("customer_id", StringType()) \
-    .add("branch_id", StringType()) \
-    .add("checkin_time", TimestampType())
+feedback_schema = StructType([
+    StructField("feedback_id", IntegerType()),
+    StructField("branch_id", IntegerType()),
+    StructField("customer_id", IntegerType()),
+    StructField("phone_number", StringType()),
+    StructField("customer_name", StringType()),
+    StructField("feedback_text", StringType()),
+    StructField("rating", IntegerType()),
+    StructField("dining_date", DateType()),
+    StructField("dining_time", StringType()),
+    StructField("submission_time", TimestampType())
+])
 
-feedback_schema = StructType() \
-    .add("feedback_id", StringType()) \
-    .add("customer_id", StringType()) \
-    .add("question_id", IntegerType()) \
-    .add("score", IntegerType()) \
-    .add("submitted_at", TimestampType())
-
-def stream_to_bronze(topic, schema, table):
-    kafka_df = spark.readStream \
+# Read & write function
+def stream_topic(topic, schema, table_name):
+    df = spark.readStream \
         .format("kafka") \
         .option("kafka.bootstrap.servers", "kafka:9092") \
         .option("subscribe", topic) \
-        .option("startingOffsets", "earliest") \
+        .option("startingOffsets", "latest") \
         .load()
 
-    json_df = kafka_df.selectExpr("CAST(value AS STRING) as json_str") \
-        .select(from_json(col("json_str"), schema).alias("data")) \
-        .select("data.*")
+    parsed = df.select(from_json(col("value").cast("string"), schema).alias("data")).select("data.*")
 
-    query = json_df.writeStream \
+    query = parsed.writeStream \
         .format("iceberg") \
         .outputMode("append") \
-        .option("checkpointLocation", f"/tmp/checkpoints/{topic}") \
-        .option("path", f"my_catalog.bronze.{table}") \
-        .trigger(processingTime="10 seconds") \
+        .option("checkpointLocation", f"/tmp/checkpoints/{table_name}") \
+        .option("path", f"my_catalog.bronze.{table_name}") \
         .start()
 
     return query
 
-# Launch all 3 streams
-reservations_query = stream_to_bronze("reservations", reservations_schema, "Reservations_raw")
-checkins_query = stream_to_bronze("checkins", checkins_schema, "Checkins_raw")
-feedback_query = stream_to_bronze("feedback", feedback_schema, "Feedback_raw")
+# Start streaming
+q1 = stream_topic(TOPICS["reservations"], reservation_schema, "Reservations_raw")
+q2 = stream_topic(TOPICS["checkins"], checkin_schema, "Checkins_raw")
+q3 = stream_topic(TOPICS["feedback"], feedback_schema, "Feedback_raw")
 
-# Await termination
+# Wait for termination
 spark.streams.awaitAnyTermination()

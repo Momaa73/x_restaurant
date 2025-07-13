@@ -62,8 +62,8 @@ CREATE TABLE IF NOT EXISTS my_catalog.silver.table_details (
     table_id INT,            -- PRIMARY KEY
     branch_id INT,           -- FK → dim_branch.branch_id
     location_type_id INT,    -- e.g., Indoor / Outdoor / Covered
-    table_type STRING,          -- e.g., Round / Bar / Regular
-    table_number STRING,        -- Optional logical number
+    table_type STRING,          -- e.g., Round / Bar / Regular -----------------------------------------fill by table_id
+    table_number STRING,        -- Optional logical number  -----------------------------------------delete
     seat_count INT,             -- Number of seats
     is_update BOOLEAN        
 ) USING iceberg;

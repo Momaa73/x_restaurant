@@ -1,0 +1,11 @@
+{
+  "checkin_id": 3001,
+  "customer_id": 501,
+  "phone_number": "0541234567",
+  "branch_id": 2,
+  "table_id": 7,
+  "is_prebooked": true,
+  "checkin_time": "2025-07-13T19:55:00",
+  "guests_count": 4,
+  "shift_manager": "David Levi"
+}

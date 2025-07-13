@@ -1,0 +1,12 @@
+{
+  "feedback_id": 9001,
+  "branch_id": 2,
+  "customer_id": 501,
+  "phone_number": "0541234567",
+  "customer_name": "Alice Cohen",
+  "feedback_text": "Amazing service and cozy atmosphere!",
+  "rating": 5,
+  "dining_date": "2025-07-13",
+  "dining_time": "Evening",
+  "submission_time": "2025-07-13T22:00:00"
+}
