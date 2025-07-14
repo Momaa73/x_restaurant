@@ -98,7 +98,7 @@ CREATE TABLE IF NOT EXISTS my_catalog.gold.feedback_per_branch (
 """)
 
 spark.sql("""
-CREATE TABLE IF NOT EXISTS my_catalog.silver.customers (
+CREATE TABLE IF NOT EXISTS my_catalog.gold.customers (
     customer_id INT,  -- phone_number will serve as the ID
     customer_name STRING,
     phone_number STRING,

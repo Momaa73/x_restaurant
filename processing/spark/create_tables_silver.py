@@ -88,7 +88,6 @@ CREATE TABLE IF NOT EXISTS my_catalog.silver.feedback_cleaned (
     dining_time_of_day_id STRING, 
     is_holiday BOOLEAN,
     holiday_name STRING,
-    shift_manager STRING,
     ingestion_time TIMESTAMP
 ) USING iceberg;
 """)
