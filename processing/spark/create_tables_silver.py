@@ -20,8 +20,7 @@ spark.sql("""
 CREATE TABLE IF NOT EXISTS my_catalog.silver.customers (
     customer_id INT,  -- phone_number will serve as the ID
     customer_name STRING,
-    phone_number STRING,
-    feedback_count INT
+    phone_number STRING
 ) USING iceberg;
 """)
 
@@ -41,7 +40,8 @@ CREATE TABLE my_catalog.silver.scd2_shift_schedule (
     time_id STRING,         -- M / L / E
     is_current BOOLEAN
 ) USING iceberg;
-""")
+""") 
+
 
 spark.sql("""
 CREATE TABLE IF NOT EXISTS my_catalog.silver.scd2_branch (
@@ -57,7 +57,7 @@ CREATE TABLE IF NOT EXISTS my_catalog.silver.scd2_branch (
 """)
 
 spark.sql("""
-CREATE TABLE IF NOT EXISTS my_catalog.silver.dim_table (
+CREATE TABLE IF NOT EXISTS my_catalog.silver.table (
     table_id INT,            -- PRIMARY KEY
     branch_id INT,           -- FK → dim_branch.branch_id
     location_type_id INT,    -- e.g., Indoor / Outdoor / Covered
@@ -85,7 +85,7 @@ CREATE TABLE IF NOT EXISTS my_catalog.silver.feedback_cleaned (
     rating INT,
     text_length INT,
     dining_date DATE,
-    dining_time_of_day STRING, 
+    dining_time_of_day_id STRING, 
     is_holiday BOOLEAN,
     holiday_name STRING,
     shift_manager STRING,
@@ -123,7 +123,8 @@ CREATE TABLE IF NOT EXISTS my_catalog.silver.reservations_cleaned (
     reservation_date DATE, -- when will the customers arrive ?
     reservation_hour STRING,
     guests_count INT,
-    created_at TIMESTAMP,
+    created_at_date DATE,
+    created_at_hour STRING,
     limited_hours BOOLEAN,
     hours_if_limited FLOAT,
     is_holiday BOOLEAN,

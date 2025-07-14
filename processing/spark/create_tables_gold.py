@@ -16,34 +16,89 @@ spark = SparkSession.builder \
 spark.sql("CREATE NAMESPACE IF NOT EXISTS my_catalog.gold")
 
 spark.sql("""
-CREATE TABLE IF NOT EXISTS my_catalog.gold.Reservations_raw (
-    reservation_id	INT, ------------------------------------------------ עצרתי כאן, להמשיך !!!
+CREATE TABLE IF NOT EXISTS my_catalog.gold.fact_reservations (
+    reservation_id	INT,
     customer_id	INT,
-    branch_id	INT
-    table_id	INT
-    reservation_date	DATE
-    reservation_time	TIME
-    guests_count	INT
-    status	STRING
-    did_arrive	BOOLEAN
-    checkin_id	STRING
-    lead_time_minutes	INT
-    feedback_id	STRING
+    customer_name STRING,
+    phone_number STRING,
+    branch_id INT,
+    city STRING,
+    table_id INT,
+    location_type_id INT,    -- e.g., Indoor / Outdoor / Covered
+    table_type STRING,          -- e.g., Round / Bar / Regular
+    seat_count INT,             -- Number of seats
+    reservation_date DATE,
+    reservation_hour STRING,
+    guests_count INT,
+    created_at_date DATE,
+    created_at_hour STRING,
+    status STRING,
+    limited_hours BOOLEAN,
+    hours_if_limited FLOAT,
+    is_holiday BOOLEAN,
+    holiday_name STRING,
+    arrival_status STRING,
+    checkin_id STRING, -- 0 If the deadline has not arrived , null if did not arrive
+    lead_time_minutes INT,
+    is_update BOOLEAN, -- in case someone changed table or number of guests and there is a new updated raw
     ingestion_time	DATETIME
 """)
 
-          
+
 spark.sql("""
-CREATE TABLE IF NOT EXISTS my_catalog.gold.Reservations_raw (
-Column name	Data type
-branch_id	STRING
-date	DATE
-total_reservations	INT
-total_checkins	INT
-total_guests	INT
-avg_occupancy_rate	FLOAT
-avg_lead_time	FLOAT
-avg_sentiment_score	FLOAT
-ingestion_time	DATETIME
+CREATE TABLE IF NOT EXISTS my_catalog.gold.fact_daily_per_branch (
+    raw_id INT,
+    branch_id INT,
+    branch_name STRING,
+    city STRING,
+    capacity INT,
+    is_branch_open BOOLEAN,
+    day DATE,
+    total_reservations INT,
+    total_checkins INT,
+    checkins_from_reservations INT,
+    real_time_checkint INT,
+    dining_M INT, 
+    dining_L INT, 
+    dining_E INT, 
+    total_guests INT,
+    avg_occupancy_rate FLOAT,
+    is_holiday BOOLEAN,
+    holiday_name STRING,
+    shift_manager STRING,
+    ingestion_time	DATETIME 
 """)
-          
+
+spark.sql("""
+CREATE TABLE IF NOT EXISTS my_catalog.gold.feedback_per_branch (
+    feedback_id INT,
+    branch_id INT,
+    branch_name STRING,
+    city STRING,
+    is_branch_open BOOLEAN,
+    week_start DATE,
+    week_end DATE,
+    customer_name STRING,
+    phone_number STRING,   
+    feedback_text STRING,
+    rating INT,
+    text_length INT,
+    dining_date DATE,
+    dining_time_of_day_id STRING, 
+    is_holiday BOOLEAN,
+    holiday_name STRING,
+    shift_managers STRING,
+    semantic_label STRING,      -- FILLED IN ONLY AFTER THE ML MODEL
+    semantic_category STRING,   -- FILLED IN ONLY AFTER THE ML MODEL
+    avg_rating FLOAT,
+    ingestion_time	DATETIME
+""")
+
+spark.sql("""
+CREATE TABLE IF NOT EXISTS my_catalog.silver.customers (
+    customer_id INT,  -- phone_number will serve as the ID
+    customer_name STRING,
+    phone_number STRING,
+    feedback_count INT
+) USING iceberg;
+""")
