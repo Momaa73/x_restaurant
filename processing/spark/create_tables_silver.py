@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS my_catalog.silver.dim_shift_managers (
 """)
 
 spark.sql("""
-CREATE TABLE my_catalog.silver.dim_shift_schedule (
+CREATE TABLE my_catalog.silver.scd2_shift_schedule (
     manager_id INT,
     branch_id INT,
     time_id STRING,         -- M / L / E
@@ -44,7 +44,7 @@ CREATE TABLE my_catalog.silver.dim_shift_schedule (
 """)
 
 spark.sql("""
-CREATE TABLE IF NOT EXISTS my_catalog.silver.dim_branch (
+CREATE TABLE IF NOT EXISTS my_catalog.silver.scd2_branch (
     branch_id INT,
     branch_name STRING,
     city STRING,
@@ -57,12 +57,11 @@ CREATE TABLE IF NOT EXISTS my_catalog.silver.dim_branch (
 """)
 
 spark.sql("""
-CREATE TABLE IF NOT EXISTS my_catalog.silver.table_details (
+CREATE TABLE IF NOT EXISTS my_catalog.silver.dim_table (
     table_id INT,            -- PRIMARY KEY
     branch_id INT,           -- FK → dim_branch.branch_id
     location_type_id INT,    -- e.g., Indoor / Outdoor / Covered
     table_type STRING,          -- e.g., Round / Bar / Regular -----------------------------------------fill by table_id
-    table_number STRING,        -- Optional logical number  -----------------------------------------delete
     seat_count INT,             -- Number of seats
     is_update BOOLEAN        
 ) USING iceberg;
