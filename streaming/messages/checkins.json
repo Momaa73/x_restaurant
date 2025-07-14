@@ -1,11 +1,3 @@
-{
-  "checkin_id": 3001,
-  "customer_id": 501,
-  "phone_number": "0541234567",
-  "branch_id": 2,
-  "table_id": 7,
-  "is_prebooked": true,
-  "checkin_time": "2025-07-13T19:55:00",
-  "guests_count": 4,
-  "shift_manager": "David Levi"
-}
+{"checkin_id": 1, "customer_name": "Alice Levi", "phone_number": "0501234567", "branch_id": 101, "table_id": 201, "is_prebooked": true, "checkin_date": "2025-07-14", "checkin_time": "19:02", "guests_count": 2, "shift_manager": "Ronen Tal"}
+{"checkin_id": 2, "customer_name": "Daniel Cohen", "phone_number": "0522223456", "branch_id": 102, "table_id": 202, "is_prebooked": true, "checkin_date": "2025-07-14", "checkin_time": "20:05", "guests_count": 3, "shift_manager": "Roni Mizrahi"}
+{"checkin_id": 3, "customer_name": "Sara David", "phone_number": "0531239876", "branch_id": 101, "table_id": 204, "is_prebooked": false, "checkin_date": "2025-07-14", "checkin_time": "21:00", "guests_count": 1, "shift_manager": "Ronen Tal"}

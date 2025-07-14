@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS my_catalog.silver.dim_shift_managers (
 """)
 
 spark.sql("""
-CREATE TABLE my_catalog.silver.scd2_shift_schedule (
+CREATE TABLE IF NOT EXISTS my_catalog.silver.scd2_shift_schedule (
     manager_id INT,
     branch_id INT,
     time_id STRING,         -- M / L / E

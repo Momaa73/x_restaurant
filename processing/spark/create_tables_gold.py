@@ -41,7 +41,8 @@ CREATE TABLE IF NOT EXISTS my_catalog.gold.fact_reservations (
     checkin_id STRING, -- 0 If the deadline has not arrived , null if did not arrive
     lead_time_minutes INT,
     is_update BOOLEAN, -- in case someone changed table or number of guests and there is a new updated raw
-    ingestion_time	DATETIME
+    ingestion_time TIMESTAMP
+) USING iceberg;
 """)
 
 
@@ -66,7 +67,8 @@ CREATE TABLE IF NOT EXISTS my_catalog.gold.fact_daily_per_branch (
     is_holiday BOOLEAN,
     holiday_name STRING,
     shift_manager STRING,
-    ingestion_time	DATETIME 
+    ingestion_time TIMESTAMP 
+) USING iceberg;
 """)
 
 spark.sql("""
@@ -91,7 +93,8 @@ CREATE TABLE IF NOT EXISTS my_catalog.gold.feedback_per_branch (
     semantic_label STRING,      -- FILLED IN ONLY AFTER THE ML MODEL
     semantic_category STRING,   -- FILLED IN ONLY AFTER THE ML MODEL
     avg_rating FLOAT,
-    ingestion_time	DATETIME
+    ingestion_time TIMESTAMP
+) USING iceberg;
 """)
 
 spark.sql("""
@@ -99,6 +102,7 @@ CREATE TABLE IF NOT EXISTS my_catalog.silver.customers (
     customer_id INT,  -- phone_number will serve as the ID
     customer_name STRING,
     phone_number STRING,
-    feedback_count INT
+    feedback_count INT,
+    ingestion_time TIMESTAMP
 ) USING iceberg;
 """)
