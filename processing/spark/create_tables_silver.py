@@ -38,8 +38,7 @@ spark.sql("""
 CREATE TABLE my_catalog.silver.dim_shift_schedule (
     manager_id INT,
     branch_id INT,
-    start_date TIMESTAMP,
-    end_date TIMESTAMP,
+    time_id STRING,         -- M / L / E
     is_current BOOLEAN
 ) USING iceberg;
 """)
@@ -80,10 +79,14 @@ CREATE TABLE IF NOT EXISTS my_catalog.silver.dim_time_of_day (
 spark.sql("""
 CREATE TABLE IF NOT EXISTS my_catalog.silver.feedback_cleaned (
     feedback_id INT,
-    customer_id INT,
     branch_id INT,
+    customer_name STRING,
+    phone_number STRING,   
     feedback_text STRING,
+    rating INT,
     text_length INT,
+    dining_date DATE,
+    dining_time_of_day STRING, 
     is_holiday BOOLEAN,
     holiday_name STRING,
     shift_manager STRING,
@@ -95,11 +98,12 @@ CREATE TABLE IF NOT EXISTS my_catalog.silver.feedback_cleaned (
 spark.sql("""
 CREATE TABLE IF NOT EXISTS my_catalog.silver.checkins_cleaned (
     checkin_id INT,
-    customer_id INT,
+    customer_name STRING,
     phone_number STRING,
     branch_id INT,
     table_id INT,
     is_prebooked BOOLEAN,
+    checkin_date DATE,
     time_of_day_id STRING,
     guests_count INT,
     shift_manager STRING,
@@ -113,17 +117,18 @@ CREATE TABLE IF NOT EXISTS my_catalog.silver.checkins_cleaned (
 spark.sql("""
 CREATE TABLE IF NOT EXISTS my_catalog.silver.reservations_cleaned (
     reservation_id INT,
-    customer_id INT,
+    customer_name STRING,
+    phone_number STRING,
     branch_id INT,
-    reservation_time TIMESTAMP,
+    table_id INT,
+    reservation_date DATE, -- when will the customers arrive ?
+    reservation_hour STRING,
     guests_count INT,
-    status STRING,
-    arrival_status STRING,
-    checkin_id INT,
-    lead_time_minutes INT,
+    created_at TIMESTAMP,
+    limited_hours BOOLEAN,
+    hours_if_limited FLOAT,
     is_holiday BOOLEAN,
     holiday_name STRING,
-    is_update BOOLEAN,
     ingestion_time TIMESTAMP
 ) USING iceberg;
 """)

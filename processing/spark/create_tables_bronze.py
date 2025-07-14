@@ -24,17 +24,16 @@ spark.sql("CREATE NAMESPACE IF NOT EXISTS my_catalog.bronze")
 spark.sql("""
 CREATE TABLE IF NOT EXISTS my_catalog.bronze.Reservations_raw (
     reservation_id INT,
-    customer_id INT,
     customer_name STRING,
     phone_number STRING,
     branch_id INT,
-    reservation_time TIMESTAMP, -- when will the customers arrive ?
+    table_id INT,
+    reservation_date DATE, -- when will the customers arrive ?
+    reservation_hour STRING,
     guests_count INT,
     created_at TIMESTAMP,
     limited_hours BOOLEAN,
-    hours_if_limited FLOAT,
-    table_type STRING,-----------------------------------------delete
-    table_location STRING-----------------------------------------delete and add table_id
+    hours_if_limited FLOAT
 ) USING iceberg
 """)
 
@@ -45,12 +44,13 @@ print("✅ Done creating tables reser")
 spark.sql("""
 CREATE TABLE IF NOT EXISTS my_catalog.bronze.Checkins_raw (
     checkin_id INT,
-    customer_id INT,
+    customer_name STRING,
     phone_number STRING,
     branch_id INT,
     table_id INT,
     is_prebooked BOOLEAN,
-    checkin_time TIMESTAMP,
+    checkin_date DATE,
+    checkin_time STRING,
     guests_count INT,
     shift_manager STRING
 ) USING iceberg
@@ -65,9 +65,8 @@ spark.sql("""
 CREATE TABLE IF NOT EXISTS my_catalog.bronze.Feedback_raw (
     feedback_id INT, 
     branch_id INT,             
-    customer_id INT,
-    phone_number STRING,   
     customer_name STRING, 
+    phone_number STRING,   
     feedback_text STRING,
     rating INT,
     dining_date DATE,
