@@ -23,5 +23,6 @@ COPY create_tables_silver.py /app/create_tables_silver.py
 COPY create_tables_gold.py /app/create_tables_gold.py
 COPY stream_to_bronze.py /app/stream_to_bronze.py
 COPY bronze_to_silver.py /app/bronze_to_silver.py
+COPY silver_to_gold.py /app/silver_to_gold.py
 
 WORKDIR /app

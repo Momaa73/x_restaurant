@@ -48,7 +48,6 @@ CREATE TABLE IF NOT EXISTS my_catalog.gold.fact_reservations (
 
 spark.sql("""
 CREATE TABLE IF NOT EXISTS my_catalog.gold.fact_daily_per_branch (
-    raw_id INT,
     branch_id INT,
     branch_name STRING,
     city STRING,
