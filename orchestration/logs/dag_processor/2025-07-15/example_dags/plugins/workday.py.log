@@ -97,3 +97,7 @@
 {"timestamp":"2025-07-15T15:14:56.631005","level":"info","event":"Filling up the DagBag from /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/plugins/workday.py","logger":"airflow.models.dagbag.DagBag"}
 {"timestamp":"2025-07-15T15:15:27.692361","level":"info","event":"Filling up the DagBag from /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/plugins/workday.py","logger":"airflow.models.dagbag.DagBag"}
 {"timestamp":"2025-07-15T15:15:59.044073","level":"info","event":"Filling up the DagBag from /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/plugins/workday.py","logger":"airflow.models.dagbag.DagBag"}
+{"timestamp":"2025-07-15T15:16:29.255066","level":"info","event":"Filling up the DagBag from /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/plugins/workday.py","logger":"airflow.models.dagbag.DagBag"}
+{"timestamp":"2025-07-15T15:16:59.415321","level":"info","event":"Filling up the DagBag from /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/plugins/workday.py","logger":"airflow.models.dagbag.DagBag"}
+{"timestamp":"2025-07-15T15:17:30.632999","level":"info","event":"Filling up the DagBag from /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/plugins/workday.py","logger":"airflow.models.dagbag.DagBag"}
+{"timestamp":"2025-07-15T15:18:00.818549","level":"info","event":"Filling up the DagBag from /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/plugins/workday.py","logger":"airflow.models.dagbag.DagBag"}
