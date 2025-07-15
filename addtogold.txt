@@ -1,7 +1,0 @@
-spark.sql("""
-CREATE TABLE IF NOT EXISTS my_catalog.silver.reservations_cleaned (
-    -- checkin_id INT,  -- 0 If the deadline has not arrived , null if did not arrive
-    -- lead_time_minutes INT,
-    -- is_update BOOLEAN,
-) USING iceberg;
-""")
