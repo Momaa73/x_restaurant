@@ -16,8 +16,8 @@ services:
     networks:
       - x_restaurant
     ports:
-      - "9092:9092"  # פנימי
-      - "9094:9094"  # חיצוני למחשב שלך
+      - "9092:9092" 
+      - "9094:9094" 
 
 networks:
   x_restaurant:
