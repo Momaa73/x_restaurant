@@ -13,8 +13,14 @@ spark = SparkSession.builder \
     .config("spark.sql.catalog.my_catalog.default-namespace", "bronze") \
     .getOrCreate()
 
+# spark.sql("DROP TABLE IF EXISTS my_catalog.Reservations_raw")
+# spark.sql("DROP TABLE IF EXISTS my_catalog.Checkins_raw")
+# spark.sql("DROP TABLE IF EXISTS my_catalog.bronze.Feedback_raw")
+
+
 spark.sql("CREATE NAMESPACE IF NOT EXISTS my_catalog.bronze")
 
+# Reservations_raw
 spark.sql("""
 CREATE TABLE IF NOT EXISTS my_catalog.bronze.Reservations_raw (
     reservation_id INT,
@@ -31,6 +37,7 @@ CREATE TABLE IF NOT EXISTS my_catalog.bronze.Reservations_raw (
 ) USING iceberg
 """)
 
+# Checkins_raw
 spark.sql("""
 CREATE TABLE IF NOT EXISTS my_catalog.bronze.Checkins_raw (
     checkin_id INT,
