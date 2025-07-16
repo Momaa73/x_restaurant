@@ -17,6 +17,8 @@ spark = SparkSession.builder \
 # spark.sql("DROP TABLE IF EXISTS my_catalog.Checkins_raw")
 # spark.sql("DROP TABLE IF EXISTS my_catalog.bronze.Feedback_raw")
 
+# dummy comment for commit first time
+# dummy comment for commit second time
 
 spark.sql("CREATE NAMESPACE IF NOT EXISTS my_catalog.bronze")
 
