@@ -11,7 +11,7 @@ default_args = {
 with DAG(
     dag_id='bronze_to_silver',
     default_args=default_args,
-    schedule_interval='@daily',
+    schedule='@daily',
     catchup=False,
 ) as dag:
 
