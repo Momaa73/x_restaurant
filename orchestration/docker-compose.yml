@@ -142,6 +142,7 @@ services:
   airflow-scheduler:
     <<: *airflow-common
     command: scheduler
+    user: "0:0"
     healthcheck:
       test: ["CMD", "curl", "--fail", "http://localhost:8974/health"]
       interval: 30s
@@ -155,6 +156,12 @@ services:
         condition: service_completed_successfully
     networks:
       x_restaurant: {}
+    volumes:
+      - ${AIRFLOW_PROJ_DIR:-.}/dags:/opt/airflow/dags
+      - ${AIRFLOW_PROJ_DIR:-.}/logs:/opt/airflow/logs
+      - ${AIRFLOW_PROJ_DIR:-.}/config:/opt/airflow/config
+      - ${AIRFLOW_PROJ_DIR:-.}/plugins:/opt/airflow/plugins
+      - /var/run/docker.sock:/var/run/docker.sock
 
   airflow-dag-processor:
     <<: *airflow-common

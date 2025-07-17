@@ -1,0 +1,7 @@
+{"timestamp":"2025-07-17T17:19:55.733238","level":"info","event":"Filling up the DagBag from /opt/airflow/dags/silver_to_gold_dag.py","logger":"airflow.models.dagbag.DagBag"}
+{"timestamp":"2025-07-17T17:20:29.865400","level":"info","event":"Filling up the DagBag from /opt/airflow/dags/silver_to_gold_dag.py","logger":"airflow.models.dagbag.DagBag"}
+{"timestamp":"2025-07-17T17:21:00.408533","level":"info","event":"Filling up the DagBag from /opt/airflow/dags/silver_to_gold_dag.py","logger":"airflow.models.dagbag.DagBag"}
+{"timestamp":"2025-07-17T17:21:31.320128","level":"info","event":"Filling up the DagBag from /opt/airflow/dags/silver_to_gold_dag.py","logger":"airflow.models.dagbag.DagBag"}
+{"timestamp":"2025-07-17T17:22:01.611467","level":"info","event":"Filling up the DagBag from /opt/airflow/dags/silver_to_gold_dag.py","logger":"airflow.models.dagbag.DagBag"}
+{"timestamp":"2025-07-17T17:22:32.461576","level":"info","event":"Filling up the DagBag from /opt/airflow/dags/silver_to_gold_dag.py","logger":"airflow.models.dagbag.DagBag"}
+{"timestamp":"2025-07-17T17:23:03.142605","level":"info","event":"Filling up the DagBag from /opt/airflow/dags/silver_to_gold_dag.py","logger":"airflow.models.dagbag.DagBag"}
