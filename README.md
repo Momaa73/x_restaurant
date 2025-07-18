@@ -125,6 +125,24 @@ docker-compose up -d
 - Use MinIO UI to browse Iceberg table files.
 - Use Spark SQL or Trino to query Iceberg tables (optional).
 
+## Sample Batch Data
+Sample batch data files are provided for initial loading into the bronze Iceberg tables. You can find them in `processing/demo_data/`:
+- `reservations.csv`
+- `checkins.csv`
+- `feedback.csv`
+
+### Loading Batch Data
+To load the sample batch data into the bronze layer, you can use a Spark job or manually load them using Spark SQL. For example, you can add a step in your Airflow DAG or run the following Spark code:
+
+```python
+# Example: Load reservations.csv into the bronze table
+from pyspark.sql import SparkSession
+spark = SparkSession.builder.getOrCreate()
+df = spark.read.csv("/app/processing/demo_data/reservations.csv", header=True, inferSchema=True)
+df.write.format("iceberg").mode("append").save("my_catalog.bronze.Reservations_raw")
+```
+Repeat for `checkins.csv` and `feedback.csv` as needed.
+
 ## Component Descriptions
 ### /orchestration
 - Contains Airflow DAGs and configuration for orchestrating the ETL pipeline.
@@ -162,6 +180,8 @@ docker-compose up -d
 
 ## Authors
 - Moran Benyamin
+- Eden Adiv
+- Kori Zohar
 
 ## License
 MIT License 

@@ -64,6 +64,23 @@ def read_kafka(topic, schema, checkpoint_path, output_path):
         .select(from_json(col("json"), schema).alias("data")) \
         .select("data.*")
 
+    # Add watermarking and deduplication for late-arriving data (up to 48 hours)
+    if topic == "reservations":
+        # Use created_at as event time
+        df = df.withWatermark("created_at", "48 hours")
+        df = df.dropDuplicates(["reservation_id", "created_at"])
+    elif topic == "checkins":
+        # Use checkin_time as event time (cast to timestamp if needed)
+        # If checkin_time is string, you may want to cast to timestamp for watermarking
+        # For simplicity, we'll use checkin_date and checkin_time as a composite key
+        df = df.withColumn("checkin_timestamp", col("checkin_date").cast("string") + " " + col("checkin_time"))
+        df = df.withWatermark("checkin_timestamp", "48 hours")
+        df = df.dropDuplicates(["checkin_id", "checkin_timestamp"])
+    elif topic == "feedback":
+        # Use submission_time as event time
+        df = df.withWatermark("submission_time", "48 hours")
+        df = df.dropDuplicates(["feedback_id", "submission_time"])
+
     df.writeStream \
         .format("iceberg") \
         .outputMode("append") \

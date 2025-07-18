@@ -1,5 +1,5 @@
 from pyspark.sql import SparkSession
-from pyspark.sql.functions import current_timestamp, col, length, substring, when
+from pyspark.sql.functions import current_timestamp, col, length, substring, when, expr
 from pyspark.sql.functions import max as spark_max
 from pyspark.sql.window import Window
 from pyspark.sql.functions import row_number
@@ -240,5 +240,48 @@ if nulltype_cols:
     print("ERROR: NullType columns found in feedback_cleaned schema:", nulltype_cols)
     print(feedback_cleaned.schema)
     raise Exception(f"NullType columns found in feedback_cleaned: {nulltype_cols}")
+
+# --- Process reservations_cleaned (last 48 hours) ---
+reservations_recent = reservations_cleaned.filter(
+    expr("created_at_date >= date_sub(current_date(), 2)")
+)
+reservations_recent.createOrReplaceTempView("reservations_updates")
+
+# Upsert into silver.reservations_cleaned using MERGE INTO
+spark.sql("""
+MERGE INTO my_catalog.silver.reservations_cleaned t
+USING reservations_updates s
+ON t.reservation_id = s.reservation_id AND t.created_at_date = s.created_at_date
+WHEN MATCHED THEN UPDATE SET *
+WHEN NOT MATCHED THEN INSERT *
+""")
+
+# --- Process checkins_cleaned (last 48 hours) ---
+checkins_recent = checkins_cleaned.filter(
+    expr("checkin_date >= date_sub(current_date(), 2)")
+)
+checkins_recent.createOrReplaceTempView("checkins_updates")
+
+spark.sql("""
+MERGE INTO my_catalog.silver.checkins_cleaned t
+USING checkins_updates s
+ON t.checkin_id = s.checkin_id AND t.checkin_date = s.checkin_date
+WHEN MATCHED THEN UPDATE SET *
+WHEN NOT MATCHED THEN INSERT *
+""")
+
+# --- Process feedback_cleaned (last 48 hours) ---
+feedback_recent = feedback_cleaned.filter(
+    expr("dining_date >= date_sub(current_date(), 2)")
+)
+feedback_recent.createOrReplaceTempView("feedback_updates")
+
+spark.sql("""
+MERGE INTO my_catalog.silver.feedback_cleaned t
+USING feedback_updates s
+ON t.feedback_id = s.feedback_id AND t.dining_date = s.dining_date
+WHEN MATCHED THEN UPDATE SET *
+WHEN NOT MATCHED THEN INSERT *
+""")
 
 spark.stop()
