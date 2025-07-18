@@ -321,4 +321,33 @@ feedback_required = ["feedback_id", "customer_name", "phone_number", "dining_dat
 dq_check_nulls(feedback_cleaned, feedback_required, "feedback_cleaned")
 dq_check_duplicates(feedback_cleaned, ["feedback_id", "dining_date"], "feedback_cleaned")
 
+# --- Referential Integrity Checks ---
+
+def dq_check_fk(df, fk_col, parent_df, pk_col, entity_name, parent_name):
+    missing_fk = df.join(parent_df, df[fk_col] == parent_df[pk_col], "left_anti")
+    count = missing_fk.count()
+    if count > 0:
+        print(f"[DQ] {entity_name}: Found {count} records with missing {fk_col} not in {parent_name}.{pk_col}.")
+        missing_fk.show(5)
+    else:
+        print(f"[DQ] {entity_name}: All {fk_col} values exist in {parent_name}.{pk_col}.")
+
+# Referential integrity for reservations_cleaned
+branches_df = spark.table("my_catalog.silver.scd2_branch").filter(col("is_update") == True)
+tables_df = spark.table("my_catalog.silver.table").filter(col("is_update") == True)
+customers_df = spark.table("my_catalog.silver.customers")
+
+dq_check_fk(reservations_cleaned, "branch_id", branches_df, "branch_id", "reservations_cleaned", "scd2_branch")
+dq_check_fk(reservations_cleaned, "table_id", tables_df, "table_id", "reservations_cleaned", "table")
+dq_check_fk(reservations_cleaned, "phone_number", customers_df, "phone_number", "reservations_cleaned", "customers")
+
+# Referential integrity for checkins_cleaned
+dq_check_fk(checkins_cleaned, "branch_id", branches_df, "branch_id", "checkins_cleaned", "scd2_branch")
+dq_check_fk(checkins_cleaned, "table_id", tables_df, "table_id", "checkins_cleaned", "table")
+dq_check_fk(checkins_cleaned, "phone_number", customers_df, "phone_number", "checkins_cleaned", "customers")
+
+# Referential integrity for feedback_cleaned
+dq_check_fk(feedback_cleaned, "branch_id", branches_df, "branch_id", "feedback_cleaned", "scd2_branch")
+dq_check_fk(feedback_cleaned, "phone_number", customers_df, "phone_number", "feedback_cleaned", "customers")
+
 spark.stop()

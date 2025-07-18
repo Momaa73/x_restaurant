@@ -170,6 +170,9 @@ Repeat for `checkins.csv` and `feedback.csv` as needed.
 - **Duplicate Checks:**
   - For each entity, checks for duplicate primary keys (e.g., reservation_id + created_at_date).
   - If any duplicates are found, the count and a sample are printed in the Spark job logs.
+- **Referential Integrity Checks:**
+  - For each entity, checks that all foreign keys (e.g., branch_id, table_id, phone_number) exist in the corresponding parent tables (e.g., scd2_branch, table, customers).
+  - If any violations are found, the count and a sample are printed in the Spark job logs.
 - These checks are implemented in `processing/spark/bronze_to_silver.py` and run before upsert/merge logic.
 
 ## SCD2 (Slowly Changing Dimension Type 2)
