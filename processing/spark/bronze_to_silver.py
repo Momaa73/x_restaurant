@@ -5,6 +5,29 @@ from pyspark.sql.window import Window
 from pyspark.sql.functions import row_number
 from pyspark.sql.types import IntegerType, StringType, StructType, StructField
 
+# --- Helper function to map Spark types to SQL types for Iceberg ---
+def spark_type_to_sql_type(data_type):
+    if data_type.typeName() == "null":
+        return "STRING"
+    elif data_type.typeName() == "integer":
+        return "INT"
+    elif data_type.typeName() == "string":
+        return "STRING"
+    elif data_type.typeName() == "boolean":
+        return "BOOLEAN"
+    elif data_type.typeName() == "timestamp":
+        return "TIMESTAMP"
+    elif data_type.typeName() == "date":
+        return "DATE"
+    elif data_type.typeName() == "double":
+        return "DOUBLE"
+    elif data_type.typeName() == "float":
+        return "FLOAT"
+    elif data_type.typeName() == "long":
+        return "BIGINT"
+    else:
+        return data_type.simpleString().upper()
+
 spark = SparkSession.builder \
     .appName("BronzeToSilver") \
     .config("spark.jars.packages", "org.apache.iceberg:iceberg-spark-runtime-3.5_2.12:1.5.0") \
@@ -99,12 +122,24 @@ reservations_cleaned = reservations_raw.select(
 ).withColumn("created_at_date", col("created_at").cast("date")) \
  .withColumn("created_at_hour", substring(col("created_at").cast("string"), 12, 5)) \
  .drop("created_at") \
- .withColumn("is_holiday", when(col("reservation_id").isNotNull(), False).otherwise(False)) \
- .withColumn("holiday_name", when(col("reservation_id").isNotNull(), None).otherwise(None)) \
+ .withColumn("is_holiday", when(col("reservation_id").isNotNull(), False).otherwise(False).cast("boolean")) \
+ .withColumn("holiday_name", when(col("reservation_id").isNotNull(), None).otherwise(None).cast("string")) \
  .withColumn("ingestion_time", current_timestamp())
 
 cols_to_check = [c for c in reservations_cleaned.columns if c != "ingestion_time"]
 reservations_cleaned = reservations_cleaned.dropDuplicates(cols_to_check)
+
+# --- Ensure reservations_cleaned table exists ---
+reservations_schema = ", ".join([
+    f"{field.name} {spark_type_to_sql_type(field.dataType)}" for field in reservations_cleaned.schema.fields
+])
+create_reservations_table_sql = f"""
+CREATE TABLE IF NOT EXISTS my_catalog.silver.reservations_cleaned (
+    {reservations_schema}
+)
+USING ICEBERG
+"""
+spark.sql(create_reservations_table_sql)
 
 reservations_cleaned.write.mode("append").format("iceberg").save("my_catalog.silver.reservations_cleaned")
 
@@ -128,13 +163,25 @@ checkins_cleaned = checkins_raw.select(
     "guests_count",
     "shift_manager"
 ).withColumn("time_of_day_id", get_time_of_day_id(col("checkin_time"))) \
- .withColumn("is_holiday", when(col("checkin_id").isNotNull(), False).otherwise(False)) \
- .withColumn("holiday_name", when(col("checkin_id").isNotNull(), None).otherwise(None)) \
+ .withColumn("is_holiday", when(col("checkin_id").isNotNull(), False).otherwise(False).cast("boolean")) \
+ .withColumn("holiday_name", when(col("checkin_id").isNotNull(), None).otherwise(None).cast("string")) \
  .withColumn("ingestion_time", current_timestamp()) \
  .drop("checkin_time")
 
 cols_to_check = [c for c in checkins_cleaned.columns if c != "ingestion_time"]
 checkins_cleaned = checkins_cleaned.dropDuplicates(cols_to_check)
+
+# --- Ensure checkins_cleaned table exists ---
+checkins_schema = ", ".join([
+    f"{field.name} {spark_type_to_sql_type(field.dataType)}" for field in checkins_cleaned.schema.fields
+])
+create_checkins_table_sql = f"""
+CREATE TABLE IF NOT EXISTS my_catalog.silver.checkins_cleaned (
+    {checkins_schema}
+)
+USING ICEBERG
+"""
+spark.sql(create_checkins_table_sql)
 
 checkins_cleaned.write.mode("append").format("iceberg").save("my_catalog.silver.checkins_cleaned")
 
@@ -150,14 +197,48 @@ feedback_cleaned = feedback_raw.select(
     "dining_time"
 ).withColumn("text_length", length(col("feedback_text"))) \
  .withColumn("dining_time_of_day_id", get_time_of_day_id(col("dining_time"))) \
- .withColumn("is_holiday", when(col("feedback_id").isNotNull(), False).otherwise(False)) \
- .withColumn("holiday_name", when(col("feedback_id").isNotNull(), None).otherwise(None)) \
+ .withColumn("is_holiday", when(col("feedback_id").isNotNull(), False).otherwise(False).cast("boolean")) \
+ .withColumn("holiday_name", when(col("feedback_id").isNotNull(), None).otherwise(None).cast("string")) \
  .withColumn("ingestion_time", current_timestamp()) \
  .drop("dining_time")
 
 cols_to_check = [c for c in feedback_cleaned.columns if c != "ingestion_time"]
 feedback_cleaned = feedback_cleaned.dropDuplicates(cols_to_check)
 
+# --- Ensure feedback_cleaned table exists ---
+feedback_schema = ", ".join([
+    f"{field.name} {spark_type_to_sql_type(field.dataType)}" for field in feedback_cleaned.schema.fields
+])
+create_feedback_table_sql = f"""
+CREATE TABLE IF NOT EXISTS my_catalog.silver.feedback_cleaned (
+    {feedback_schema}
+)
+USING ICEBERG
+"""
+spark.sql(create_feedback_table_sql)
+
 feedback_cleaned.write.mode("append").format("iceberg").save("my_catalog.silver.feedback_cleaned")
+
+# --- Ensure reservations_cleaned table exists ---
+# Check for NullType columns and raise error if found
+nulltype_cols = [field.name for field in reservations_cleaned.schema.fields if field.dataType.typeName() == "null"]
+if nulltype_cols:
+    print("ERROR: NullType columns found in reservations_cleaned schema:", nulltype_cols)
+    print(reservations_cleaned.schema)
+    raise Exception(f"NullType columns found in reservations_cleaned: {nulltype_cols}")
+
+# --- Ensure checkins_cleaned table exists ---
+nulltype_cols = [field.name for field in checkins_cleaned.schema.fields if field.dataType.typeName() == "null"]
+if nulltype_cols:
+    print("ERROR: NullType columns found in checkins_cleaned schema:", nulltype_cols)
+    print(checkins_cleaned.schema)
+    raise Exception(f"NullType columns found in checkins_cleaned: {nulltype_cols}")
+
+# --- Ensure feedback_cleaned table exists ---
+nulltype_cols = [field.name for field in feedback_cleaned.schema.fields if field.dataType.typeName() == "null"]
+if nulltype_cols:
+    print("ERROR: NullType columns found in feedback_cleaned schema:", nulltype_cols)
+    print(feedback_cleaned.schema)
+    raise Exception(f"NullType columns found in feedback_cleaned: {nulltype_cols}")
 
 spark.stop()

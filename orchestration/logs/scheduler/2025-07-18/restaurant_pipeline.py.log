@@ -2858,3 +2858,204 @@ ModuleNotFoundError: No module named 'faker'
 [2025-07-18T18:36:12.684+0000] {processor.py:839} INFO - DAG(s) dict_keys(['restaurant_pipeline']) retrieved from /opt/airflow/dags/restaurant_pipeline.py
 [2025-07-18T18:36:12.705+0000] {logging_mixin.py:154} INFO - [2025-07-18T18:36:12.705+0000] {dag.py:2941} INFO - Sync 1 DAGs
 [2025-07-18T18:36:12.729+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/restaurant_pipeline.py took 0.124 seconds
+[2025-07-18T18:36:42.808+0000] {processor.py:157} INFO - Started process (PID=3552) to work on /opt/airflow/dags/restaurant_pipeline.py
+[2025-07-18T18:36:42.811+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/restaurant_pipeline.py for tasks to queue
+[2025-07-18T18:36:42.812+0000] {logging_mixin.py:154} INFO - [2025-07-18T18:36:42.812+0000] {dagbag.py:536} INFO - Filling up the DagBag from /opt/airflow/dags/restaurant_pipeline.py
+[2025-07-18T18:36:42.954+0000] {processor.py:839} INFO - DAG(s) dict_keys(['restaurant_pipeline']) retrieved from /opt/airflow/dags/restaurant_pipeline.py
+[2025-07-18T18:36:43.017+0000] {logging_mixin.py:154} INFO - [2025-07-18T18:36:43.017+0000] {dag.py:2941} INFO - Sync 1 DAGs
+[2025-07-18T18:36:43.084+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/restaurant_pipeline.py took 0.280 seconds
+[2025-07-18T18:37:13.218+0000] {processor.py:157} INFO - Started process (PID=3573) to work on /opt/airflow/dags/restaurant_pipeline.py
+[2025-07-18T18:37:13.219+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/restaurant_pipeline.py for tasks to queue
+[2025-07-18T18:37:13.220+0000] {logging_mixin.py:154} INFO - [2025-07-18T18:37:13.219+0000] {dagbag.py:536} INFO - Filling up the DagBag from /opt/airflow/dags/restaurant_pipeline.py
+[2025-07-18T18:37:13.283+0000] {processor.py:839} INFO - DAG(s) dict_keys(['restaurant_pipeline']) retrieved from /opt/airflow/dags/restaurant_pipeline.py
+[2025-07-18T18:37:13.308+0000] {logging_mixin.py:154} INFO - [2025-07-18T18:37:13.308+0000] {dag.py:2941} INFO - Sync 1 DAGs
+[2025-07-18T18:37:13.463+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/restaurant_pipeline.py took 0.247 seconds
+[2025-07-18T18:37:43.504+0000] {processor.py:157} INFO - Started process (PID=3578) to work on /opt/airflow/dags/restaurant_pipeline.py
+[2025-07-18T18:37:43.506+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/restaurant_pipeline.py for tasks to queue
+[2025-07-18T18:37:43.506+0000] {logging_mixin.py:154} INFO - [2025-07-18T18:37:43.506+0000] {dagbag.py:536} INFO - Filling up the DagBag from /opt/airflow/dags/restaurant_pipeline.py
+[2025-07-18T18:37:43.610+0000] {processor.py:839} INFO - DAG(s) dict_keys(['restaurant_pipeline']) retrieved from /opt/airflow/dags/restaurant_pipeline.py
+[2025-07-18T18:37:43.806+0000] {logging_mixin.py:154} INFO - [2025-07-18T18:37:43.806+0000] {dag.py:2941} INFO - Sync 1 DAGs
+[2025-07-18T18:37:43.822+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/restaurant_pipeline.py took 0.322 seconds
+[2025-07-18T18:38:14.009+0000] {processor.py:157} INFO - Started process (PID=3593) to work on /opt/airflow/dags/restaurant_pipeline.py
+[2025-07-18T18:38:14.010+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/restaurant_pipeline.py for tasks to queue
+[2025-07-18T18:38:14.011+0000] {logging_mixin.py:154} INFO - [2025-07-18T18:38:14.011+0000] {dagbag.py:536} INFO - Filling up the DagBag from /opt/airflow/dags/restaurant_pipeline.py
+[2025-07-18T18:38:14.139+0000] {processor.py:839} INFO - DAG(s) dict_keys(['restaurant_pipeline']) retrieved from /opt/airflow/dags/restaurant_pipeline.py
+[2025-07-18T18:38:14.212+0000] {logging_mixin.py:154} INFO - [2025-07-18T18:38:14.212+0000] {dag.py:2941} INFO - Sync 1 DAGs
+[2025-07-18T18:38:14.334+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/restaurant_pipeline.py took 0.330 seconds
+[2025-07-18T18:38:44.501+0000] {processor.py:157} INFO - Started process (PID=3614) to work on /opt/airflow/dags/restaurant_pipeline.py
+[2025-07-18T18:38:44.502+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/restaurant_pipeline.py for tasks to queue
+[2025-07-18T18:38:44.503+0000] {logging_mixin.py:154} INFO - [2025-07-18T18:38:44.503+0000] {dagbag.py:536} INFO - Filling up the DagBag from /opt/airflow/dags/restaurant_pipeline.py
+[2025-07-18T18:38:44.577+0000] {processor.py:839} INFO - DAG(s) dict_keys(['restaurant_pipeline']) retrieved from /opt/airflow/dags/restaurant_pipeline.py
+[2025-07-18T18:38:44.602+0000] {logging_mixin.py:154} INFO - [2025-07-18T18:38:44.601+0000] {dag.py:2941} INFO - Sync 1 DAGs
+[2025-07-18T18:38:44.626+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/restaurant_pipeline.py took 0.128 seconds
+[2025-07-18T18:39:14.683+0000] {processor.py:157} INFO - Started process (PID=3619) to work on /opt/airflow/dags/restaurant_pipeline.py
+[2025-07-18T18:39:14.684+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/restaurant_pipeline.py for tasks to queue
+[2025-07-18T18:39:14.685+0000] {logging_mixin.py:154} INFO - [2025-07-18T18:39:14.685+0000] {dagbag.py:536} INFO - Filling up the DagBag from /opt/airflow/dags/restaurant_pipeline.py
+[2025-07-18T18:39:14.775+0000] {processor.py:839} INFO - DAG(s) dict_keys(['restaurant_pipeline']) retrieved from /opt/airflow/dags/restaurant_pipeline.py
+[2025-07-18T18:39:14.802+0000] {logging_mixin.py:154} INFO - [2025-07-18T18:39:14.802+0000] {dag.py:2941} INFO - Sync 1 DAGs
+[2025-07-18T18:39:15.031+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/restaurant_pipeline.py took 0.352 seconds
+[2025-07-18T18:39:45.204+0000] {processor.py:157} INFO - Started process (PID=3633) to work on /opt/airflow/dags/restaurant_pipeline.py
+[2025-07-18T18:39:45.205+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/restaurant_pipeline.py for tasks to queue
+[2025-07-18T18:39:45.206+0000] {logging_mixin.py:154} INFO - [2025-07-18T18:39:45.205+0000] {dagbag.py:536} INFO - Filling up the DagBag from /opt/airflow/dags/restaurant_pipeline.py
+[2025-07-18T18:39:45.283+0000] {processor.py:839} INFO - DAG(s) dict_keys(['restaurant_pipeline']) retrieved from /opt/airflow/dags/restaurant_pipeline.py
+[2025-07-18T18:39:45.497+0000] {logging_mixin.py:154} INFO - [2025-07-18T18:39:45.497+0000] {dag.py:2941} INFO - Sync 1 DAGs
+[2025-07-18T18:39:45.518+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/restaurant_pipeline.py took 0.319 seconds
+[2025-07-18T18:40:15.703+0000] {processor.py:157} INFO - Started process (PID=3654) to work on /opt/airflow/dags/restaurant_pipeline.py
+[2025-07-18T18:40:15.704+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/restaurant_pipeline.py for tasks to queue
+[2025-07-18T18:40:15.705+0000] {logging_mixin.py:154} INFO - [2025-07-18T18:40:15.704+0000] {dagbag.py:536} INFO - Filling up the DagBag from /opt/airflow/dags/restaurant_pipeline.py
+[2025-07-18T18:40:15.776+0000] {processor.py:839} INFO - DAG(s) dict_keys(['restaurant_pipeline']) retrieved from /opt/airflow/dags/restaurant_pipeline.py
+[2025-07-18T18:40:15.809+0000] {logging_mixin.py:154} INFO - [2025-07-18T18:40:15.809+0000] {dag.py:2941} INFO - Sync 1 DAGs
+[2025-07-18T18:40:15.832+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/restaurant_pipeline.py took 0.132 seconds
+[2025-07-18T18:40:45.870+0000] {processor.py:157} INFO - Started process (PID=3659) to work on /opt/airflow/dags/restaurant_pipeline.py
+[2025-07-18T18:40:45.871+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/restaurant_pipeline.py for tasks to queue
+[2025-07-18T18:40:45.872+0000] {logging_mixin.py:154} INFO - [2025-07-18T18:40:45.871+0000] {dagbag.py:536} INFO - Filling up the DagBag from /opt/airflow/dags/restaurant_pipeline.py
+[2025-07-18T18:40:45.944+0000] {processor.py:839} INFO - DAG(s) dict_keys(['restaurant_pipeline']) retrieved from /opt/airflow/dags/restaurant_pipeline.py
+[2025-07-18T18:40:45.965+0000] {logging_mixin.py:154} INFO - [2025-07-18T18:40:45.965+0000] {dag.py:2941} INFO - Sync 1 DAGs
+[2025-07-18T18:40:45.993+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/restaurant_pipeline.py took 0.126 seconds
+[2025-07-18T18:41:16.190+0000] {processor.py:157} INFO - Started process (PID=3664) to work on /opt/airflow/dags/restaurant_pipeline.py
+[2025-07-18T18:41:16.191+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/restaurant_pipeline.py for tasks to queue
+[2025-07-18T18:41:16.192+0000] {logging_mixin.py:154} INFO - [2025-07-18T18:41:16.192+0000] {dagbag.py:536} INFO - Filling up the DagBag from /opt/airflow/dags/restaurant_pipeline.py
+[2025-07-18T18:41:16.278+0000] {processor.py:839} INFO - DAG(s) dict_keys(['restaurant_pipeline']) retrieved from /opt/airflow/dags/restaurant_pipeline.py
+[2025-07-18T18:41:16.302+0000] {logging_mixin.py:154} INFO - [2025-07-18T18:41:16.302+0000] {dag.py:2941} INFO - Sync 1 DAGs
+[2025-07-18T18:41:16.569+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/restaurant_pipeline.py took 0.384 seconds
+[2025-07-18T18:41:46.761+0000] {processor.py:157} INFO - Started process (PID=3678) to work on /opt/airflow/dags/restaurant_pipeline.py
+[2025-07-18T18:41:46.762+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/restaurant_pipeline.py for tasks to queue
+[2025-07-18T18:41:46.763+0000] {logging_mixin.py:154} INFO - [2025-07-18T18:41:46.762+0000] {dagbag.py:536} INFO - Filling up the DagBag from /opt/airflow/dags/restaurant_pipeline.py
+[2025-07-18T18:41:46.866+0000] {processor.py:839} INFO - DAG(s) dict_keys(['restaurant_pipeline']) retrieved from /opt/airflow/dags/restaurant_pipeline.py
+[2025-07-18T18:41:47.199+0000] {logging_mixin.py:154} INFO - [2025-07-18T18:41:47.199+0000] {dag.py:2941} INFO - Sync 1 DAGs
+[2025-07-18T18:41:47.232+0000] {logging_mixin.py:154} INFO - [2025-07-18T18:41:47.232+0000] {dag.py:3722} INFO - Setting next_dagrun for restaurant_pipeline to 2025-07-18T18:40:00+00:00, run_after=2025-07-18T18:42:00+00:00
+[2025-07-18T18:41:47.258+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/restaurant_pipeline.py took 0.501 seconds
+[2025-07-18T18:42:17.466+0000] {processor.py:157} INFO - Started process (PID=3699) to work on /opt/airflow/dags/restaurant_pipeline.py
+[2025-07-18T18:42:17.467+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/restaurant_pipeline.py for tasks to queue
+[2025-07-18T18:42:17.468+0000] {logging_mixin.py:154} INFO - [2025-07-18T18:42:17.468+0000] {dagbag.py:536} INFO - Filling up the DagBag from /opt/airflow/dags/restaurant_pipeline.py
+[2025-07-18T18:42:17.540+0000] {processor.py:839} INFO - DAG(s) dict_keys(['restaurant_pipeline']) retrieved from /opt/airflow/dags/restaurant_pipeline.py
+[2025-07-18T18:42:17.561+0000] {logging_mixin.py:154} INFO - [2025-07-18T18:42:17.560+0000] {dag.py:2941} INFO - Sync 1 DAGs
+[2025-07-18T18:42:17.584+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/restaurant_pipeline.py took 0.120 seconds
+[2025-07-18T18:42:47.662+0000] {processor.py:157} INFO - Started process (PID=3704) to work on /opt/airflow/dags/restaurant_pipeline.py
+[2025-07-18T18:42:47.663+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/restaurant_pipeline.py for tasks to queue
+[2025-07-18T18:42:47.664+0000] {logging_mixin.py:154} INFO - [2025-07-18T18:42:47.664+0000] {dagbag.py:536} INFO - Filling up the DagBag from /opt/airflow/dags/restaurant_pipeline.py
+[2025-07-18T18:42:47.739+0000] {processor.py:839} INFO - DAG(s) dict_keys(['restaurant_pipeline']) retrieved from /opt/airflow/dags/restaurant_pipeline.py
+[2025-07-18T18:42:47.762+0000] {logging_mixin.py:154} INFO - [2025-07-18T18:42:47.762+0000] {dag.py:2941} INFO - Sync 1 DAGs
+[2025-07-18T18:42:47.786+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/restaurant_pipeline.py took 0.128 seconds
+[2025-07-18T18:43:17.927+0000] {processor.py:157} INFO - Started process (PID=3719) to work on /opt/airflow/dags/restaurant_pipeline.py
+[2025-07-18T18:43:17.928+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/restaurant_pipeline.py for tasks to queue
+[2025-07-18T18:43:17.931+0000] {logging_mixin.py:154} INFO - [2025-07-18T18:43:17.930+0000] {dagbag.py:536} INFO - Filling up the DagBag from /opt/airflow/dags/restaurant_pipeline.py
+[2025-07-18T18:43:18.063+0000] {processor.py:839} INFO - DAG(s) dict_keys(['restaurant_pipeline']) retrieved from /opt/airflow/dags/restaurant_pipeline.py
+[2025-07-18T18:43:18.108+0000] {logging_mixin.py:154} INFO - [2025-07-18T18:43:18.107+0000] {dag.py:2941} INFO - Sync 1 DAGs
+[2025-07-18T18:43:18.343+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/restaurant_pipeline.py took 0.422 seconds
+[2025-07-18T18:43:48.572+0000] {processor.py:157} INFO - Started process (PID=3740) to work on /opt/airflow/dags/restaurant_pipeline.py
+[2025-07-18T18:43:48.575+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/restaurant_pipeline.py for tasks to queue
+[2025-07-18T18:43:48.578+0000] {logging_mixin.py:154} INFO - [2025-07-18T18:43:48.577+0000] {dagbag.py:536} INFO - Filling up the DagBag from /opt/airflow/dags/restaurant_pipeline.py
+[2025-07-18T18:43:48.708+0000] {processor.py:839} INFO - DAG(s) dict_keys(['restaurant_pipeline']) retrieved from /opt/airflow/dags/restaurant_pipeline.py
+[2025-07-18T18:43:48.947+0000] {logging_mixin.py:154} INFO - [2025-07-18T18:43:48.947+0000] {dag.py:2941} INFO - Sync 1 DAGs
+[2025-07-18T18:43:48.971+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/restaurant_pipeline.py took 0.407 seconds
+[2025-07-18T18:44:19.138+0000] {processor.py:157} INFO - Started process (PID=3745) to work on /opt/airflow/dags/restaurant_pipeline.py
+[2025-07-18T18:44:19.139+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/restaurant_pipeline.py for tasks to queue
+[2025-07-18T18:44:19.142+0000] {logging_mixin.py:154} INFO - [2025-07-18T18:44:19.141+0000] {dagbag.py:536} INFO - Filling up the DagBag from /opt/airflow/dags/restaurant_pipeline.py
+[2025-07-18T18:44:19.487+0000] {processor.py:839} INFO - DAG(s) dict_keys(['restaurant_pipeline']) retrieved from /opt/airflow/dags/restaurant_pipeline.py
+[2025-07-18T18:44:19.506+0000] {logging_mixin.py:154} INFO - [2025-07-18T18:44:19.506+0000] {dag.py:2941} INFO - Sync 1 DAGs
+[2025-07-18T18:44:19.535+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/restaurant_pipeline.py took 0.403 seconds
+[2025-07-18T18:44:49.713+0000] {processor.py:157} INFO - Started process (PID=3759) to work on /opt/airflow/dags/restaurant_pipeline.py
+[2025-07-18T18:44:49.714+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/restaurant_pipeline.py for tasks to queue
+[2025-07-18T18:44:49.714+0000] {logging_mixin.py:154} INFO - [2025-07-18T18:44:49.714+0000] {dagbag.py:536} INFO - Filling up the DagBag from /opt/airflow/dags/restaurant_pipeline.py
+[2025-07-18T18:44:49.775+0000] {processor.py:839} INFO - DAG(s) dict_keys(['restaurant_pipeline']) retrieved from /opt/airflow/dags/restaurant_pipeline.py
+[2025-07-18T18:44:49.792+0000] {logging_mixin.py:154} INFO - [2025-07-18T18:44:49.792+0000] {dag.py:2941} INFO - Sync 1 DAGs
+[2025-07-18T18:44:49.817+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/restaurant_pipeline.py took 0.106 seconds
+[2025-07-18T18:45:19.929+0000] {processor.py:157} INFO - Started process (PID=3764) to work on /opt/airflow/dags/restaurant_pipeline.py
+[2025-07-18T18:45:19.931+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/restaurant_pipeline.py for tasks to queue
+[2025-07-18T18:45:19.932+0000] {logging_mixin.py:154} INFO - [2025-07-18T18:45:19.932+0000] {dagbag.py:536} INFO - Filling up the DagBag from /opt/airflow/dags/restaurant_pipeline.py
+[2025-07-18T18:45:20.014+0000] {processor.py:839} INFO - DAG(s) dict_keys(['restaurant_pipeline']) retrieved from /opt/airflow/dags/restaurant_pipeline.py
+[2025-07-18T18:45:20.056+0000] {logging_mixin.py:154} INFO - [2025-07-18T18:45:20.055+0000] {dag.py:2941} INFO - Sync 1 DAGs
+[2025-07-18T18:45:20.249+0000] {logging_mixin.py:154} INFO - [2025-07-18T18:45:20.249+0000] {dag.py:3722} INFO - Setting next_dagrun for restaurant_pipeline to 2025-07-18T18:42:00+00:00, run_after=2025-07-18T18:44:00+00:00
+[2025-07-18T18:45:20.257+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/restaurant_pipeline.py took 0.334 seconds
+[2025-07-18T18:45:50.549+0000] {processor.py:157} INFO - Started process (PID=3785) to work on /opt/airflow/dags/restaurant_pipeline.py
+[2025-07-18T18:45:50.551+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/restaurant_pipeline.py for tasks to queue
+[2025-07-18T18:45:50.552+0000] {logging_mixin.py:154} INFO - [2025-07-18T18:45:50.552+0000] {dagbag.py:536} INFO - Filling up the DagBag from /opt/airflow/dags/restaurant_pipeline.py
+[2025-07-18T18:45:50.642+0000] {processor.py:839} INFO - DAG(s) dict_keys(['restaurant_pipeline']) retrieved from /opt/airflow/dags/restaurant_pipeline.py
+[2025-07-18T18:45:50.862+0000] {logging_mixin.py:154} INFO - [2025-07-18T18:45:50.862+0000] {dag.py:2941} INFO - Sync 1 DAGs
+[2025-07-18T18:45:50.883+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/restaurant_pipeline.py took 0.340 seconds
+[2025-07-18T18:46:21.047+0000] {processor.py:157} INFO - Started process (PID=3790) to work on /opt/airflow/dags/restaurant_pipeline.py
+[2025-07-18T18:46:21.048+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/restaurant_pipeline.py for tasks to queue
+[2025-07-18T18:46:21.049+0000] {logging_mixin.py:154} INFO - [2025-07-18T18:46:21.049+0000] {dagbag.py:536} INFO - Filling up the DagBag from /opt/airflow/dags/restaurant_pipeline.py
+[2025-07-18T18:46:21.318+0000] {processor.py:839} INFO - DAG(s) dict_keys(['restaurant_pipeline']) retrieved from /opt/airflow/dags/restaurant_pipeline.py
+[2025-07-18T18:46:21.335+0000] {logging_mixin.py:154} INFO - [2025-07-18T18:46:21.335+0000] {dag.py:2941} INFO - Sync 1 DAGs
+[2025-07-18T18:46:21.362+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/restaurant_pipeline.py took 0.318 seconds
+[2025-07-18T18:46:51.627+0000] {processor.py:157} INFO - Started process (PID=3804) to work on /opt/airflow/dags/restaurant_pipeline.py
+[2025-07-18T18:46:51.630+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/restaurant_pipeline.py for tasks to queue
+[2025-07-18T18:46:51.640+0000] {logging_mixin.py:154} INFO - [2025-07-18T18:46:51.640+0000] {dagbag.py:536} INFO - Filling up the DagBag from /opt/airflow/dags/restaurant_pipeline.py
+[2025-07-18T18:46:52.029+0000] {processor.py:839} INFO - DAG(s) dict_keys(['restaurant_pipeline']) retrieved from /opt/airflow/dags/restaurant_pipeline.py
+[2025-07-18T18:46:52.128+0000] {logging_mixin.py:154} INFO - [2025-07-18T18:46:52.127+0000] {dag.py:2941} INFO - Sync 1 DAGs
+[2025-07-18T18:46:52.241+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/restaurant_pipeline.py took 0.622 seconds
+[2025-07-18T18:47:22.427+0000] {processor.py:157} INFO - Started process (PID=3825) to work on /opt/airflow/dags/restaurant_pipeline.py
+[2025-07-18T18:47:22.428+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/restaurant_pipeline.py for tasks to queue
+[2025-07-18T18:47:22.428+0000] {logging_mixin.py:154} INFO - [2025-07-18T18:47:22.428+0000] {dagbag.py:536} INFO - Filling up the DagBag from /opt/airflow/dags/restaurant_pipeline.py
+[2025-07-18T18:47:22.509+0000] {processor.py:839} INFO - DAG(s) dict_keys(['restaurant_pipeline']) retrieved from /opt/airflow/dags/restaurant_pipeline.py
+[2025-07-18T18:47:22.533+0000] {logging_mixin.py:154} INFO - [2025-07-18T18:47:22.533+0000] {dag.py:2941} INFO - Sync 1 DAGs
+[2025-07-18T18:47:22.759+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/restaurant_pipeline.py took 0.335 seconds
+[2025-07-18T18:47:52.939+0000] {processor.py:157} INFO - Started process (PID=3830) to work on /opt/airflow/dags/restaurant_pipeline.py
+[2025-07-18T18:47:52.940+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/restaurant_pipeline.py for tasks to queue
+[2025-07-18T18:47:52.941+0000] {logging_mixin.py:154} INFO - [2025-07-18T18:47:52.941+0000] {dagbag.py:536} INFO - Filling up the DagBag from /opt/airflow/dags/restaurant_pipeline.py
+[2025-07-18T18:47:53.014+0000] {processor.py:839} INFO - DAG(s) dict_keys(['restaurant_pipeline']) retrieved from /opt/airflow/dags/restaurant_pipeline.py
+[2025-07-18T18:47:53.200+0000] {logging_mixin.py:154} INFO - [2025-07-18T18:47:53.199+0000] {dag.py:2941} INFO - Sync 1 DAGs
+[2025-07-18T18:47:53.218+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/restaurant_pipeline.py took 0.283 seconds
+[2025-07-18T18:48:23.410+0000] {processor.py:157} INFO - Started process (PID=3844) to work on /opt/airflow/dags/restaurant_pipeline.py
+[2025-07-18T18:48:23.415+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/restaurant_pipeline.py for tasks to queue
+[2025-07-18T18:48:23.417+0000] {logging_mixin.py:154} INFO - [2025-07-18T18:48:23.417+0000] {dagbag.py:536} INFO - Filling up the DagBag from /opt/airflow/dags/restaurant_pipeline.py
+[2025-07-18T18:48:23.696+0000] {processor.py:839} INFO - DAG(s) dict_keys(['restaurant_pipeline']) retrieved from /opt/airflow/dags/restaurant_pipeline.py
+[2025-07-18T18:48:23.721+0000] {logging_mixin.py:154} INFO - [2025-07-18T18:48:23.721+0000] {dag.py:2941} INFO - Sync 1 DAGs
+[2025-07-18T18:48:23.773+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/restaurant_pipeline.py took 0.374 seconds
+[2025-07-18T18:48:53.954+0000] {processor.py:157} INFO - Started process (PID=3866) to work on /opt/airflow/dags/restaurant_pipeline.py
+[2025-07-18T18:48:53.955+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/restaurant_pipeline.py for tasks to queue
+[2025-07-18T18:48:53.956+0000] {logging_mixin.py:154} INFO - [2025-07-18T18:48:53.955+0000] {dagbag.py:536} INFO - Filling up the DagBag from /opt/airflow/dags/restaurant_pipeline.py
+[2025-07-18T18:48:54.063+0000] {processor.py:839} INFO - DAG(s) dict_keys(['restaurant_pipeline']) retrieved from /opt/airflow/dags/restaurant_pipeline.py
+[2025-07-18T18:48:54.105+0000] {logging_mixin.py:154} INFO - [2025-07-18T18:48:54.105+0000] {dag.py:2941} INFO - Sync 1 DAGs
+[2025-07-18T18:48:54.161+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/restaurant_pipeline.py took 0.210 seconds
+[2025-07-18T18:49:24.427+0000] {processor.py:157} INFO - Started process (PID=3871) to work on /opt/airflow/dags/restaurant_pipeline.py
+[2025-07-18T18:49:24.428+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/restaurant_pipeline.py for tasks to queue
+[2025-07-18T18:49:24.429+0000] {logging_mixin.py:154} INFO - [2025-07-18T18:49:24.428+0000] {dagbag.py:536} INFO - Filling up the DagBag from /opt/airflow/dags/restaurant_pipeline.py
+[2025-07-18T18:49:24.528+0000] {processor.py:839} INFO - DAG(s) dict_keys(['restaurant_pipeline']) retrieved from /opt/airflow/dags/restaurant_pipeline.py
+[2025-07-18T18:49:24.548+0000] {logging_mixin.py:154} INFO - [2025-07-18T18:49:24.548+0000] {dag.py:2941} INFO - Sync 1 DAGs
+[2025-07-18T18:49:24.730+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/restaurant_pipeline.py took 0.307 seconds
+[2025-07-18T18:49:54.935+0000] {processor.py:157} INFO - Started process (PID=3886) to work on /opt/airflow/dags/restaurant_pipeline.py
+[2025-07-18T18:49:54.936+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/restaurant_pipeline.py for tasks to queue
+[2025-07-18T18:49:54.937+0000] {logging_mixin.py:154} INFO - [2025-07-18T18:49:54.937+0000] {dagbag.py:536} INFO - Filling up the DagBag from /opt/airflow/dags/restaurant_pipeline.py
+[2025-07-18T18:49:55.017+0000] {processor.py:839} INFO - DAG(s) dict_keys(['restaurant_pipeline']) retrieved from /opt/airflow/dags/restaurant_pipeline.py
+[2025-07-18T18:49:55.182+0000] {logging_mixin.py:154} INFO - [2025-07-18T18:49:55.182+0000] {dag.py:2941} INFO - Sync 1 DAGs
+[2025-07-18T18:49:55.204+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/restaurant_pipeline.py took 0.272 seconds
+[2025-07-18T18:50:25.429+0000] {processor.py:157} INFO - Started process (PID=3891) to work on /opt/airflow/dags/restaurant_pipeline.py
+[2025-07-18T18:50:25.431+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/restaurant_pipeline.py for tasks to queue
+[2025-07-18T18:50:25.432+0000] {logging_mixin.py:154} INFO - [2025-07-18T18:50:25.432+0000] {dagbag.py:536} INFO - Filling up the DagBag from /opt/airflow/dags/restaurant_pipeline.py
+[2025-07-18T18:50:25.774+0000] {processor.py:839} INFO - DAG(s) dict_keys(['restaurant_pipeline']) retrieved from /opt/airflow/dags/restaurant_pipeline.py
+[2025-07-18T18:50:25.792+0000] {logging_mixin.py:154} INFO - [2025-07-18T18:50:25.792+0000] {dag.py:2941} INFO - Sync 1 DAGs
+[2025-07-18T18:50:25.807+0000] {logging_mixin.py:154} INFO - [2025-07-18T18:50:25.807+0000] {dag.py:3722} INFO - Setting next_dagrun for restaurant_pipeline to 2025-07-18T18:48:00+00:00, run_after=2025-07-18T18:50:00+00:00
+[2025-07-18T18:50:25.818+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/restaurant_pipeline.py took 0.397 seconds
+[2025-07-18T18:50:55.999+0000] {processor.py:157} INFO - Started process (PID=3912) to work on /opt/airflow/dags/restaurant_pipeline.py
+[2025-07-18T18:50:56.001+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/restaurant_pipeline.py for tasks to queue
+[2025-07-18T18:50:56.003+0000] {logging_mixin.py:154} INFO - [2025-07-18T18:50:56.002+0000] {dagbag.py:536} INFO - Filling up the DagBag from /opt/airflow/dags/restaurant_pipeline.py
+[2025-07-18T18:50:56.115+0000] {processor.py:839} INFO - DAG(s) dict_keys(['restaurant_pipeline']) retrieved from /opt/airflow/dags/restaurant_pipeline.py
+[2025-07-18T18:50:56.151+0000] {logging_mixin.py:154} INFO - [2025-07-18T18:50:56.151+0000] {dag.py:2941} INFO - Sync 1 DAGs
+[2025-07-18T18:50:56.195+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/restaurant_pipeline.py took 0.202 seconds
+[2025-07-18T18:51:26.430+0000] {processor.py:157} INFO - Started process (PID=3917) to work on /opt/airflow/dags/restaurant_pipeline.py
+[2025-07-18T18:51:26.431+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/restaurant_pipeline.py for tasks to queue
+[2025-07-18T18:51:26.432+0000] {logging_mixin.py:154} INFO - [2025-07-18T18:51:26.432+0000] {dagbag.py:536} INFO - Filling up the DagBag from /opt/airflow/dags/restaurant_pipeline.py
+[2025-07-18T18:51:26.523+0000] {processor.py:839} INFO - DAG(s) dict_keys(['restaurant_pipeline']) retrieved from /opt/airflow/dags/restaurant_pipeline.py
+[2025-07-18T18:51:26.553+0000] {logging_mixin.py:154} INFO - [2025-07-18T18:51:26.553+0000] {dag.py:2941} INFO - Sync 1 DAGs
+[2025-07-18T18:51:26.756+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/restaurant_pipeline.py took 0.330 seconds
+[2025-07-18T18:51:56.999+0000] {processor.py:157} INFO - Started process (PID=3932) to work on /opt/airflow/dags/restaurant_pipeline.py
+[2025-07-18T18:51:57.001+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/restaurant_pipeline.py for tasks to queue
+[2025-07-18T18:51:57.004+0000] {logging_mixin.py:154} INFO - [2025-07-18T18:51:57.002+0000] {dagbag.py:536} INFO - Filling up the DagBag from /opt/airflow/dags/restaurant_pipeline.py
+[2025-07-18T18:51:57.243+0000] {processor.py:839} INFO - DAG(s) dict_keys(['restaurant_pipeline']) retrieved from /opt/airflow/dags/restaurant_pipeline.py
+[2025-07-18T18:51:57.672+0000] {logging_mixin.py:154} INFO - [2025-07-18T18:51:57.671+0000] {dag.py:2941} INFO - Sync 1 DAGs
+[2025-07-18T18:51:57.801+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/restaurant_pipeline.py took 0.807 seconds
+[2025-07-18T18:52:28.006+0000] {processor.py:157} INFO - Started process (PID=3964) to work on /opt/airflow/dags/restaurant_pipeline.py
+[2025-07-18T18:52:28.007+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/restaurant_pipeline.py for tasks to queue
+[2025-07-18T18:52:28.008+0000] {logging_mixin.py:154} INFO - [2025-07-18T18:52:28.008+0000] {dagbag.py:536} INFO - Filling up the DagBag from /opt/airflow/dags/restaurant_pipeline.py
+[2025-07-18T18:52:28.278+0000] {processor.py:839} INFO - DAG(s) dict_keys(['restaurant_pipeline']) retrieved from /opt/airflow/dags/restaurant_pipeline.py
+[2025-07-18T18:52:28.305+0000] {logging_mixin.py:154} INFO - [2025-07-18T18:52:28.305+0000] {dag.py:2941} INFO - Sync 1 DAGs
+[2025-07-18T18:52:28.349+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/restaurant_pipeline.py took 0.347 seconds
+[2025-07-18T18:52:58.548+0000] {processor.py:157} INFO - Started process (PID=3969) to work on /opt/airflow/dags/restaurant_pipeline.py
+[2025-07-18T18:52:58.549+0000] {processor.py:829} INFO - Processing file /opt/airflow/dags/restaurant_pipeline.py for tasks to queue
+[2025-07-18T18:52:58.549+0000] {logging_mixin.py:154} INFO - [2025-07-18T18:52:58.549+0000] {dagbag.py:536} INFO - Filling up the DagBag from /opt/airflow/dags/restaurant_pipeline.py
+[2025-07-18T18:52:58.639+0000] {processor.py:839} INFO - DAG(s) dict_keys(['restaurant_pipeline']) retrieved from /opt/airflow/dags/restaurant_pipeline.py
+[2025-07-18T18:52:58.662+0000] {logging_mixin.py:154} INFO - [2025-07-18T18:52:58.662+0000] {dag.py:2941} INFO - Sync 1 DAGs
+[2025-07-18T18:52:58.688+0000] {processor.py:179} INFO - Processing /opt/airflow/dags/restaurant_pipeline.py took 0.144 seconds
