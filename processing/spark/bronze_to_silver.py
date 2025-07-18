@@ -284,4 +284,41 @@ WHEN MATCHED THEN UPDATE SET *
 WHEN NOT MATCHED THEN INSERT *
 """)
 
+# --- Data Quality Checks: Nulls and Duplicates ---
+
+def dq_check_nulls(df, required_cols, entity_name):
+    nulls = df
+    for colname in required_cols:
+        nulls = nulls.filter(col(colname).isNull())
+    count = nulls.count()
+    if count > 0:
+        print(f"[DQ] {entity_name}: Found {count} records with nulls in {required_cols}.")
+        nulls.show(5)
+    else:
+        print(f"[DQ] {entity_name}: No nulls in {required_cols}.")
+
+def dq_check_duplicates(df, key_cols, entity_name):
+    dups = df.groupBy(key_cols).count().filter(col("count") > 1)
+    count = dups.count()
+    if count > 0:
+        print(f"[DQ] {entity_name}: Found {count} duplicate keys on {key_cols}.")
+        dups.show(5)
+    else:
+        print(f"[DQ] {entity_name}: No duplicate keys on {key_cols}.")
+
+# Reservations: check for nulls and duplicates
+reservations_required = ["reservation_id", "customer_name", "phone_number", "created_at_date"]
+dq_check_nulls(reservations_cleaned, reservations_required, "reservations_cleaned")
+dq_check_duplicates(reservations_cleaned, ["reservation_id", "created_at_date"], "reservations_cleaned")
+
+# Checkins: check for nulls and duplicates
+checkins_required = ["checkin_id", "customer_name", "phone_number", "checkin_date"]
+dq_check_nulls(checkins_cleaned, checkins_required, "checkins_cleaned")
+dq_check_duplicates(checkins_cleaned, ["checkin_id", "checkin_date"], "checkins_cleaned")
+
+# Feedback: check for nulls and duplicates
+feedback_required = ["feedback_id", "customer_name", "phone_number", "dining_date"]
+dq_check_nulls(feedback_cleaned, feedback_required, "feedback_cleaned")
+dq_check_duplicates(feedback_cleaned, ["feedback_id", "dining_date"], "feedback_cleaned")
+
 spark.stop()

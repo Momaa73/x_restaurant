@@ -161,6 +161,15 @@ Repeat for `checkins.csv` and `feedback.csv` as needed.
 - Checks include: null value checks, duplicate detection, referential integrity.
 - (Bonus) [Great Expectations](https://greatexpectations.io/) integration for advanced validation (if implemented).
 
+### Implemented Data Quality Checks
+- **Null Checks:**
+  - For each entity (reservations, checkins, feedback), required columns are checked for nulls (e.g., IDs, event times, customer info).
+  - If any nulls are found, the count and a sample are printed in the Spark job logs.
+- **Duplicate Checks:**
+  - For each entity, checks for duplicate primary keys (e.g., reservation_id + created_at_date).
+  - If any duplicates are found, the count and a sample are printed in the Spark job logs.
+- These checks are implemented in `processing/spark/bronze_to_silver.py` and run before upsert/merge logic.
+
 ## SCD2 (Slowly Changing Dimension Type 2)
 - The pipeline implements SCD2 logic for the `branch` dimension in the silver layer.
 - See `processing/spark/silver_to_gold.py` for implementation details.
