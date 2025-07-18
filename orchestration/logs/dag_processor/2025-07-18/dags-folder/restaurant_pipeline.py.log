@@ -248,3 +248,11 @@
 {"timestamp":"2025-07-18T11:54:33.758137","level":"info","event":"Filling up the DagBag from /opt/airflow/dags/restaurant_pipeline.py","logger":"airflow.models.dagbag.DagBag"}
 {"timestamp":"2025-07-18T11:55:04.802995","level":"info","event":"Filling up the DagBag from /opt/airflow/dags/restaurant_pipeline.py","logger":"airflow.models.dagbag.DagBag"}
 {"timestamp":"2025-07-18T11:56:23.703568","level":"info","event":"Filling up the DagBag from /opt/airflow/dags/restaurant_pipeline.py","logger":"airflow.models.dagbag.DagBag"}
+{"timestamp":"2025-07-18T11:56:57.054789","level":"info","event":"Filling up the DagBag from /opt/airflow/dags/restaurant_pipeline.py","logger":"airflow.models.dagbag.DagBag"}
+{"timestamp":"2025-07-18T11:57:27.209922","level":"info","event":"Filling up the DagBag from /opt/airflow/dags/restaurant_pipeline.py","logger":"airflow.models.dagbag.DagBag"}
+{"timestamp":"2025-07-18T11:57:58.254127","level":"info","event":"Filling up the DagBag from /opt/airflow/dags/restaurant_pipeline.py","logger":"airflow.models.dagbag.DagBag"}
+{"timestamp":"2025-07-18T11:58:29.041779","level":"info","event":"Filling up the DagBag from /opt/airflow/dags/restaurant_pipeline.py","logger":"airflow.models.dagbag.DagBag"}
+{"timestamp":"2025-07-18T11:59:00.047109","level":"info","event":"Filling up the DagBag from /opt/airflow/dags/restaurant_pipeline.py","logger":"airflow.models.dagbag.DagBag"}
+{"timestamp":"2025-07-18T11:59:30.181572","level":"info","event":"Filling up the DagBag from /opt/airflow/dags/restaurant_pipeline.py","logger":"airflow.models.dagbag.DagBag"}
+{"timestamp":"2025-07-18T12:00:01.133249","level":"info","event":"Filling up the DagBag from /opt/airflow/dags/restaurant_pipeline.py","logger":"airflow.models.dagbag.DagBag"}
+{"timestamp":"2025-07-18T12:00:32.137487","level":"info","event":"Filling up the DagBag from /opt/airflow/dags/restaurant_pipeline.py","logger":"airflow.models.dagbag.DagBag"}
