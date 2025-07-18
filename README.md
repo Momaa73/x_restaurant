@@ -109,7 +109,7 @@ docker-compose up -d
 ```
 
 ### 3. Access Services
-- **Airflow UI:** http://localhost:8080
+- **Airflow UI:** http://localhost:8082
 - **MinIO UI:** http://localhost:9000 (user: admin, password: password)
 - **Spark UI:** http://localhost:4040 (when Spark job is running)
 - **Kafka UI:** (if included)
