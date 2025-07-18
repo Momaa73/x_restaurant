@@ -59,6 +59,9 @@ x-airflow-common:
     AIRFLOW__CORE__LOAD_EXAMPLES: 'true'
     AIRFLOW__CORE__EXECUTION_API_SERVER_URL: 'http://airflow-apiserver:8080/execution/'
     AIRFLOW__LOGGING__REMOTE_LOGGING: 'False'
+    AIRFLOW__LOGGING__WORKER_LOG_SERVER_HOST: orchestration-airflow-worker-1
+
+
     # Remove these two lines:
     # AIRFLOW__LOGGING__WORKER_LOG_SERVER_HOST: 'airflow-worker'
     # AIRFLOW__LOGGING__WORKER_LOG_SERVER_PORT: 8793
@@ -88,6 +91,8 @@ services:
       POSTGRES_USER: airflow
       POSTGRES_PASSWORD: airflow
       POSTGRES_DB: airflow
+      AIRFLOW__LOGGING__WORKER_LOG_SERVER_HOST: orchestration-airflow-worker-1
+
     volumes:
       - postgres-db-volume:/var/lib/postgresql/data
     healthcheck:
@@ -185,9 +190,10 @@ services:
       start_period: 30s
     environment:
       <<: *airflow-common-env
-      AIRFLOW__LOGGING__WORKER_LOG_SERVER_HOST: "host.docker.internal"
       AIRFLOW__LOGGING__WORKER_LOG_SERVER_PORT: 8793
       DUMB_INIT_SETSID: "0"
+      AIRFLOW__LOGGING__WORKER_LOG_SERVER_HOST: orchestration-airflow-worker-1
+
     restart: always
     depends_on:
       <<: *airflow-common-depends-on
@@ -306,6 +312,8 @@ services:
       _AIRFLOW_WWW_USER_USERNAME: ${_AIRFLOW_WWW_USER_USERNAME:-airflow}
       _AIRFLOW_WWW_USER_PASSWORD: ${_AIRFLOW_WWW_USER_PASSWORD:-airflow}
       _PIP_ADDITIONAL_REQUIREMENTS: ''
+      AIRFLOW__LOGGING__WORKER_LOG_SERVER_HOST: orchestration-airflow-worker-1
+
     user: "0:0"
     networks:
       x_restaurant: {}
@@ -317,6 +325,8 @@ services:
     environment:
       <<: *airflow-common-env
       CONNECTION_CHECK_MAX_COUNT: "0"
+      AIRFLOW__LOGGING__WORKER_LOG_SERVER_HOST: orchestration-airflow-worker-1
+
     # Workaround for entrypoint issue. See: https://github.com/apache/airflow/issues/16252
     command:
       - bash
@@ -350,6 +360,23 @@ services:
         condition: service_completed_successfully
     networks:
         x_restaurant: {}
+
+  airflow-webserver:
+    <<: *airflow-common
+    command: webserver
+    ports:
+      - "8082:8080"
+    environment:
+      <<: *airflow-common-env
+      AIRFLOW__LOGGING__WORKER_LOG_SERVER_HOST: orchestration-airflow-worker-1
+    depends_on:
+      <<: *airflow-common-depends-on
+      airflow-init:
+        condition: service_completed_successfully
+    networks:
+      x_restaurant: {}
+
+
 volumes:
   postgres-db-volume:
 networks:
