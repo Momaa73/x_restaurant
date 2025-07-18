@@ -1,0 +1,10 @@
+{"timestamp":"2025-07-18T11:01:35.465299","level":"info","event":"DAG bundles loaded: dags-folder, example_dags","logger":"airflow.dag_processing.bundles.manager.DagBundlesManager"}
+{"timestamp":"2025-07-18T11:01:35.465695","level":"info","event":"Filling up the DagBag from /opt/airflow/dags/restaurant_pipeline.py","logger":"airflow.models.dagbag.DagBag"}
+{"timestamp":"2025-07-18T11:01:35.521999Z","level":"info","event":"Task instance is in running state","chan":"stdout","logger":"task"}
+{"timestamp":"2025-07-18T11:01:35.525219Z","level":"info","event":" Previous state of the Task instance: TaskInstanceState.QUEUED","chan":"stdout","logger":"task"}
+{"timestamp":"2025-07-18T11:01:35.525344Z","level":"info","event":"Current task name:generate_json_files","chan":"stdout","logger":"task"}
+{"timestamp":"2025-07-18T11:01:35.525419Z","level":"info","event":"Dag name:restaurant_pipeline","chan":"stdout","logger":"task"}
+{"timestamp":"2025-07-18T11:01:35.525468Z","level":"info","event":"Task instance in success state","chan":"stdout","logger":"task"}
+{"timestamp":"2025-07-18T11:01:35.525512Z","level":"info","event":" Previous state of the Task instance: TaskInstanceState.RUNNING","chan":"stdout","logger":"task"}
+{"timestamp":"2025-07-18T11:01:35.525554Z","level":"info","event":"Task operator:<Task(PythonOperator): generate_json_files>","chan":"stdout","logger":"task"}
+{"timestamp":"2025-07-18T11:01:35.519474","level":"info","event":"Done. Returned value was: None","logger":"airflow.task.operators.airflow.providers.standard.operators.python.PythonOperator"}
