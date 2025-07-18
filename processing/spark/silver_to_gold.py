@@ -19,6 +19,120 @@ spark = SparkSession.builder \
     .config("spark.sql.catalog.my_catalog.default-namespace", "gold") \
     .getOrCreate()
 
+# --- Ensure the gold schema and all gold tables exist ---
+spark.sql("CREATE SCHEMA IF NOT EXISTS my_catalog.gold")
+spark.sql("""
+CREATE TABLE IF NOT EXISTS my_catalog.gold.fact_reservations (
+    reservation_id INT,
+    customer_id INT,
+    customer_name STRING,
+    phone_number STRING,
+    branch_id INT,
+    city STRING,
+    table_id INT,
+    location_type_id INT,
+    table_type STRING,
+    seat_count INT,
+    reservation_date DATE,
+    reservation_hour STRING,
+    guests_count INT,
+    created_at_date DATE,
+    created_at_hour STRING,
+    status STRING,
+    limited_hours BOOLEAN,
+    hours_if_limited FLOAT,
+    is_holiday BOOLEAN,
+    holiday_name STRING,
+    arrival_status STRING,
+    checkin_id STRING,
+    lead_time_minutes INT,
+    is_update BOOLEAN,
+    ingestion_time TIMESTAMP
+) USING ICEBERG
+""")
+spark.sql("""
+CREATE TABLE IF NOT EXISTS my_catalog.gold.fact_daily_per_branch (
+    branch_id INT,
+    branch_name STRING,
+    city STRING,
+    capacity INT,
+    is_branch_open BOOLEAN,
+    day DATE,
+    total_reservations INT,
+    total_checkins INT,
+    checkins_from_reservations INT,
+    real_time_checkint INT,
+    dining_M INT, 
+    dining_L INT, 
+    dining_E INT, 
+    total_guests INT,
+    avg_occupancy_rate FLOAT,
+    is_holiday BOOLEAN,
+    holiday_name STRING,
+    shift_manager STRING,
+    ingestion_time TIMESTAMP 
+) USING ICEBERG
+""")
+spark.sql("""
+CREATE TABLE IF NOT EXISTS my_catalog.gold.feedback_per_branch (
+    feedback_id INT,
+    branch_id INT,
+    branch_name STRING,
+    city STRING,
+    is_branch_open BOOLEAN,
+    week_start DATE,
+    week_end DATE,
+    customer_name STRING,
+    phone_number STRING,   
+    feedback_text STRING,
+    rating INT,
+    text_length INT,
+    dining_date DATE,
+    dining_time_of_day_id STRING, 
+    is_holiday BOOLEAN,
+    holiday_name STRING,
+    shift_managers STRING,
+    semantic_label STRING,      -- FILLED IN ONLY AFTER THE ML MODEL
+    semantic_category STRING,   -- FILLED IN ONLY AFTER THE ML MODEL
+    avg_rating FLOAT,
+    ingestion_time TIMESTAMP
+) USING ICEBERG
+""")
+spark.sql("""
+CREATE TABLE IF NOT EXISTS my_catalog.gold.customers (
+    customer_id INT,  -- phone_number will serve as the ID
+    customer_name STRING,
+    phone_number STRING,
+    feedback_count INT,
+    ingestion_time TIMESTAMP
+) USING ICEBERG
+""")
+
+# --- Ensure the silver schema and scd2_branch table exist ---
+spark.sql("CREATE SCHEMA IF NOT EXISTS my_catalog.silver")
+spark.sql("""
+CREATE TABLE IF NOT EXISTS my_catalog.silver.scd2_branch (
+    branch_id INT,
+    branch_name STRING,
+    city STRING,
+    address STRING,
+    capacity INT,
+    opening_date DATE,
+    closing_date DATE,
+    is_update BOOLEAN
+) USING ICEBERG
+""")
+spark.sql("""
+CREATE TABLE IF NOT EXISTS my_catalog.silver.table (
+    table_id INT,
+    branch_id INT,
+    location_type_id INT,
+    table_type STRING,
+    seat_count INT,
+    is_update BOOLEAN
+) USING ICEBERG
+""")
+
 # --- טוענים טבלאות Silver ---
 customers = spark.table("my_catalog.silver.customers")
 scd2_branch = spark.table("my_catalog.silver.scd2_branch")
