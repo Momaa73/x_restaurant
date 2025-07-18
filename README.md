@@ -176,6 +176,12 @@ Repeat for `checkins.csv` and `feedback.csv` as needed.
 - The pipeline implements SCD2 logic for the `branch` dimension in the silver layer.
 - See `processing/spark/silver_to_gold.py` for implementation details.
 
+### SCD2 Implementation Details
+- The `scd2_branch` table tracks the full history of changes to branch attributes (e.g., name, address, city, capacity).
+- When a branch attribute changes, a new row is inserted with the new values, and the previous row is marked as no longer current (using an `is_update` flag or end date).
+- This allows you to answer questions like "What was the branch address at a given time?" and ensures historical accuracy in analytics.
+- The ETL logic ensures that fact tables always join to the correct version of the branch record based on event time.
+
 ## Late-Arriving Data
 - The pipeline handles late-arriving data (up to 48 hours) using Spark windowing and upsert logic.
 - See Spark job code for details.

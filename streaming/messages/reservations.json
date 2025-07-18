@@ -1,3 +1,3 @@
-{"reservation_id": 2461, "branch_id": 102, "customer_name": "Evan Mullen", "phone_number": "2858295169", "reservation_date": "2025-07-18", "reservation_time": "22:11", "guests_count": 2, "is_confirmed": false}
-{"reservation_id": 7792, "branch_id": 102, "customer_name": "Mark Caldwell", "phone_number": "(530)391-3071x732", "reservation_date": "2025-07-18", "reservation_time": "22:01", "guests_count": 6, "is_confirmed": true}
-{"reservation_id": 6013, "branch_id": 101, "customer_name": "Isabella Diaz", "phone_number": "9399037439", "reservation_date": "2025-07-18", "reservation_time": "22:01", "guests_count": 6, "is_confirmed": false}
+{"reservation_id": 1205, "branch_id": 101, "customer_name": "Carrie Scott", "phone_number": "001-788-381-9307x032", "reservation_date": "2025-07-18", "reservation_time": "22:20", "guests_count": 4, "is_confirmed": true}
+{"reservation_id": 3252, "branch_id": 102, "customer_name": "Martin Baker", "phone_number": "+1-827-835-3119x62300", "reservation_date": "2025-07-18", "reservation_time": "21:28", "guests_count": 7, "is_confirmed": true}
+{"reservation_id": 1053, "branch_id": 102, "customer_name": "Dean Ferguson", "phone_number": "627-622-9589x623", "reservation_date": "2025-07-18", "reservation_time": "21:19", "guests_count": 8, "is_confirmed": false}
