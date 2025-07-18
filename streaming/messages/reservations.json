@@ -1,3 +1,3 @@
-{"reservation_id": 2658, "branch_id": 101, "customer_name": "Lauren Robinson", "phone_number": "247-614-2777", "reservation_date": "2025-07-18", "reservation_time": "21:03", "guests_count": 6, "is_confirmed": true}
-{"reservation_id": 2601, "branch_id": 101, "customer_name": "Alexander Baker", "phone_number": "462.424.0531", "reservation_date": "2025-07-18", "reservation_time": "20:55", "guests_count": 1, "is_confirmed": true}
-{"reservation_id": 7603, "branch_id": 101, "customer_name": "David Fowler", "phone_number": "+1-251-248-2866", "reservation_date": "2025-07-18", "reservation_time": "21:00", "guests_count": 3, "is_confirmed": false}
+{"reservation_id": 6426, "branch_id": 102, "customer_name": "Jose Hodge", "phone_number": "001-354-482-7703", "reservation_date": "2025-07-18", "reservation_time": "19:58", "guests_count": 7, "is_confirmed": true}
+{"reservation_id": 7621, "branch_id": 101, "customer_name": "Christina Barron", "phone_number": "801-546-2459x873", "reservation_date": "2025-07-18", "reservation_time": "20:02", "guests_count": 3, "is_confirmed": true}
+{"reservation_id": 3139, "branch_id": 102, "customer_name": "Patrick Galloway", "phone_number": "835.521.9152x62840", "reservation_date": "2025-07-18", "reservation_time": "20:16", "guests_count": 4, "is_confirmed": true}
