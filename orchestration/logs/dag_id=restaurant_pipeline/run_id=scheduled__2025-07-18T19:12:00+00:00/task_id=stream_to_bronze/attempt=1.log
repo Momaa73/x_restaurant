@@ -975,3 +975,47 @@
 [2025-07-18T19:15:04.167+0000] {subprocess.py:93} INFO - 25/07/18 19:15:04 INFO MicroBatchExecution: Streaming query has been idle and waiting for new data more than 10000 ms.
 [2025-07-18T19:15:04.169+0000] {subprocess.py:93} INFO - 25/07/18 19:15:04 INFO MicroBatchExecution: Streaming query has been idle and waiting for new data more than 10000 ms.
 [2025-07-18T19:15:04.169+0000] {subprocess.py:93} INFO - 25/07/18 19:15:04 INFO MicroBatchExecution: Streaming query has been idle and waiting for new data more than 10000 ms.
+[2025-07-18T19:15:14.170+0000] {subprocess.py:93} INFO - 25/07/18 19:15:14 INFO MicroBatchExecution: Streaming query has been idle and waiting for new data more than 10000 ms.
+[2025-07-18T19:15:14.172+0000] {subprocess.py:93} INFO - 25/07/18 19:15:14 INFO MicroBatchExecution: Streaming query has been idle and waiting for new data more than 10000 ms.
+[2025-07-18T19:15:14.172+0000] {subprocess.py:93} INFO - 25/07/18 19:15:14 INFO MicroBatchExecution: Streaming query has been idle and waiting for new data more than 10000 ms.
+[2025-07-18T19:15:24.174+0000] {subprocess.py:93} INFO - 25/07/18 19:15:24 INFO MicroBatchExecution: Streaming query has been idle and waiting for new data more than 10000 ms.
+[2025-07-18T19:15:24.175+0000] {subprocess.py:93} INFO - 25/07/18 19:15:24 INFO MicroBatchExecution: Streaming query has been idle and waiting for new data more than 10000 ms.
+[2025-07-18T19:15:24.175+0000] {subprocess.py:93} INFO - 25/07/18 19:15:24 INFO MicroBatchExecution: Streaming query has been idle and waiting for new data more than 10000 ms.
+[2025-07-18T19:15:30.641+0000] {subprocess.py:93} INFO - 25/07/18 19:15:30 INFO ConsumerCoordinator: [Consumer clientId=consumer-spark-kafka-source-be54b7fa-1d9d-4ea2-a8e2-7b077f94496c--2042886494-executor-1, groupId=spark-kafka-source-be54b7fa-1d9d-4ea2-a8e2-7b077f94496c--2042886494-executor] Resetting generation and member id due to: consumer pro-actively leaving the group
+[2025-07-18T19:15:30.644+0000] {subprocess.py:93} INFO - 25/07/18 19:15:30 INFO ConsumerCoordinator: [Consumer clientId=consumer-spark-kafka-source-be54b7fa-1d9d-4ea2-a8e2-7b077f94496c--2042886494-executor-1, groupId=spark-kafka-source-be54b7fa-1d9d-4ea2-a8e2-7b077f94496c--2042886494-executor] Request joining group due to: consumer pro-actively leaving the group
+[2025-07-18T19:15:30.650+0000] {subprocess.py:93} INFO - 25/07/18 19:15:30 INFO Metrics: Metrics scheduler closed
+[2025-07-18T19:15:30.651+0000] {subprocess.py:93} INFO - 25/07/18 19:15:30 INFO Metrics: Closing reporter org.apache.kafka.common.metrics.JmxReporter
+[2025-07-18T19:15:30.651+0000] {subprocess.py:93} INFO - 25/07/18 19:15:30 INFO Metrics: Metrics reporters closed
+[2025-07-18T19:15:30.651+0000] {subprocess.py:93} INFO - 25/07/18 19:15:30 INFO AppInfoParser: App info kafka.consumer for consumer-spark-kafka-source-be54b7fa-1d9d-4ea2-a8e2-7b077f94496c--2042886494-executor-1 unregistered
+[2025-07-18T19:15:30.651+0000] {subprocess.py:93} INFO - 25/07/18 19:15:30 INFO ConsumerCoordinator: [Consumer clientId=consumer-spark-kafka-source-92d8c492-caa3-4014-90ff-fd845c48796e-1704582849-executor-2, groupId=spark-kafka-source-92d8c492-caa3-4014-90ff-fd845c48796e-1704582849-executor] Resetting generation and member id due to: consumer pro-actively leaving the group
+[2025-07-18T19:15:30.651+0000] {subprocess.py:93} INFO - 25/07/18 19:15:30 INFO ConsumerCoordinator: [Consumer clientId=consumer-spark-kafka-source-92d8c492-caa3-4014-90ff-fd845c48796e-1704582849-executor-2, groupId=spark-kafka-source-92d8c492-caa3-4014-90ff-fd845c48796e-1704582849-executor] Request joining group due to: consumer pro-actively leaving the group
+[2025-07-18T19:15:30.651+0000] {subprocess.py:93} INFO - 25/07/18 19:15:30 INFO Metrics: Metrics scheduler closed
+[2025-07-18T19:15:30.652+0000] {subprocess.py:93} INFO - 25/07/18 19:15:30 INFO Metrics: Closing reporter org.apache.kafka.common.metrics.JmxReporter
+[2025-07-18T19:15:30.652+0000] {subprocess.py:93} INFO - 25/07/18 19:15:30 INFO Metrics: Metrics reporters closed
+[2025-07-18T19:15:30.652+0000] {subprocess.py:93} INFO - 25/07/18 19:15:30 INFO AppInfoParser: App info kafka.consumer for consumer-spark-kafka-source-92d8c492-caa3-4014-90ff-fd845c48796e-1704582849-executor-2 unregistered
+[2025-07-18T19:15:30.652+0000] {subprocess.py:93} INFO - 25/07/18 19:15:30 INFO ConsumerCoordinator: [Consumer clientId=consumer-spark-kafka-source-7a8b50c7-26c1-4287-a905-5ad8a5200f09-726612771-executor-3, groupId=spark-kafka-source-7a8b50c7-26c1-4287-a905-5ad8a5200f09-726612771-executor] Resetting generation and member id due to: consumer pro-actively leaving the group
+[2025-07-18T19:15:30.653+0000] {subprocess.py:93} INFO - 25/07/18 19:15:30 INFO ConsumerCoordinator: [Consumer clientId=consumer-spark-kafka-source-7a8b50c7-26c1-4287-a905-5ad8a5200f09-726612771-executor-3, groupId=spark-kafka-source-7a8b50c7-26c1-4287-a905-5ad8a5200f09-726612771-executor] Request joining group due to: consumer pro-actively leaving the group
+[2025-07-18T19:15:30.653+0000] {subprocess.py:93} INFO - 25/07/18 19:15:30 INFO Metrics: Metrics scheduler closed
+[2025-07-18T19:15:30.653+0000] {subprocess.py:93} INFO - 25/07/18 19:15:30 INFO Metrics: Closing reporter org.apache.kafka.common.metrics.JmxReporter
+[2025-07-18T19:15:30.653+0000] {subprocess.py:93} INFO - 25/07/18 19:15:30 INFO Metrics: Metrics reporters closed
+[2025-07-18T19:15:30.654+0000] {subprocess.py:93} INFO - 25/07/18 19:15:30 INFO AppInfoParser: App info kafka.consumer for consumer-spark-kafka-source-7a8b50c7-26c1-4287-a905-5ad8a5200f09-726612771-executor-3 unregistered
+[2025-07-18T19:15:30.654+0000] {subprocess.py:93} INFO - 25/07/18 19:15:30 INFO SparkContext: Invoking stop() from shutdown hook
+[2025-07-18T19:15:30.655+0000] {subprocess.py:93} INFO - 25/07/18 19:15:30 INFO SparkContext: SparkContext is stopping with exitCode 0.
+[2025-07-18T19:15:30.667+0000] {subprocess.py:93} INFO - 25/07/18 19:15:30 INFO SparkUI: Stopped Spark web UI at http://77cb57a6bd53:4040
+[2025-07-18T19:15:30.682+0000] {subprocess.py:93} INFO - 25/07/18 19:15:30 INFO MapOutputTrackerMasterEndpoint: MapOutputTrackerMasterEndpoint stopped!
+[2025-07-18T19:15:30.695+0000] {subprocess.py:93} INFO - 25/07/18 19:15:30 INFO MemoryStore: MemoryStore cleared
+[2025-07-18T19:15:30.696+0000] {subprocess.py:93} INFO - 25/07/18 19:15:30 INFO BlockManager: BlockManager stopped
+[2025-07-18T19:15:30.697+0000] {subprocess.py:93} INFO - 25/07/18 19:15:30 INFO BlockManagerMaster: BlockManagerMaster stopped
+[2025-07-18T19:15:30.699+0000] {subprocess.py:93} INFO - 25/07/18 19:15:30 INFO OutputCommitCoordinator$OutputCommitCoordinatorEndpoint: OutputCommitCoordinator stopped!
+[2025-07-18T19:15:30.705+0000] {subprocess.py:93} INFO - 25/07/18 19:15:30 INFO SparkContext: Successfully stopped SparkContext
+[2025-07-18T19:15:30.706+0000] {subprocess.py:93} INFO - 25/07/18 19:15:30 INFO ShutdownHookManager: Shutdown hook called
+[2025-07-18T19:15:30.706+0000] {subprocess.py:93} INFO - 25/07/18 19:15:30 INFO ShutdownHookManager: Deleting directory /tmp/spark-2438aec6-ada0-4314-8ae1-ea56597cd57e/pyspark-6ac8767d-eef0-4a0d-aac9-129e61ff513f
+[2025-07-18T19:15:30.709+0000] {subprocess.py:93} INFO - 25/07/18 19:15:30 INFO ShutdownHookManager: Deleting directory /tmp/spark-551db0ad-0ff0-471e-9710-5135f6c0b745
+[2025-07-18T19:15:30.711+0000] {subprocess.py:93} INFO - 25/07/18 19:15:30 INFO ShutdownHookManager: Deleting directory /tmp/spark-2438aec6-ada0-4314-8ae1-ea56597cd57e
+[2025-07-18T19:15:30.722+0000] {subprocess.py:93} INFO - 25/07/18 19:15:30 INFO MetricsSystemImpl: Stopping s3a-file-system metrics system...
+[2025-07-18T19:15:30.722+0000] {subprocess.py:93} INFO - 25/07/18 19:15:30 INFO MetricsSystemImpl: s3a-file-system metrics system stopped.
+[2025-07-18T19:15:30.722+0000] {subprocess.py:93} INFO - 25/07/18 19:15:30 INFO MetricsSystemImpl: s3a-file-system metrics system shutdown complete.
+[2025-07-18T19:15:31.127+0000] {subprocess.py:97} INFO - Command exited with return code 0
+[2025-07-18T19:15:31.183+0000] {taskinstance.py:1400} INFO - Marking task as SUCCESS. dag_id=restaurant_pipeline, task_id=stream_to_bronze, execution_date=20250718T191200, start_date=20250718T191425, end_date=20250718T191531
+[2025-07-18T19:15:31.222+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 0
+[2025-07-18T19:15:31.258+0000] {taskinstance.py:2778} INFO - 1 downstream tasks scheduled from follow-on schedule check
