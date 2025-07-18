@@ -86,6 +86,8 @@ with DAG(
     start_date=datetime(2025, 7, 18, tzinfo=timezone("Asia/Jerusalem")),
     schedule="*/2 * * * *",  # ← נכון ל-Airflow 3
     catchup=False,
+    max_active_runs=1,  # Only one DAG run at a time
+    concurrency=1,      # Only one task at a time
 ) as dag:
 
     gen_json = PythonOperator(
@@ -100,17 +102,17 @@ with DAG(
 
     stream_to_bronze = BashOperator(
         task_id="stream_to_bronze",
-        bash_command="python /opt/processing/spark/stream_to_bronze.py",
+        bash_command="docker exec -e AIRFLOW_CTX_DAG_RUN_ID='{{ dag_run.run_id }}' spark-iceberg spark-submit /home/iceberg/spark/stream_to_bronze.py",
     )
 
     bronze_to_silver = BashOperator(
         task_id="bronze_to_silver",
-        bash_command="python /opt/processing/spark/bronze_to_silver.py",
+        bash_command="docker exec spark-iceberg spark-submit /home/iceberg/spark/bronze_to_silver.py",
     )
 
     silver_to_gold = BashOperator(
         task_id="silver_to_gold",
-        bash_command="python /opt/processing/spark/silver_to_gold.py",
+        bash_command="docker exec spark-iceberg spark-submit /home/iceberg/spark/silver_to_gold.py",
     )
 
     # זרימת הדאג

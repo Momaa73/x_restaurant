@@ -1,0 +1,523 @@
+[2025-07-18T18:05:58.049+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: restaurant_pipeline.stream_to_bronze scheduled__2025-07-18T17:40:00+00:00 [queued]>
+[2025-07-18T18:05:58.055+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: restaurant_pipeline.stream_to_bronze scheduled__2025-07-18T17:40:00+00:00 [queued]>
+[2025-07-18T18:05:58.055+0000] {taskinstance.py:1361} INFO - Starting attempt 2 of 1
+[2025-07-18T18:05:58.071+0000] {taskinstance.py:1382} INFO - Executing <Task(BashOperator): stream_to_bronze> on 2025-07-18 17:40:00+00:00
+[2025-07-18T18:05:58.081+0000] {standard_task_runner.py:57} INFO - Started process 2750 to run task
+[2025-07-18T18:05:58.086+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'restaurant_pipeline', 'stream_to_bronze', 'scheduled__2025-07-18T17:40:00+00:00', '--job-id', '315', '--raw', '--subdir', 'DAGS_FOLDER/restaurant_pipeline.py', '--cfg-path', '/tmp/tmp55wnpxm0']
+[2025-07-18T18:05:58.088+0000] {standard_task_runner.py:85} INFO - Job 315: Subtask stream_to_bronze
+[2025-07-18T18:05:58.132+0000] {task_command.py:416} INFO - Running <TaskInstance: restaurant_pipeline.stream_to_bronze scheduled__2025-07-18T17:40:00+00:00 [running]> on host 9bcfb43e0ab7
+[2025-07-18T18:05:58.181+0000] {taskinstance.py:1662} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='moran' AIRFLOW_CTX_DAG_ID='restaurant_pipeline' AIRFLOW_CTX_TASK_ID='stream_to_bronze' AIRFLOW_CTX_EXECUTION_DATE='2025-07-18T17:40:00+00:00' AIRFLOW_CTX_TRY_NUMBER='2' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-07-18T17:40:00+00:00'
+[2025-07-18T18:05:58.183+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2025-07-18T18:05:58.184+0000] {subprocess.py:75} INFO - Running command: ['/bin/bash', '-c', "docker exec -e AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-07-18T17:40:00+00:00' spark-iceberg spark-submit /home/iceberg/spark/stream_to_bronze.py"]
+[2025-07-18T18:05:58.190+0000] {subprocess.py:86} INFO - Output:
+[2025-07-18T18:05:59.777+0000] {subprocess.py:93} INFO - 25/07/18 18:05:59 INFO SparkContext: Running Spark version 3.5.6
+[2025-07-18T18:05:59.778+0000] {subprocess.py:93} INFO - 25/07/18 18:05:59 INFO SparkContext: OS info Linux, 6.10.14-linuxkit, aarch64
+[2025-07-18T18:05:59.778+0000] {subprocess.py:93} INFO - 25/07/18 18:05:59 INFO SparkContext: Java version 17.0.15
+[2025-07-18T18:05:59.792+0000] {subprocess.py:93} INFO - 25/07/18 18:05:59 INFO ResourceUtils: ==============================================================
+[2025-07-18T18:05:59.792+0000] {subprocess.py:93} INFO - 25/07/18 18:05:59 INFO ResourceUtils: No custom resources configured for spark.driver.
+[2025-07-18T18:05:59.792+0000] {subprocess.py:93} INFO - 25/07/18 18:05:59 INFO ResourceUtils: ==============================================================
+[2025-07-18T18:05:59.792+0000] {subprocess.py:93} INFO - 25/07/18 18:05:59 INFO SparkContext: Submitted application: StreamToBronze
+[2025-07-18T18:05:59.802+0000] {subprocess.py:93} INFO - 25/07/18 18:05:59 INFO ResourceProfile: Default ResourceProfile created, executor resources: Map(cores -> name: cores, amount: 1, script: , vendor: , memory -> name: memory, amount: 1024, script: , vendor: , offHeap -> name: offHeap, amount: 0, script: , vendor: ), task resources: Map(cpus -> name: cpus, amount: 1.0)
+[2025-07-18T18:05:59.806+0000] {subprocess.py:93} INFO - 25/07/18 18:05:59 INFO ResourceProfile: Limiting resource is cpu
+[2025-07-18T18:05:59.807+0000] {subprocess.py:93} INFO - 25/07/18 18:05:59 INFO ResourceProfileManager: Added ResourceProfile id: 0
+[2025-07-18T18:05:59.833+0000] {subprocess.py:93} INFO - 25/07/18 18:05:59 INFO SecurityManager: Changing view acls to: root,spark
+[2025-07-18T18:05:59.834+0000] {subprocess.py:93} INFO - 25/07/18 18:05:59 INFO SecurityManager: Changing modify acls to: root,spark
+[2025-07-18T18:05:59.834+0000] {subprocess.py:93} INFO - 25/07/18 18:05:59 INFO SecurityManager: Changing view acls groups to:
+[2025-07-18T18:05:59.834+0000] {subprocess.py:93} INFO - 25/07/18 18:05:59 INFO SecurityManager: Changing modify acls groups to:
+[2025-07-18T18:05:59.834+0000] {subprocess.py:93} INFO - 25/07/18 18:05:59 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users with view permissions: root, spark; groups with view permissions: EMPTY; users with modify permissions: root, spark; groups with modify permissions: EMPTY
+[2025-07-18T18:05:59.868+0000] {subprocess.py:93} INFO - 25/07/18 18:05:59 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+[2025-07-18T18:05:59.996+0000] {subprocess.py:93} INFO - 25/07/18 18:05:59 INFO Utils: Successfully started service 'sparkDriver' on port 42071.
+[2025-07-18T18:06:00.012+0000] {subprocess.py:93} INFO - 25/07/18 18:06:00 INFO SparkEnv: Registering MapOutputTracker
+[2025-07-18T18:06:00.041+0000] {subprocess.py:93} INFO - 25/07/18 18:06:00 INFO SparkEnv: Registering BlockManagerMaster
+[2025-07-18T18:06:00.053+0000] {subprocess.py:93} INFO - 25/07/18 18:06:00 INFO BlockManagerMasterEndpoint: Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
+[2025-07-18T18:06:00.054+0000] {subprocess.py:93} INFO - 25/07/18 18:06:00 INFO BlockManagerMasterEndpoint: BlockManagerMasterEndpoint up
+[2025-07-18T18:06:00.056+0000] {subprocess.py:93} INFO - 25/07/18 18:06:00 INFO SparkEnv: Registering BlockManagerMasterHeartbeat
+[2025-07-18T18:06:00.066+0000] {subprocess.py:93} INFO - 25/07/18 18:06:00 INFO DiskBlockManager: Created local directory at /tmp/blockmgr-f753daeb-f53f-4fae-8709-5999d747728c
+[2025-07-18T18:06:00.073+0000] {subprocess.py:93} INFO - 25/07/18 18:06:00 INFO MemoryStore: MemoryStore started with capacity 434.4 MiB
+[2025-07-18T18:06:00.080+0000] {subprocess.py:93} INFO - 25/07/18 18:06:00 INFO SparkEnv: Registering OutputCommitCoordinator
+[2025-07-18T18:06:00.142+0000] {subprocess.py:93} INFO - 25/07/18 18:06:00 INFO JettyUtils: Start Jetty 0.0.0.0:4040 for SparkUI
+[2025-07-18T18:06:00.187+0000] {subprocess.py:93} INFO - 25/07/18 18:06:00 WARN Utils: Service 'SparkUI' could not bind on port 4040. Attempting port 4041.
+[2025-07-18T18:06:00.194+0000] {subprocess.py:93} INFO - 25/07/18 18:06:00 INFO Utils: Successfully started service 'SparkUI' on port 4041.
+[2025-07-18T18:06:00.255+0000] {subprocess.py:93} INFO - 25/07/18 18:06:00 INFO Executor: Starting executor ID driver on host 77cb57a6bd53
+[2025-07-18T18:06:00.255+0000] {subprocess.py:93} INFO - 25/07/18 18:06:00 INFO Executor: OS info Linux, 6.10.14-linuxkit, aarch64
+[2025-07-18T18:06:00.255+0000] {subprocess.py:93} INFO - 25/07/18 18:06:00 INFO Executor: Java version 17.0.15
+[2025-07-18T18:06:00.258+0000] {subprocess.py:93} INFO - 25/07/18 18:06:00 INFO Executor: Starting executor with user classpath (userClassPathFirst = false): ''
+[2025-07-18T18:06:00.259+0000] {subprocess.py:93} INFO - 25/07/18 18:06:00 INFO Executor: Created or updated repl class loader org.apache.spark.util.MutableURLClassLoader@33e12856 for default.
+[2025-07-18T18:06:00.269+0000] {subprocess.py:93} INFO - 25/07/18 18:06:00 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 36133.
+[2025-07-18T18:06:00.270+0000] {subprocess.py:93} INFO - 25/07/18 18:06:00 INFO NettyBlockTransferService: Server created on 77cb57a6bd53:36133
+[2025-07-18T18:06:00.270+0000] {subprocess.py:93} INFO - 25/07/18 18:06:00 INFO BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
+[2025-07-18T18:06:00.279+0000] {subprocess.py:93} INFO - 25/07/18 18:06:00 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, 77cb57a6bd53, 36133, None)
+[2025-07-18T18:06:00.283+0000] {subprocess.py:93} INFO - 25/07/18 18:06:00 INFO BlockManagerMasterEndpoint: Registering block manager 77cb57a6bd53:36133 with 434.4 MiB RAM, BlockManagerId(driver, 77cb57a6bd53, 36133, None)
+[2025-07-18T18:06:00.285+0000] {subprocess.py:93} INFO - 25/07/18 18:06:00 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, 77cb57a6bd53, 36133, None)
+[2025-07-18T18:06:00.285+0000] {subprocess.py:93} INFO - 25/07/18 18:06:00 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, 77cb57a6bd53, 36133, None)
+[2025-07-18T18:06:00.546+0000] {subprocess.py:93} INFO - 25/07/18 18:06:00 INFO SharedState: Setting hive.metastore.warehouse.dir ('null') to the value of spark.sql.warehouse.dir.
+[2025-07-18T18:06:00.562+0000] {subprocess.py:93} INFO - 25/07/18 18:06:00 INFO SharedState: Warehouse path is 'file:/app/spark-warehouse'.
+[2025-07-18T18:06:03.100+0000] {subprocess.py:93} INFO - 25/07/18 18:06:03 WARN MetricsConfig: Cannot locate configuration: tried hadoop-metrics2-s3a-file-system.properties,hadoop-metrics2.properties
+[2025-07-18T18:06:03.109+0000] {subprocess.py:93} INFO - 25/07/18 18:06:03 INFO MetricsSystemImpl: Scheduled Metric snapshot period at 10 second(s).
+[2025-07-18T18:06:03.110+0000] {subprocess.py:93} INFO - 25/07/18 18:06:03 INFO MetricsSystemImpl: s3a-file-system metrics system started
+[2025-07-18T18:06:04.097+0000] {subprocess.py:93} INFO - 25/07/18 18:06:04 INFO BaseMetastoreCatalog: Table loaded by catalog: my_catalog.bronze.Reservations_raw
+[2025-07-18T18:06:04.112+0000] {subprocess.py:93} INFO - 25/07/18 18:06:04 INFO StateStoreCoordinatorRef: Registered StateStoreCoordinator endpoint
+[2025-07-18T18:06:04.186+0000] {subprocess.py:93} INFO - 25/07/18 18:06:04 INFO ResolveWriteToStream: Checkpoint root /tmp/checkpoints/reservations/scheduled__2025-07-18T17:40:00+00:00 resolved to file:/tmp/checkpoints/reservations/scheduled__2025-07-18T17:40:00+00:00.
+[2025-07-18T18:06:04.187+0000] {subprocess.py:93} INFO - 25/07/18 18:06:04 WARN ResolveWriteToStream: spark.sql.adaptive.enabled is not supported in streaming DataFrames/Datasets and will be disabled.
+[2025-07-18T18:06:04.355+0000] {subprocess.py:93} INFO - 25/07/18 18:06:04 INFO MicroBatchExecution: Starting [id = c6a875d2-e33f-4a07-888b-9ff6595d768a, runId = 22703879-9409-4f9d-a180-0ca27cf46a83]. Use file:/tmp/checkpoints/reservations/scheduled__2025-07-18T17:40:00+00:00 to store the query checkpoint.
+[2025-07-18T18:06:04.370+0000] {subprocess.py:93} INFO - 25/07/18 18:06:04 INFO MicroBatchExecution: Reading table [org.apache.spark.sql.kafka010.KafkaSourceProvider$KafkaTable@1c761b8a] from DataSourceV2 named 'kafka' [org.apache.spark.sql.kafka010.KafkaSourceProvider@cc837bb]
+[2025-07-18T18:06:04.424+0000] {subprocess.py:93} INFO - 25/07/18 18:06:04 INFO OffsetSeqLog: BatchIds found from listing: 0
+[2025-07-18T18:06:04.434+0000] {subprocess.py:93} INFO - 25/07/18 18:06:04 INFO OffsetSeqLog: Getting latest batch 0
+[2025-07-18T18:06:04.458+0000] {subprocess.py:93} INFO - 25/07/18 18:06:04 INFO OffsetSeqLog: BatchIds found from listing: 0
+[2025-07-18T18:06:04.459+0000] {subprocess.py:93} INFO - 25/07/18 18:06:04 INFO OffsetSeqLog: Getting latest batch 0
+[2025-07-18T18:06:04.462+0000] {subprocess.py:93} INFO - 25/07/18 18:06:04 INFO CommitLog: BatchIds found from listing: 0
+[2025-07-18T18:06:04.463+0000] {subprocess.py:93} INFO - 25/07/18 18:06:04 INFO CommitLog: Getting latest batch 0
+[2025-07-18T18:06:04.467+0000] {subprocess.py:93} INFO - 25/07/18 18:06:04 INFO MicroBatchExecution: Resuming at batch 1 with committed offsets {KafkaV2[Subscribe[reservations]]: {"reservations":{"0":234}}} and available offsets {KafkaV2[Subscribe[reservations]]: {"reservations":{"0":234}}}
+[2025-07-18T18:06:04.468+0000] {subprocess.py:93} INFO - 25/07/18 18:06:04 INFO MicroBatchExecution: Stream started from {KafkaV2[Subscribe[reservations]]: {"reservations":{"0":234}}}
+[2025-07-18T18:06:04.539+0000] {subprocess.py:93} INFO - 25/07/18 18:06:04 INFO BaseMetastoreCatalog: Table loaded by catalog: my_catalog.bronze.Checkins_raw
+[2025-07-18T18:06:04.540+0000] {subprocess.py:93} INFO - 25/07/18 18:06:04 INFO AdminClientConfig: AdminClientConfig values:
+[2025-07-18T18:06:04.540+0000] {subprocess.py:93} INFO - 	auto.include.jmx.reporter = true
+[2025-07-18T18:06:04.540+0000] {subprocess.py:93} INFO - 	bootstrap.servers = [kafka:9092]
+[2025-07-18T18:06:04.540+0000] {subprocess.py:93} INFO - 	client.dns.lookup = use_all_dns_ips
+[2025-07-18T18:06:04.540+0000] {subprocess.py:93} INFO - 	client.id =
+[2025-07-18T18:06:04.540+0000] {subprocess.py:93} INFO - 	connections.max.idle.ms = 300000
+[2025-07-18T18:06:04.541+0000] {subprocess.py:93} INFO - 	default.api.timeout.ms = 60000
+[2025-07-18T18:06:04.541+0000] {subprocess.py:93} INFO - 	metadata.max.age.ms = 300000
+[2025-07-18T18:06:04.541+0000] {subprocess.py:93} INFO - 	metric.reporters = []
+[2025-07-18T18:06:04.541+0000] {subprocess.py:93} INFO - 	metrics.num.samples = 2
+[2025-07-18T18:06:04.541+0000] {subprocess.py:93} INFO - 	metrics.recording.level = INFO
+[2025-07-18T18:06:04.542+0000] {subprocess.py:93} INFO - 	metrics.sample.window.ms = 30000
+[2025-07-18T18:06:04.542+0000] {subprocess.py:93} INFO - 	receive.buffer.bytes = 65536
+[2025-07-18T18:06:04.543+0000] {subprocess.py:93} INFO - 	reconnect.backoff.max.ms = 1000
+[2025-07-18T18:06:04.544+0000] {subprocess.py:93} INFO - 	reconnect.backoff.ms = 50
+[2025-07-18T18:06:04.544+0000] {subprocess.py:93} INFO - 	request.timeout.ms = 30000
+[2025-07-18T18:06:04.544+0000] {subprocess.py:93} INFO - 	retries = 2147483647
+[2025-07-18T18:06:04.545+0000] {subprocess.py:93} INFO - 	retry.backoff.ms = 100
+[2025-07-18T18:06:04.545+0000] {subprocess.py:93} INFO - 	sasl.client.callback.handler.class = null
+[2025-07-18T18:06:04.545+0000] {subprocess.py:93} INFO - 	sasl.jaas.config = null
+[2025-07-18T18:06:04.546+0000] {subprocess.py:93} INFO - 	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+[2025-07-18T18:06:04.549+0000] {subprocess.py:93} INFO - 	sasl.kerberos.min.time.before.relogin = 60000
+[2025-07-18T18:06:04.551+0000] {subprocess.py:93} INFO - 	sasl.kerberos.service.name = null
+[2025-07-18T18:06:04.552+0000] {subprocess.py:93} INFO - 	sasl.kerberos.ticket.renew.jitter = 0.05
+[2025-07-18T18:06:04.552+0000] {subprocess.py:93} INFO - 	sasl.kerberos.ticket.renew.window.factor = 0.8
+[2025-07-18T18:06:04.553+0000] {subprocess.py:93} INFO - 	sasl.login.callback.handler.class = null
+[2025-07-18T18:06:04.553+0000] {subprocess.py:93} INFO - 	sasl.login.class = null
+[2025-07-18T18:06:04.553+0000] {subprocess.py:93} INFO - 	sasl.login.connect.timeout.ms = null
+[2025-07-18T18:06:04.554+0000] {subprocess.py:93} INFO - 	sasl.login.read.timeout.ms = null
+[2025-07-18T18:06:04.555+0000] {subprocess.py:93} INFO - 	sasl.login.refresh.buffer.seconds = 300
+[2025-07-18T18:06:04.555+0000] {subprocess.py:93} INFO - 	sasl.login.refresh.min.period.seconds = 60
+[2025-07-18T18:06:04.557+0000] {subprocess.py:93} INFO - 	sasl.login.refresh.window.factor = 0.8
+[2025-07-18T18:06:04.559+0000] {subprocess.py:93} INFO - 	sasl.login.refresh.window.jitter = 0.05
+[2025-07-18T18:06:04.561+0000] {subprocess.py:93} INFO - 	sasl.login.retry.backoff.max.ms = 10000
+[2025-07-18T18:06:04.562+0000] {subprocess.py:93} INFO - 	sasl.login.retry.backoff.ms = 100
+[2025-07-18T18:06:04.562+0000] {subprocess.py:93} INFO - 	sasl.mechanism = GSSAPI
+[2025-07-18T18:06:04.563+0000] {subprocess.py:93} INFO - 	sasl.oauthbearer.clock.skew.seconds = 30
+[2025-07-18T18:06:04.568+0000] {subprocess.py:93} INFO - 	sasl.oauthbearer.expected.audience = null
+[2025-07-18T18:06:04.570+0000] {subprocess.py:93} INFO - 	sasl.oauthbearer.expected.issuer = null
+[2025-07-18T18:06:04.571+0000] {subprocess.py:93} INFO - 	sasl.oauthbearer.jwks.endpoint.refresh.ms = 3600000
+[2025-07-18T18:06:04.571+0000] {subprocess.py:93} INFO - 	sasl.oauthbearer.jwks.endpoint.retry.backoff.max.ms = 10000
+[2025-07-18T18:06:04.571+0000] {subprocess.py:93} INFO - 	sasl.oauthbearer.jwks.endpoint.retry.backoff.ms = 100
+[2025-07-18T18:06:04.571+0000] {subprocess.py:93} INFO - 	sasl.oauthbearer.jwks.endpoint.url = null
+[2025-07-18T18:06:04.571+0000] {subprocess.py:93} INFO - 	sasl.oauthbearer.scope.claim.name = scope
+[2025-07-18T18:06:04.572+0000] {subprocess.py:93} INFO - 	sasl.oauthbearer.sub.claim.name = sub
+[2025-07-18T18:06:04.572+0000] {subprocess.py:93} INFO - 	sasl.oauthbearer.token.endpoint.url = null
+[2025-07-18T18:06:04.573+0000] {subprocess.py:93} INFO - 	security.protocol = PLAINTEXT
+[2025-07-18T18:06:04.574+0000] {subprocess.py:93} INFO - 	security.providers = null
+[2025-07-18T18:06:04.574+0000] {subprocess.py:93} INFO - 	send.buffer.bytes = 131072
+[2025-07-18T18:06:04.575+0000] {subprocess.py:93} INFO - 	socket.connection.setup.timeout.max.ms = 30000
+[2025-07-18T18:06:04.576+0000] {subprocess.py:93} INFO - 	socket.connection.setup.timeout.ms = 10000
+[2025-07-18T18:06:04.577+0000] {subprocess.py:93} INFO - 	ssl.cipher.suites = null
+[2025-07-18T18:06:04.577+0000] {subprocess.py:93} INFO - 	ssl.enabled.protocols = [TLSv1.2, TLSv1.3]
+[2025-07-18T18:06:04.578+0000] {subprocess.py:93} INFO - 	ssl.endpoint.identification.algorithm = https
+[2025-07-18T18:06:04.579+0000] {subprocess.py:93} INFO - 	ssl.engine.factory.class = null
+[2025-07-18T18:06:04.579+0000] {subprocess.py:93} INFO - 	ssl.key.password = null
+[2025-07-18T18:06:04.580+0000] {subprocess.py:93} INFO - 	ssl.keymanager.algorithm = SunX509
+[2025-07-18T18:06:04.580+0000] {subprocess.py:93} INFO - 	ssl.keystore.certificate.chain = null
+[2025-07-18T18:06:04.580+0000] {subprocess.py:93} INFO - 	ssl.keystore.key = null
+[2025-07-18T18:06:04.580+0000] {subprocess.py:93} INFO - 	ssl.keystore.location = null
+[2025-07-18T18:06:04.581+0000] {subprocess.py:93} INFO - 	ssl.keystore.password = null
+[2025-07-18T18:06:04.581+0000] {subprocess.py:93} INFO - 	ssl.keystore.type = JKS
+[2025-07-18T18:06:04.582+0000] {subprocess.py:93} INFO - 	ssl.protocol = TLSv1.3
+[2025-07-18T18:06:04.582+0000] {subprocess.py:93} INFO - 	ssl.provider = null
+[2025-07-18T18:06:04.582+0000] {subprocess.py:93} INFO - 	ssl.secure.random.implementation = null
+[2025-07-18T18:06:04.583+0000] {subprocess.py:93} INFO - 	ssl.trustmanager.algorithm = PKIX
+[2025-07-18T18:06:04.583+0000] {subprocess.py:93} INFO - 	ssl.truststore.certificates = null
+[2025-07-18T18:06:04.583+0000] {subprocess.py:93} INFO - 	ssl.truststore.location = null
+[2025-07-18T18:06:04.584+0000] {subprocess.py:93} INFO - 	ssl.truststore.password = null
+[2025-07-18T18:06:04.584+0000] {subprocess.py:93} INFO - 	ssl.truststore.type = JKS
+[2025-07-18T18:06:04.585+0000] {subprocess.py:93} INFO - 
+[2025-07-18T18:06:04.585+0000] {subprocess.py:93} INFO - 25/07/18 18:06:04 INFO ResolveWriteToStream: Checkpoint root /tmp/checkpoints/checkins/scheduled__2025-07-18T17:40:00+00:00 resolved to file:/tmp/checkpoints/checkins/scheduled__2025-07-18T17:40:00+00:00.
+[2025-07-18T18:06:04.585+0000] {subprocess.py:93} INFO - 25/07/18 18:06:04 WARN ResolveWriteToStream: spark.sql.adaptive.enabled is not supported in streaming DataFrames/Datasets and will be disabled.
+[2025-07-18T18:06:04.585+0000] {subprocess.py:93} INFO - 25/07/18 18:06:04 INFO MicroBatchExecution: Starting [id = fb97cc34-75a3-427c-9216-c5f134ec29e0, runId = f6e95ffd-6e36-445f-9261-0a3584fbaabe]. Use file:/tmp/checkpoints/checkins/scheduled__2025-07-18T17:40:00+00:00 to store the query checkpoint.
+[2025-07-18T18:06:04.586+0000] {subprocess.py:93} INFO - 25/07/18 18:06:04 INFO MicroBatchExecution: Reading table [org.apache.spark.sql.kafka010.KafkaSourceProvider$KafkaTable@57d0a4d4] from DataSourceV2 named 'kafka' [org.apache.spark.sql.kafka010.KafkaSourceProvider@59175186]
+[2025-07-18T18:06:04.587+0000] {subprocess.py:93} INFO - 25/07/18 18:06:04 INFO OffsetSeqLog: BatchIds found from listing: 0
+[2025-07-18T18:06:04.587+0000] {subprocess.py:93} INFO - 25/07/18 18:06:04 INFO OffsetSeqLog: Getting latest batch 0
+[2025-07-18T18:06:04.588+0000] {subprocess.py:93} INFO - 25/07/18 18:06:04 INFO OffsetSeqLog: BatchIds found from listing: 0
+[2025-07-18T18:06:04.588+0000] {subprocess.py:93} INFO - 25/07/18 18:06:04 INFO OffsetSeqLog: Getting latest batch 0
+[2025-07-18T18:06:04.589+0000] {subprocess.py:93} INFO - 25/07/18 18:06:04 INFO CommitLog: BatchIds found from listing: 0
+[2025-07-18T18:06:04.590+0000] {subprocess.py:93} INFO - 25/07/18 18:06:04 INFO CommitLog: Getting latest batch 0
+[2025-07-18T18:06:04.591+0000] {subprocess.py:93} INFO - 25/07/18 18:06:04 INFO MicroBatchExecution: Resuming at batch 1 with committed offsets {KafkaV2[Subscribe[checkins]]: {"checkins":{"0":234}}} and available offsets {KafkaV2[Subscribe[checkins]]: {"checkins":{"0":234}}}
+[2025-07-18T18:06:04.592+0000] {subprocess.py:93} INFO - 25/07/18 18:06:04 INFO MicroBatchExecution: Stream started from {KafkaV2[Subscribe[checkins]]: {"checkins":{"0":234}}}
+[2025-07-18T18:06:04.592+0000] {subprocess.py:93} INFO - 25/07/18 18:06:04 INFO AdminClientConfig: AdminClientConfig values:
+[2025-07-18T18:06:04.592+0000] {subprocess.py:93} INFO - 	auto.include.jmx.reporter = true
+[2025-07-18T18:06:04.593+0000] {subprocess.py:93} INFO - 	bootstrap.servers = [kafka:9092]
+[2025-07-18T18:06:04.593+0000] {subprocess.py:93} INFO - 	client.dns.lookup = use_all_dns_ips
+[2025-07-18T18:06:04.593+0000] {subprocess.py:93} INFO - 	client.id =
+[2025-07-18T18:06:04.594+0000] {subprocess.py:93} INFO - 	connections.max.idle.ms = 300000
+[2025-07-18T18:06:04.594+0000] {subprocess.py:93} INFO - 	default.api.timeout.ms = 60000
+[2025-07-18T18:06:04.594+0000] {subprocess.py:93} INFO - 	metadata.max.age.ms = 300000
+[2025-07-18T18:06:04.595+0000] {subprocess.py:93} INFO - 	metric.reporters = []
+[2025-07-18T18:06:04.595+0000] {subprocess.py:93} INFO - 	metrics.num.samples = 2
+[2025-07-18T18:06:04.595+0000] {subprocess.py:93} INFO - 	metrics.recording.level = INFO
+[2025-07-18T18:06:04.596+0000] {subprocess.py:93} INFO - 	metrics.sample.window.ms = 30000
+[2025-07-18T18:06:04.596+0000] {subprocess.py:93} INFO - 	receive.buffer.bytes = 65536
+[2025-07-18T18:06:04.597+0000] {subprocess.py:93} INFO - 	reconnect.backoff.max.ms = 1000
+[2025-07-18T18:06:04.604+0000] {subprocess.py:93} INFO - 	reconnect.backoff.ms = 50
+[2025-07-18T18:06:04.604+0000] {subprocess.py:93} INFO - 	request.timeout.ms = 30000
+[2025-07-18T18:06:04.605+0000] {subprocess.py:93} INFO - 	retries = 2147483647
+[2025-07-18T18:06:04.606+0000] {subprocess.py:93} INFO - 	retry.backoff.ms = 100
+[2025-07-18T18:06:04.606+0000] {subprocess.py:93} INFO - 	sasl.client.callback.handler.class = null
+[2025-07-18T18:06:04.607+0000] {subprocess.py:93} INFO - 	sasl.jaas.config = null
+[2025-07-18T18:06:04.607+0000] {subprocess.py:93} INFO - 	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+[2025-07-18T18:06:04.608+0000] {subprocess.py:93} INFO - 	sasl.kerberos.min.time.before.relogin = 60000
+[2025-07-18T18:06:04.609+0000] {subprocess.py:93} INFO - 	sasl.kerberos.service.name = null
+[2025-07-18T18:06:04.609+0000] {subprocess.py:93} INFO - 	sasl.kerberos.ticket.renew.jitter = 0.05
+[2025-07-18T18:06:04.609+0000] {subprocess.py:93} INFO - 	sasl.kerberos.ticket.renew.window.factor = 0.8
+[2025-07-18T18:06:04.610+0000] {subprocess.py:93} INFO - 	sasl.login.callback.handler.class = null
+[2025-07-18T18:06:04.611+0000] {subprocess.py:93} INFO - 	sasl.login.class = null
+[2025-07-18T18:06:04.612+0000] {subprocess.py:93} INFO - 	sasl.login.connect.timeout.ms = null
+[2025-07-18T18:06:04.613+0000] {subprocess.py:93} INFO - 	sasl.login.read.timeout.ms = null
+[2025-07-18T18:06:04.613+0000] {subprocess.py:93} INFO - 	sasl.login.refresh.buffer.seconds = 300
+[2025-07-18T18:06:04.614+0000] {subprocess.py:93} INFO - 	sasl.login.refresh.min.period.seconds = 60
+[2025-07-18T18:06:04.614+0000] {subprocess.py:93} INFO - 	sasl.login.refresh.window.factor = 0.8
+[2025-07-18T18:06:04.614+0000] {subprocess.py:93} INFO - 	sasl.login.refresh.window.jitter = 0.05
+[2025-07-18T18:06:04.615+0000] {subprocess.py:93} INFO - 	sasl.login.retry.backoff.max.ms = 10000
+[2025-07-18T18:06:04.616+0000] {subprocess.py:93} INFO - 	sasl.login.retry.backoff.ms = 100
+[2025-07-18T18:06:04.616+0000] {subprocess.py:93} INFO - 	sasl.mechanism = GSSAPI
+[2025-07-18T18:06:04.616+0000] {subprocess.py:93} INFO - 	sasl.oauthbearer.clock.skew.seconds = 30
+[2025-07-18T18:06:04.616+0000] {subprocess.py:93} INFO - 	sasl.oauthbearer.expected.audience = null
+[2025-07-18T18:06:04.617+0000] {subprocess.py:93} INFO - 	sasl.oauthbearer.expected.issuer = null
+[2025-07-18T18:06:04.617+0000] {subprocess.py:93} INFO - 	sasl.oauthbearer.jwks.endpoint.refresh.ms = 3600000
+[2025-07-18T18:06:04.617+0000] {subprocess.py:93} INFO - 	sasl.oauthbearer.jwks.endpoint.retry.backoff.max.ms = 10000
+[2025-07-18T18:06:04.618+0000] {subprocess.py:93} INFO - 	sasl.oauthbearer.jwks.endpoint.retry.backoff.ms = 100
+[2025-07-18T18:06:04.619+0000] {subprocess.py:93} INFO - 	sasl.oauthbearer.jwks.endpoint.url = null
+[2025-07-18T18:06:04.620+0000] {subprocess.py:93} INFO - 	sasl.oauthbearer.scope.claim.name = scope
+[2025-07-18T18:06:04.620+0000] {subprocess.py:93} INFO - 	sasl.oauthbearer.sub.claim.name = sub
+[2025-07-18T18:06:04.620+0000] {subprocess.py:93} INFO - 	sasl.oauthbearer.token.endpoint.url = null
+[2025-07-18T18:06:04.620+0000] {subprocess.py:93} INFO - 	security.protocol = PLAINTEXT
+[2025-07-18T18:06:04.620+0000] {subprocess.py:93} INFO - 	security.providers = null
+[2025-07-18T18:06:04.620+0000] {subprocess.py:93} INFO - 	send.buffer.bytes = 131072
+[2025-07-18T18:06:04.621+0000] {subprocess.py:93} INFO - 	socket.connection.setup.timeout.max.ms = 30000
+[2025-07-18T18:06:04.621+0000] {subprocess.py:93} INFO - 	socket.connection.setup.timeout.ms = 10000
+[2025-07-18T18:06:04.621+0000] {subprocess.py:93} INFO - 	ssl.cipher.suites = null
+[2025-07-18T18:06:04.621+0000] {subprocess.py:93} INFO - 	ssl.enabled.protocols = [TLSv1.2, TLSv1.3]
+[2025-07-18T18:06:04.622+0000] {subprocess.py:93} INFO - 	ssl.endpoint.identification.algorithm = https
+[2025-07-18T18:06:04.625+0000] {subprocess.py:93} INFO - 	ssl.engine.factory.class = null
+[2025-07-18T18:06:04.626+0000] {subprocess.py:93} INFO - 	ssl.key.password = null
+[2025-07-18T18:06:04.628+0000] {subprocess.py:93} INFO - 	ssl.keymanager.algorithm = SunX509
+[2025-07-18T18:06:04.629+0000] {subprocess.py:93} INFO - 	ssl.keystore.certificate.chain = null
+[2025-07-18T18:06:04.630+0000] {subprocess.py:93} INFO - 	ssl.keystore.key = null
+[2025-07-18T18:06:04.630+0000] {subprocess.py:93} INFO - 	ssl.keystore.location = null
+[2025-07-18T18:06:04.630+0000] {subprocess.py:93} INFO - 	ssl.keystore.password = null
+[2025-07-18T18:06:04.631+0000] {subprocess.py:93} INFO - 	ssl.keystore.type = JKS
+[2025-07-18T18:06:04.631+0000] {subprocess.py:93} INFO - 	ssl.protocol = TLSv1.3
+[2025-07-18T18:06:04.631+0000] {subprocess.py:93} INFO - 	ssl.provider = null
+[2025-07-18T18:06:04.631+0000] {subprocess.py:93} INFO - 	ssl.secure.random.implementation = null
+[2025-07-18T18:06:04.632+0000] {subprocess.py:93} INFO - 	ssl.trustmanager.algorithm = PKIX
+[2025-07-18T18:06:04.634+0000] {subprocess.py:93} INFO - 	ssl.truststore.certificates = null
+[2025-07-18T18:06:04.635+0000] {subprocess.py:93} INFO - 	ssl.truststore.location = null
+[2025-07-18T18:06:04.636+0000] {subprocess.py:93} INFO - 	ssl.truststore.password = null
+[2025-07-18T18:06:04.636+0000] {subprocess.py:93} INFO - 	ssl.truststore.type = JKS
+[2025-07-18T18:06:04.637+0000] {subprocess.py:93} INFO - 
+[2025-07-18T18:06:04.640+0000] {subprocess.py:93} INFO - 25/07/18 18:06:04 INFO AdminClientConfig: These configurations '[key.deserializer, value.deserializer, enable.auto.commit, max.poll.records, auto.offset.reset]' were supplied but are not used yet.
+[2025-07-18T18:06:04.641+0000] {subprocess.py:93} INFO - 25/07/18 18:06:04 INFO AdminClientConfig: These configurations '[key.deserializer, value.deserializer, enable.auto.commit, max.poll.records, auto.offset.reset]' were supplied but are not used yet.
+[2025-07-18T18:06:04.645+0000] {subprocess.py:93} INFO - 25/07/18 18:06:04 INFO AppInfoParser: Kafka version: 3.5.1
+[2025-07-18T18:06:04.645+0000] {subprocess.py:93} INFO - 25/07/18 18:06:04 INFO AppInfoParser: Kafka commitId: 2c6fb6c54472e90a
+[2025-07-18T18:06:04.646+0000] {subprocess.py:93} INFO - 25/07/18 18:06:04 INFO AppInfoParser: Kafka startTimeMs: 1752861964638
+[2025-07-18T18:06:04.647+0000] {subprocess.py:93} INFO - 25/07/18 18:06:04 INFO AppInfoParser: Kafka version: 3.5.1
+[2025-07-18T18:06:04.648+0000] {subprocess.py:93} INFO - 25/07/18 18:06:04 INFO AppInfoParser: Kafka commitId: 2c6fb6c54472e90a
+[2025-07-18T18:06:04.648+0000] {subprocess.py:93} INFO - 25/07/18 18:06:04 INFO AppInfoParser: Kafka startTimeMs: 1752861964639
+[2025-07-18T18:06:04.738+0000] {subprocess.py:93} INFO - 25/07/18 18:06:04 INFO BaseMetastoreCatalog: Table loaded by catalog: my_catalog.bronze.Feedback_raw
+[2025-07-18T18:06:04.747+0000] {subprocess.py:93} INFO - 25/07/18 18:06:04 INFO ResolveWriteToStream: Checkpoint root /tmp/checkpoints/feedback/scheduled__2025-07-18T17:40:00+00:00 resolved to file:/tmp/checkpoints/feedback/scheduled__2025-07-18T17:40:00+00:00.
+[2025-07-18T18:06:04.749+0000] {subprocess.py:93} INFO - 25/07/18 18:06:04 WARN ResolveWriteToStream: spark.sql.adaptive.enabled is not supported in streaming DataFrames/Datasets and will be disabled.
+[2025-07-18T18:06:04.754+0000] {subprocess.py:93} INFO - 25/07/18 18:06:04 INFO MicroBatchExecution: Starting [id = e2c797a6-f47a-40da-a745-6418a9fb4bd6, runId = 2117d35a-89cd-4006-8a95-3d9aed70d462]. Use file:/tmp/checkpoints/feedback/scheduled__2025-07-18T17:40:00+00:00 to store the query checkpoint.
+[2025-07-18T18:06:04.758+0000] {subprocess.py:93} INFO - 25/07/18 18:06:04 INFO MicroBatchExecution: Reading table [org.apache.spark.sql.kafka010.KafkaSourceProvider$KafkaTable@3c1226ee] from DataSourceV2 named 'kafka' [org.apache.spark.sql.kafka010.KafkaSourceProvider@32d5cec4]
+[2025-07-18T18:06:04.761+0000] {subprocess.py:93} INFO - 25/07/18 18:06:04 INFO OffsetSeqLog: BatchIds found from listing: 0
+[2025-07-18T18:06:04.763+0000] {subprocess.py:93} INFO - 25/07/18 18:06:04 INFO OffsetSeqLog: Getting latest batch 0
+[2025-07-18T18:06:04.763+0000] {subprocess.py:93} INFO - 25/07/18 18:06:04 INFO OffsetSeqLog: BatchIds found from listing: 0
+[2025-07-18T18:06:04.763+0000] {subprocess.py:93} INFO - 25/07/18 18:06:04 INFO OffsetSeqLog: Getting latest batch 0
+[2025-07-18T18:06:04.764+0000] {subprocess.py:93} INFO - 25/07/18 18:06:04 INFO CommitLog: BatchIds found from listing: 0
+[2025-07-18T18:06:04.764+0000] {subprocess.py:93} INFO - 25/07/18 18:06:04 INFO CommitLog: Getting latest batch 0
+[2025-07-18T18:06:04.765+0000] {subprocess.py:93} INFO - 25/07/18 18:06:04 INFO MicroBatchExecution: Resuming at batch 1 with committed offsets {KafkaV2[Subscribe[feedback]]: {"feedback":{"0":234}}} and available offsets {KafkaV2[Subscribe[feedback]]: {"feedback":{"0":234}}}
+[2025-07-18T18:06:04.765+0000] {subprocess.py:93} INFO - 25/07/18 18:06:04 INFO MicroBatchExecution: Stream started from {KafkaV2[Subscribe[feedback]]: {"feedback":{"0":234}}}
+[2025-07-18T18:06:04.771+0000] {subprocess.py:93} INFO - 25/07/18 18:06:04 INFO AdminClientConfig: AdminClientConfig values:
+[2025-07-18T18:06:04.772+0000] {subprocess.py:93} INFO - 	auto.include.jmx.reporter = true
+[2025-07-18T18:06:04.772+0000] {subprocess.py:93} INFO - 	bootstrap.servers = [kafka:9092]
+[2025-07-18T18:06:04.772+0000] {subprocess.py:93} INFO - 	client.dns.lookup = use_all_dns_ips
+[2025-07-18T18:06:04.773+0000] {subprocess.py:93} INFO - 	client.id =
+[2025-07-18T18:06:04.773+0000] {subprocess.py:93} INFO - 	connections.max.idle.ms = 300000
+[2025-07-18T18:06:04.773+0000] {subprocess.py:93} INFO - 	default.api.timeout.ms = 60000
+[2025-07-18T18:06:04.773+0000] {subprocess.py:93} INFO - 	metadata.max.age.ms = 300000
+[2025-07-18T18:06:04.774+0000] {subprocess.py:93} INFO - 	metric.reporters = []
+[2025-07-18T18:06:04.774+0000] {subprocess.py:93} INFO - 	metrics.num.samples = 2
+[2025-07-18T18:06:04.774+0000] {subprocess.py:93} INFO - 	metrics.recording.level = INFO
+[2025-07-18T18:06:04.774+0000] {subprocess.py:93} INFO - 	metrics.sample.window.ms = 30000
+[2025-07-18T18:06:04.774+0000] {subprocess.py:93} INFO - 	receive.buffer.bytes = 65536
+[2025-07-18T18:06:04.774+0000] {subprocess.py:93} INFO - 	reconnect.backoff.max.ms = 1000
+[2025-07-18T18:06:04.775+0000] {subprocess.py:93} INFO - 	reconnect.backoff.ms = 50
+[2025-07-18T18:06:04.775+0000] {subprocess.py:93} INFO - 	request.timeout.ms = 30000
+[2025-07-18T18:06:04.776+0000] {subprocess.py:93} INFO - 	retries = 2147483647
+[2025-07-18T18:06:04.778+0000] {subprocess.py:93} INFO - 	retry.backoff.ms = 100
+[2025-07-18T18:06:04.778+0000] {subprocess.py:93} INFO - 	sasl.client.callback.handler.class = null
+[2025-07-18T18:06:04.779+0000] {subprocess.py:93} INFO - 	sasl.jaas.config = null
+[2025-07-18T18:06:04.779+0000] {subprocess.py:93} INFO - 	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+[2025-07-18T18:06:04.779+0000] {subprocess.py:93} INFO - 	sasl.kerberos.min.time.before.relogin = 60000
+[2025-07-18T18:06:04.779+0000] {subprocess.py:93} INFO - 	sasl.kerberos.service.name = null
+[2025-07-18T18:06:04.779+0000] {subprocess.py:93} INFO - 	sasl.kerberos.ticket.renew.jitter = 0.05
+[2025-07-18T18:06:04.780+0000] {subprocess.py:93} INFO - 	sasl.kerberos.ticket.renew.window.factor = 0.8
+[2025-07-18T18:06:04.780+0000] {subprocess.py:93} INFO - 	sasl.login.callback.handler.class = null
+[2025-07-18T18:06:04.780+0000] {subprocess.py:93} INFO - 	sasl.login.class = null
+[2025-07-18T18:06:04.781+0000] {subprocess.py:93} INFO - 	sasl.login.connect.timeout.ms = null
+[2025-07-18T18:06:04.781+0000] {subprocess.py:93} INFO - 	sasl.login.read.timeout.ms = null
+[2025-07-18T18:06:04.781+0000] {subprocess.py:93} INFO - 	sasl.login.refresh.buffer.seconds = 300
+[2025-07-18T18:06:04.782+0000] {subprocess.py:93} INFO - 	sasl.login.refresh.min.period.seconds = 60
+[2025-07-18T18:06:04.782+0000] {subprocess.py:93} INFO - 	sasl.login.refresh.window.factor = 0.8
+[2025-07-18T18:06:04.782+0000] {subprocess.py:93} INFO - 	sasl.login.refresh.window.jitter = 0.05
+[2025-07-18T18:06:04.783+0000] {subprocess.py:93} INFO - 	sasl.login.retry.backoff.max.ms = 10000
+[2025-07-18T18:06:04.783+0000] {subprocess.py:93} INFO - 	sasl.login.retry.backoff.ms = 100
+[2025-07-18T18:06:04.784+0000] {subprocess.py:93} INFO - 	sasl.mechanism = GSSAPI
+[2025-07-18T18:06:04.784+0000] {subprocess.py:93} INFO - 	sasl.oauthbearer.clock.skew.seconds = 30
+[2025-07-18T18:06:04.785+0000] {subprocess.py:93} INFO - 	sasl.oauthbearer.expected.audience = null
+[2025-07-18T18:06:04.785+0000] {subprocess.py:93} INFO - 	sasl.oauthbearer.expected.issuer = null
+[2025-07-18T18:06:04.786+0000] {subprocess.py:93} INFO - 	sasl.oauthbearer.jwks.endpoint.refresh.ms = 3600000
+[2025-07-18T18:06:04.786+0000] {subprocess.py:93} INFO - 	sasl.oauthbearer.jwks.endpoint.retry.backoff.max.ms = 10000
+[2025-07-18T18:06:04.786+0000] {subprocess.py:93} INFO - 	sasl.oauthbearer.jwks.endpoint.retry.backoff.ms = 100
+[2025-07-18T18:06:04.786+0000] {subprocess.py:93} INFO - 	sasl.oauthbearer.jwks.endpoint.url = null
+[2025-07-18T18:06:04.786+0000] {subprocess.py:93} INFO - 	sasl.oauthbearer.scope.claim.name = scope
+[2025-07-18T18:06:04.787+0000] {subprocess.py:93} INFO - 	sasl.oauthbearer.sub.claim.name = sub
+[2025-07-18T18:06:04.788+0000] {subprocess.py:93} INFO - 	sasl.oauthbearer.token.endpoint.url = null
+[2025-07-18T18:06:04.789+0000] {subprocess.py:93} INFO - 	security.protocol = PLAINTEXT
+[2025-07-18T18:06:04.789+0000] {subprocess.py:93} INFO - 	security.providers = null
+[2025-07-18T18:06:04.790+0000] {subprocess.py:93} INFO - 	send.buffer.bytes = 131072
+[2025-07-18T18:06:04.791+0000] {subprocess.py:93} INFO - 	socket.connection.setup.timeout.max.ms = 30000
+[2025-07-18T18:06:04.791+0000] {subprocess.py:93} INFO - 	socket.connection.setup.timeout.ms = 10000
+[2025-07-18T18:06:04.791+0000] {subprocess.py:93} INFO - 	ssl.cipher.suites = null
+[2025-07-18T18:06:04.791+0000] {subprocess.py:93} INFO - 	ssl.enabled.protocols = [TLSv1.2, TLSv1.3]
+[2025-07-18T18:06:04.793+0000] {subprocess.py:93} INFO - 	ssl.endpoint.identification.algorithm = https
+[2025-07-18T18:06:04.794+0000] {subprocess.py:93} INFO - 	ssl.engine.factory.class = null
+[2025-07-18T18:06:04.794+0000] {subprocess.py:93} INFO - 	ssl.key.password = null
+[2025-07-18T18:06:04.794+0000] {subprocess.py:93} INFO - 	ssl.keymanager.algorithm = SunX509
+[2025-07-18T18:06:04.795+0000] {subprocess.py:93} INFO - 	ssl.keystore.certificate.chain = null
+[2025-07-18T18:06:04.795+0000] {subprocess.py:93} INFO - 	ssl.keystore.key = null
+[2025-07-18T18:06:04.795+0000] {subprocess.py:93} INFO - 	ssl.keystore.location = null
+[2025-07-18T18:06:04.795+0000] {subprocess.py:93} INFO - 	ssl.keystore.password = null
+[2025-07-18T18:06:04.795+0000] {subprocess.py:93} INFO - 	ssl.keystore.type = JKS
+[2025-07-18T18:06:04.795+0000] {subprocess.py:93} INFO - 	ssl.protocol = TLSv1.3
+[2025-07-18T18:06:04.795+0000] {subprocess.py:93} INFO - 	ssl.provider = null
+[2025-07-18T18:06:04.795+0000] {subprocess.py:93} INFO - 	ssl.secure.random.implementation = null
+[2025-07-18T18:06:04.796+0000] {subprocess.py:93} INFO - 	ssl.trustmanager.algorithm = PKIX
+[2025-07-18T18:06:04.796+0000] {subprocess.py:93} INFO - 	ssl.truststore.certificates = null
+[2025-07-18T18:06:04.796+0000] {subprocess.py:93} INFO - 	ssl.truststore.location = null
+[2025-07-18T18:06:04.797+0000] {subprocess.py:93} INFO - 	ssl.truststore.password = null
+[2025-07-18T18:06:04.798+0000] {subprocess.py:93} INFO - 	ssl.truststore.type = JKS
+[2025-07-18T18:06:04.799+0000] {subprocess.py:93} INFO - 
+[2025-07-18T18:06:04.799+0000] {subprocess.py:93} INFO - 25/07/18 18:06:04 INFO AdminClientConfig: These configurations '[key.deserializer, value.deserializer, enable.auto.commit, max.poll.records, auto.offset.reset]' were supplied but are not used yet.
+[2025-07-18T18:06:04.800+0000] {subprocess.py:93} INFO - 25/07/18 18:06:04 INFO AppInfoParser: Kafka version: 3.5.1
+[2025-07-18T18:06:04.800+0000] {subprocess.py:93} INFO - 25/07/18 18:06:04 INFO AppInfoParser: Kafka commitId: 2c6fb6c54472e90a
+[2025-07-18T18:06:04.801+0000] {subprocess.py:93} INFO - 25/07/18 18:06:04 INFO AppInfoParser: Kafka startTimeMs: 1752861964769
+[2025-07-18T18:06:05.897+0000] {subprocess.py:93} INFO - 25/07/18 18:06:05 INFO CheckpointFileManager: Writing atomically to file:/tmp/checkpoints/reservations/scheduled__2025-07-18T17:40:00+00:00/offsets/1 using temp file file:/tmp/checkpoints/reservations/scheduled__2025-07-18T17:40:00+00:00/offsets/.1.774f616a-c0fa-4712-881f-21c0d17de6bd.tmp
+[2025-07-18T18:06:05.932+0000] {subprocess.py:93} INFO - 25/07/18 18:06:05 WARN CheckpointFileManager: Failed to rename temp file file:/tmp/checkpoints/reservations/scheduled__2025-07-18T17:40:00+00:00/offsets/.1.774f616a-c0fa-4712-881f-21c0d17de6bd.tmp to file:/tmp/checkpoints/reservations/scheduled__2025-07-18T17:40:00+00:00/offsets/1 because file exists
+[2025-07-18T18:06:05.933+0000] {subprocess.py:93} INFO - org.apache.hadoop.fs.FileAlreadyExistsException: Rename destination file:/tmp/checkpoints/reservations/scheduled__2025-07-18T17:40:00+00:00/offsets/1 already exists.
+[2025-07-18T18:06:05.933+0000] {subprocess.py:93} INFO - 	at org.apache.hadoop.fs.AbstractFileSystem.renameInternal(AbstractFileSystem.java:770)
+[2025-07-18T18:06:05.935+0000] {subprocess.py:93} INFO - 	at org.apache.hadoop.fs.AbstractFileSystem.rename(AbstractFileSystem.java:720)
+[2025-07-18T18:06:05.936+0000] {subprocess.py:93} INFO - 	at org.apache.hadoop.fs.ChecksumFs.renameInternal(ChecksumFs.java:489)
+[2025-07-18T18:06:05.937+0000] {subprocess.py:93} INFO - 	at org.apache.hadoop.fs.AbstractFileSystem.rename(AbstractFileSystem.java:720)
+[2025-07-18T18:06:05.937+0000] {subprocess.py:93} INFO - 	at org.apache.hadoop.fs.FileContext.rename(FileContext.java:1036)
+[2025-07-18T18:06:05.938+0000] {subprocess.py:93} INFO - 	at org.apache.spark.sql.execution.streaming.FileContextBasedCheckpointFileManager.renameTempFile(CheckpointFileManager.scala:372)
+[2025-07-18T18:06:05.939+0000] {subprocess.py:93} INFO - 	at org.apache.spark.sql.execution.streaming.CheckpointFileManager$RenameBasedFSDataOutputStream.close(CheckpointFileManager.scala:154)
+[2025-07-18T18:06:05.940+0000] {subprocess.py:93} INFO - 	at org.apache.spark.sql.execution.streaming.HDFSMetadataLog.write(HDFSMetadataLog.scala:204)
+[2025-07-18T18:06:05.941+0000] {subprocess.py:93} INFO - 	at org.apache.spark.sql.execution.streaming.HDFSMetadataLog.addNewBatchByStream(HDFSMetadataLog.scala:237)
+[2025-07-18T18:06:05.941+0000] {subprocess.py:93} INFO - 	at org.apache.spark.sql.execution.streaming.HDFSMetadataLog.add(HDFSMetadataLog.scala:130)
+[2025-07-18T18:06:05.942+0000] {subprocess.py:93} INFO - 	at org.apache.spark.sql.execution.streaming.MicroBatchExecution.markMicroBatchStart(MicroBatchExecution.scala:764)
+[2025-07-18T18:06:05.942+0000] {subprocess.py:93} INFO - 	at org.apache.spark.sql.execution.streaming.MicroBatchExecution.$anonfun$constructNextBatch$13(MicroBatchExecution.scala:536)
+[2025-07-18T18:06:05.943+0000] {subprocess.py:93} INFO - 	at scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.java:23)
+[2025-07-18T18:06:05.943+0000] {subprocess.py:93} INFO - 	at org.apache.spark.sql.execution.streaming.ProgressReporter.reportTimeTaken(ProgressReporter.scala:427)
+[2025-07-18T18:06:05.943+0000] {subprocess.py:93} INFO - 	at org.apache.spark.sql.execution.streaming.ProgressReporter.reportTimeTaken$(ProgressReporter.scala:425)
+[2025-07-18T18:06:05.943+0000] {subprocess.py:93} INFO - 	at org.apache.spark.sql.execution.streaming.StreamExecution.reportTimeTaken(StreamExecution.scala:67)
+[2025-07-18T18:06:05.944+0000] {subprocess.py:93} INFO - 	at org.apache.spark.sql.execution.streaming.MicroBatchExecution.$anonfun$constructNextBatch$1(MicroBatchExecution.scala:535)
+[2025-07-18T18:06:05.944+0000] {subprocess.py:93} INFO - 	at scala.runtime.java8.JFunction0$mcZ$sp.apply(JFunction0$mcZ$sp.java:23)
+[2025-07-18T18:06:05.944+0000] {subprocess.py:93} INFO - 	at org.apache.spark.sql.execution.streaming.MicroBatchExecution.withProgressLocked(MicroBatchExecution.scala:810)
+[2025-07-18T18:06:05.945+0000] {subprocess.py:93} INFO - 	at org.apache.spark.sql.execution.streaming.MicroBatchExecution.constructNextBatch(MicroBatchExecution.scala:475)
+[2025-07-18T18:06:05.946+0000] {subprocess.py:93} INFO - 	at org.apache.spark.sql.execution.streaming.MicroBatchExecution.$anonfun$runActivatedStream$2(MicroBatchExecution.scala:268)
+[2025-07-18T18:06:05.946+0000] {subprocess.py:93} INFO - 	at scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.java:23)
+[2025-07-18T18:06:05.947+0000] {subprocess.py:93} INFO - 	at org.apache.spark.sql.execution.streaming.ProgressReporter.reportTimeTaken(ProgressReporter.scala:427)
+[2025-07-18T18:06:05.948+0000] {subprocess.py:93} INFO - 	at org.apache.spark.sql.execution.streaming.ProgressReporter.reportTimeTaken$(ProgressReporter.scala:425)
+[2025-07-18T18:06:05.948+0000] {subprocess.py:93} INFO - 	at org.apache.spark.sql.execution.streaming.StreamExecution.reportTimeTaken(StreamExecution.scala:67)
+[2025-07-18T18:06:05.949+0000] {subprocess.py:93} INFO - 	at org.apache.spark.sql.execution.streaming.MicroBatchExecution.$anonfun$runActivatedStream$1(MicroBatchExecution.scala:249)
+[2025-07-18T18:06:05.950+0000] {subprocess.py:93} INFO - 	at org.apache.spark.sql.execution.streaming.ProcessingTimeExecutor.execute(TriggerExecutor.scala:67)
+[2025-07-18T18:06:05.953+0000] {subprocess.py:93} INFO - 	at org.apache.spark.sql.execution.streaming.MicroBatchExecution.runActivatedStream(MicroBatchExecution.scala:239)
+[2025-07-18T18:06:05.954+0000] {subprocess.py:93} INFO - 	at org.apache.spark.sql.execution.streaming.StreamExecution.$anonfun$runStream$1(StreamExecution.scala:311)
+[2025-07-18T18:06:05.956+0000] {subprocess.py:93} INFO - 	at scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.java:23)
+[2025-07-18T18:06:05.957+0000] {subprocess.py:93} INFO - 	at org.apache.spark.sql.SparkSession.withActive(SparkSession.scala:900)
+[2025-07-18T18:06:05.957+0000] {subprocess.py:93} INFO - 	at org.apache.spark.sql.execution.streaming.StreamExecution.org$apache$spark$sql$execution$streaming$StreamExecution$$runStream(StreamExecution.scala:289)
+[2025-07-18T18:06:05.958+0000] {subprocess.py:93} INFO - 	at org.apache.spark.sql.execution.streaming.StreamExecution$$anon$1.$anonfun$run$1(StreamExecution.scala:211)
+[2025-07-18T18:06:05.959+0000] {subprocess.py:93} INFO - 	at scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.java:23)
+[2025-07-18T18:06:05.964+0000] {subprocess.py:93} INFO - 	at org.apache.spark.JobArtifactSet$.withActiveJobArtifactState(JobArtifactSet.scala:94)
+[2025-07-18T18:06:05.966+0000] {subprocess.py:93} INFO - 	at org.apache.spark.sql.execution.streaming.StreamExecution$$anon$1.run(StreamExecution.scala:211)
+[2025-07-18T18:06:06.444+0000] {subprocess.py:93} INFO - 25/07/18 18:06:06 ERROR MicroBatchExecution: Query [id = c6a875d2-e33f-4a07-888b-9ff6595d768a, runId = 22703879-9409-4f9d-a180-0ca27cf46a83] terminated with error
+[2025-07-18T18:06:06.445+0000] {subprocess.py:93} INFO - org.apache.spark.SparkConcurrentModificationException: Multiple streaming queries are concurrently using file:/tmp/checkpoints/reservations/scheduled__2025-07-18T17:40:00+00:00/offsets.
+[2025-07-18T18:06:06.446+0000] {subprocess.py:93} INFO - 	at org.apache.spark.sql.errors.QueryExecutionErrors$.multiStreamingQueriesUsingPathConcurrentlyError(QueryExecutionErrors.scala:1858)
+[2025-07-18T18:06:06.447+0000] {subprocess.py:93} INFO - 	at org.apache.spark.sql.execution.streaming.HDFSMetadataLog.write(HDFSMetadataLog.scala:210)
+[2025-07-18T18:06:06.448+0000] {subprocess.py:93} INFO - 	at org.apache.spark.sql.execution.streaming.HDFSMetadataLog.addNewBatchByStream(HDFSMetadataLog.scala:237)
+[2025-07-18T18:06:06.449+0000] {subprocess.py:93} INFO - 	at org.apache.spark.sql.execution.streaming.HDFSMetadataLog.add(HDFSMetadataLog.scala:130)
+[2025-07-18T18:06:06.454+0000] {subprocess.py:93} INFO - 	at org.apache.spark.sql.execution.streaming.MicroBatchExecution.markMicroBatchStart(MicroBatchExecution.scala:764)
+[2025-07-18T18:06:06.455+0000] {subprocess.py:93} INFO - 	at org.apache.spark.sql.execution.streaming.MicroBatchExecution.$anonfun$constructNextBatch$13(MicroBatchExecution.scala:536)
+[2025-07-18T18:06:06.455+0000] {subprocess.py:93} INFO - 	at scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.java:23)
+[2025-07-18T18:06:06.455+0000] {subprocess.py:93} INFO - 	at org.apache.spark.sql.execution.streaming.ProgressReporter.reportTimeTaken(ProgressReporter.scala:427)
+[2025-07-18T18:06:06.455+0000] {subprocess.py:93} INFO - 	at org.apache.spark.sql.execution.streaming.ProgressReporter.reportTimeTaken$(ProgressReporter.scala:425)
+[2025-07-18T18:06:06.456+0000] {subprocess.py:93} INFO - 	at org.apache.spark.sql.execution.streaming.StreamExecution.reportTimeTaken(StreamExecution.scala:67)
+[2025-07-18T18:06:06.456+0000] {subprocess.py:93} INFO - 	at org.apache.spark.sql.execution.streaming.MicroBatchExecution.$anonfun$constructNextBatch$1(MicroBatchExecution.scala:535)
+[2025-07-18T18:06:06.456+0000] {subprocess.py:93} INFO - 	at scala.runtime.java8.JFunction0$mcZ$sp.apply(JFunction0$mcZ$sp.java:23)
+[2025-07-18T18:06:06.457+0000] {subprocess.py:93} INFO - 	at org.apache.spark.sql.execution.streaming.MicroBatchExecution.withProgressLocked(MicroBatchExecution.scala:810)
+[2025-07-18T18:06:06.457+0000] {subprocess.py:93} INFO - 	at org.apache.spark.sql.execution.streaming.MicroBatchExecution.constructNextBatch(MicroBatchExecution.scala:475)
+[2025-07-18T18:06:06.460+0000] {subprocess.py:93} INFO - 	at org.apache.spark.sql.execution.streaming.MicroBatchExecution.$anonfun$runActivatedStream$2(MicroBatchExecution.scala:268)
+[2025-07-18T18:06:06.460+0000] {subprocess.py:93} INFO - 	at scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.java:23)
+[2025-07-18T18:06:06.461+0000] {subprocess.py:93} INFO - 	at org.apache.spark.sql.execution.streaming.ProgressReporter.reportTimeTaken(ProgressReporter.scala:427)
+[2025-07-18T18:06:06.463+0000] {subprocess.py:93} INFO - 	at org.apache.spark.sql.execution.streaming.ProgressReporter.reportTimeTaken$(ProgressReporter.scala:425)
+[2025-07-18T18:06:06.464+0000] {subprocess.py:93} INFO - 	at org.apache.spark.sql.execution.streaming.StreamExecution.reportTimeTaken(StreamExecution.scala:67)
+[2025-07-18T18:06:06.464+0000] {subprocess.py:93} INFO - 	at org.apache.spark.sql.execution.streaming.MicroBatchExecution.$anonfun$runActivatedStream$1(MicroBatchExecution.scala:249)
+[2025-07-18T18:06:06.466+0000] {subprocess.py:93} INFO - 	at org.apache.spark.sql.execution.streaming.ProcessingTimeExecutor.execute(TriggerExecutor.scala:67)
+[2025-07-18T18:06:06.466+0000] {subprocess.py:93} INFO - 	at org.apache.spark.sql.execution.streaming.MicroBatchExecution.runActivatedStream(MicroBatchExecution.scala:239)
+[2025-07-18T18:06:06.467+0000] {subprocess.py:93} INFO - 	at org.apache.spark.sql.execution.streaming.StreamExecution.$anonfun$runStream$1(StreamExecution.scala:311)
+[2025-07-18T18:06:06.467+0000] {subprocess.py:93} INFO - 	at scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.java:23)
+[2025-07-18T18:06:06.470+0000] {subprocess.py:93} INFO - 	at org.apache.spark.sql.SparkSession.withActive(SparkSession.scala:900)
+[2025-07-18T18:06:06.474+0000] {subprocess.py:93} INFO - 	at org.apache.spark.sql.execution.streaming.StreamExecution.org$apache$spark$sql$execution$streaming$StreamExecution$$runStream(StreamExecution.scala:289)
+[2025-07-18T18:06:06.474+0000] {subprocess.py:93} INFO - 	at org.apache.spark.sql.execution.streaming.StreamExecution$$anon$1.$anonfun$run$1(StreamExecution.scala:211)
+[2025-07-18T18:06:06.474+0000] {subprocess.py:93} INFO - 	at scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.java:23)
+[2025-07-18T18:06:06.474+0000] {subprocess.py:93} INFO - 	at org.apache.spark.JobArtifactSet$.withActiveJobArtifactState(JobArtifactSet.scala:94)
+[2025-07-18T18:06:06.475+0000] {subprocess.py:93} INFO - 	at org.apache.spark.sql.execution.streaming.StreamExecution$$anon$1.run(StreamExecution.scala:211)
+[2025-07-18T18:06:06.475+0000] {subprocess.py:93} INFO - Caused by: org.apache.hadoop.fs.FileAlreadyExistsException: Rename destination file:/tmp/checkpoints/reservations/scheduled__2025-07-18T17:40:00+00:00/offsets/1 already exists.
+[2025-07-18T18:06:06.475+0000] {subprocess.py:93} INFO - 	at org.apache.hadoop.fs.AbstractFileSystem.renameInternal(AbstractFileSystem.java:770)
+[2025-07-18T18:06:06.475+0000] {subprocess.py:93} INFO - 	at org.apache.hadoop.fs.AbstractFileSystem.rename(AbstractFileSystem.java:720)
+[2025-07-18T18:06:06.475+0000] {subprocess.py:93} INFO - 	at org.apache.hadoop.fs.ChecksumFs.renameInternal(ChecksumFs.java:489)
+[2025-07-18T18:06:06.475+0000] {subprocess.py:93} INFO - 	at org.apache.hadoop.fs.AbstractFileSystem.rename(AbstractFileSystem.java:720)
+[2025-07-18T18:06:06.476+0000] {subprocess.py:93} INFO - 	at org.apache.hadoop.fs.FileContext.rename(FileContext.java:1036)
+[2025-07-18T18:06:06.478+0000] {subprocess.py:93} INFO - 	at org.apache.spark.sql.execution.streaming.FileContextBasedCheckpointFileManager.renameTempFile(CheckpointFileManager.scala:372)
+[2025-07-18T18:06:06.478+0000] {subprocess.py:93} INFO - 	at org.apache.spark.sql.execution.streaming.CheckpointFileManager$RenameBasedFSDataOutputStream.close(CheckpointFileManager.scala:154)
+[2025-07-18T18:06:06.480+0000] {subprocess.py:93} INFO - 	at org.apache.spark.sql.execution.streaming.HDFSMetadataLog.write(HDFSMetadataLog.scala:204)
+[2025-07-18T18:06:06.480+0000] {subprocess.py:93} INFO - 	... 28 more
+[2025-07-18T18:06:06.482+0000] {subprocess.py:93} INFO - 25/07/18 18:06:06 INFO AppInfoParser: App info kafka.admin.client for adminclient-1 unregistered
+[2025-07-18T18:06:06.504+0000] {subprocess.py:93} INFO - 25/07/18 18:06:06 INFO Metrics: Metrics scheduler closed
+[2025-07-18T18:06:06.505+0000] {subprocess.py:93} INFO - 25/07/18 18:06:06 INFO Metrics: Closing reporter org.apache.kafka.common.metrics.JmxReporter
+[2025-07-18T18:06:06.505+0000] {subprocess.py:93} INFO - 25/07/18 18:06:06 INFO Metrics: Metrics reporters closed
+[2025-07-18T18:06:06.515+0000] {subprocess.py:93} INFO - 25/07/18 18:06:06 INFO MicroBatchExecution: Async log purge executor pool for query [id = c6a875d2-e33f-4a07-888b-9ff6595d768a, runId = 22703879-9409-4f9d-a180-0ca27cf46a83] has been shutdown
+[2025-07-18T18:06:06.547+0000] {subprocess.py:93} INFO - 25/07/18 18:06:06 INFO CheckpointFileManager: Writing atomically to file:/tmp/checkpoints/checkins/scheduled__2025-07-18T17:40:00+00:00/offsets/1 using temp file file:/tmp/checkpoints/checkins/scheduled__2025-07-18T17:40:00+00:00/offsets/.1.22dda809-7765-42f4-b15d-500e60635be4.tmp
+[2025-07-18T18:06:06.581+0000] {subprocess.py:93} INFO - 25/07/18 18:06:06 WARN CheckpointFileManager: Failed to rename temp file file:/tmp/checkpoints/checkins/scheduled__2025-07-18T17:40:00+00:00/offsets/.1.22dda809-7765-42f4-b15d-500e60635be4.tmp to file:/tmp/checkpoints/checkins/scheduled__2025-07-18T17:40:00+00:00/offsets/1 because file exists
+[2025-07-18T18:06:06.582+0000] {subprocess.py:93} INFO - org.apache.hadoop.fs.FileAlreadyExistsException: Rename destination file:/tmp/checkpoints/checkins/scheduled__2025-07-18T17:40:00+00:00/offsets/1 already exists.
+[2025-07-18T18:06:06.583+0000] {subprocess.py:93} INFO - 	at org.apache.hadoop.fs.AbstractFileSystem.renameInternal(AbstractFileSystem.java:770)
+[2025-07-18T18:06:06.583+0000] {subprocess.py:93} INFO - 	at org.apache.hadoop.fs.AbstractFileSystem.rename(AbstractFileSystem.java:720)
+[2025-07-18T18:06:06.584+0000] {subprocess.py:93} INFO - 	at org.apache.hadoop.fs.ChecksumFs.renameInternal(ChecksumFs.java:489)
+[2025-07-18T18:06:06.594+0000] {subprocess.py:93} INFO - 	at org.apache.hadoop.fs.AbstractFileSystem.rename(AbstractFileSystem.java:720)
+[2025-07-18T18:06:06.595+0000] {subprocess.py:93} INFO - 	at org.apache.hadoop.fs.FileContext.rename(FileContext.java:1036)
+[2025-07-18T18:06:06.595+0000] {subprocess.py:93} INFO - 	at org.apache.spark.sql.execution.streaming.FileContextBasedCheckpointFileManager.renameTempFile(CheckpointFileManager.scala:372)
+[2025-07-18T18:06:06.596+0000] {subprocess.py:93} INFO - 	at org.apache.spark.sql.execution.streaming.CheckpointFileManager$RenameBasedFSDataOutputStream.close(CheckpointFileManager.scala:154)
+[2025-07-18T18:06:06.596+0000] {subprocess.py:93} INFO - 	at org.apache.spark.sql.execution.streaming.HDFSMetadataLog.write(HDFSMetadataLog.scala:204)
+[2025-07-18T18:06:06.597+0000] {subprocess.py:93} INFO - 	at org.apache.spark.sql.execution.streaming.HDFSMetadataLog.addNewBatchByStream(HDFSMetadataLog.scala:237)
+[2025-07-18T18:06:06.597+0000] {subprocess.py:93} INFO - 	at org.apache.spark.sql.execution.streaming.HDFSMetadataLog.add(HDFSMetadataLog.scala:130)
+[2025-07-18T18:06:06.597+0000] {subprocess.py:93} INFO - 	at org.apache.spark.sql.execution.streaming.MicroBatchExecution.markMicroBatchStart(MicroBatchExecution.scala:764)
+[2025-07-18T18:06:06.598+0000] {subprocess.py:93} INFO - 	at org.apache.spark.sql.execution.streaming.MicroBatchExecution.$anonfun$constructNextBatch$13(MicroBatchExecution.scala:536)
+[2025-07-18T18:06:06.598+0000] {subprocess.py:93} INFO - 	at scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.java:23)
+[2025-07-18T18:06:06.598+0000] {subprocess.py:93} INFO - 	at org.apache.spark.sql.execution.streaming.ProgressReporter.reportTimeTaken(ProgressReporter.scala:427)
+[2025-07-18T18:06:06.598+0000] {subprocess.py:93} INFO - 	at org.apache.spark.sql.execution.streaming.ProgressReporter.reportTimeTaken$(ProgressReporter.scala:425)
+[2025-07-18T18:06:06.599+0000] {subprocess.py:93} INFO - 	at org.apache.spark.sql.execution.streaming.StreamExecution.reportTimeTaken(StreamExecution.scala:67)
+[2025-07-18T18:06:06.599+0000] {subprocess.py:93} INFO - 	at org.apache.spark.sql.execution.streaming.MicroBatchExecution.$anonfun$constructNextBatch$1(MicroBatchExecution.scala:535)
+[2025-07-18T18:06:06.599+0000] {subprocess.py:93} INFO - 	at scala.runtime.java8.JFunction0$mcZ$sp.apply(JFunction0$mcZ$sp.java:23)
+[2025-07-18T18:06:06.599+0000] {subprocess.py:93} INFO - 	at org.apache.spark.sql.execution.streaming.MicroBatchExecution.withProgressLocked(MicroBatchExecution.scala:810)
+[2025-07-18T18:06:06.600+0000] {subprocess.py:93} INFO - 	at org.apache.spark.sql.execution.streaming.MicroBatchExecution.constructNextBatch(MicroBatchExecution.scala:475)
+[2025-07-18T18:06:06.600+0000] {subprocess.py:93} INFO - 	at org.apache.spark.sql.execution.streaming.MicroBatchExecution.$anonfun$runActivatedStream$2(MicroBatchExecution.scala:268)
+[2025-07-18T18:06:06.600+0000] {subprocess.py:93} INFO - 	at scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.java:23)
+[2025-07-18T18:06:06.600+0000] {subprocess.py:93} INFO - 	at org.apache.spark.sql.execution.streaming.ProgressReporter.reportTimeTaken(ProgressReporter.scala:427)
+[2025-07-18T18:06:06.604+0000] {subprocess.py:93} INFO - 	at org.apache.spark.sql.execution.streaming.ProgressReporter.reportTimeTaken$(ProgressReporter.scala:425)
+[2025-07-18T18:06:06.604+0000] {subprocess.py:93} INFO - 	at org.apache.spark.sql.execution.streaming.StreamExecution.reportTimeTaken(StreamExecution.scala:67)
+[2025-07-18T18:06:06.605+0000] {subprocess.py:93} INFO - 	at org.apache.spark.sql.execution.streaming.MicroBatchExecution.$anonfun$runActivatedStream$1(MicroBatchExecution.scala:249)
+[2025-07-18T18:06:06.605+0000] {subprocess.py:93} INFO - 	at org.apache.spark.sql.execution.streaming.ProcessingTimeExecutor.execute(TriggerExecutor.scala:67)
+[2025-07-18T18:06:06.605+0000] {subprocess.py:93} INFO - 	at org.apache.spark.sql.execution.streaming.MicroBatchExecution.runActivatedStream(MicroBatchExecution.scala:239)
+[2025-07-18T18:06:06.605+0000] {subprocess.py:93} INFO - 	at org.apache.spark.sql.execution.streaming.StreamExecution.$anonfun$runStream$1(StreamExecution.scala:311)
+[2025-07-18T18:06:06.605+0000] {subprocess.py:93} INFO - 	at scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.java:23)
+[2025-07-18T18:06:06.605+0000] {subprocess.py:93} INFO - 	at org.apache.spark.sql.SparkSession.withActive(SparkSession.scala:900)
+[2025-07-18T18:06:06.605+0000] {subprocess.py:93} INFO - 	at org.apache.spark.sql.execution.streaming.StreamExecution.org$apache$spark$sql$execution$streaming$StreamExecution$$runStream(StreamExecution.scala:289)
+[2025-07-18T18:06:06.605+0000] {subprocess.py:93} INFO - 	at org.apache.spark.sql.execution.streaming.StreamExecution$$anon$1.$anonfun$run$1(StreamExecution.scala:211)
+[2025-07-18T18:06:06.606+0000] {subprocess.py:93} INFO - 	at scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.java:23)
+[2025-07-18T18:06:06.606+0000] {subprocess.py:93} INFO - 	at org.apache.spark.JobArtifactSet$.withActiveJobArtifactState(JobArtifactSet.scala:94)
+[2025-07-18T18:06:06.606+0000] {subprocess.py:93} INFO - 	at org.apache.spark.sql.execution.streaming.StreamExecution$$anon$1.run(StreamExecution.scala:211)
+[2025-07-18T18:06:06.606+0000] {subprocess.py:93} INFO - 25/07/18 18:06:06 ERROR MicroBatchExecution: Query [id = fb97cc34-75a3-427c-9216-c5f134ec29e0, runId = f6e95ffd-6e36-445f-9261-0a3584fbaabe] terminated with error
+[2025-07-18T18:06:06.612+0000] {subprocess.py:93} INFO - org.apache.spark.SparkConcurrentModificationException: Multiple streaming queries are concurrently using file:/tmp/checkpoints/checkins/scheduled__2025-07-18T17:40:00+00:00/offsets.
+[2025-07-18T18:06:06.613+0000] {subprocess.py:93} INFO - 	at org.apache.spark.sql.errors.QueryExecutionErrors$.multiStreamingQueriesUsingPathConcurrentlyError(QueryExecutionErrors.scala:1858)
+[2025-07-18T18:06:06.613+0000] {subprocess.py:93} INFO - 	at org.apache.spark.sql.execution.streaming.HDFSMetadataLog.write(HDFSMetadataLog.scala:210)
+[2025-07-18T18:06:06.614+0000] {subprocess.py:93} INFO - 	at org.apache.spark.sql.execution.streaming.HDFSMetadataLog.addNewBatchByStream(HDFSMetadataLog.scala:237)
+[2025-07-18T18:06:06.615+0000] {subprocess.py:93} INFO - 	at org.apache.spark.sql.execution.streaming.HDFSMetadataLog.add(HDFSMetadataLog.scala:130)
+[2025-07-18T18:06:06.615+0000] {subprocess.py:93} INFO - 	at org.apache.spark.sql.execution.streaming.MicroBatchExecution.markMicroBatchStart(MicroBatchExecution.scala:764)
+[2025-07-18T18:06:06.616+0000] {subprocess.py:93} INFO - 	at org.apache.spark.sql.execution.streaming.MicroBatchExecution.$anonfun$constructNextBatch$13(MicroBatchExecution.scala:536)
+[2025-07-18T18:06:06.616+0000] {subprocess.py:93} INFO - 	at scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.java:23)
+[2025-07-18T18:06:06.616+0000] {subprocess.py:93} INFO - 	at org.apache.spark.sql.execution.streaming.ProgressReporter.reportTimeTaken(ProgressReporter.scala:427)
+[2025-07-18T18:06:06.616+0000] {subprocess.py:93} INFO - 	at org.apache.spark.sql.execution.streaming.ProgressReporter.reportTimeTaken$(ProgressReporter.scala:425)
+[2025-07-18T18:06:06.617+0000] {subprocess.py:93} INFO - 	at org.apache.spark.sql.execution.streaming.StreamExecution.reportTimeTaken(StreamExecution.scala:67)
+[2025-07-18T18:06:06.617+0000] {subprocess.py:93} INFO - 	at org.apache.spark.sql.execution.streaming.MicroBatchExecution.$anonfun$constructNextBatch$1(MicroBatchExecution.scala:535)
+[2025-07-18T18:06:06.617+0000] {subprocess.py:93} INFO - 	at scala.runtime.java8.JFunction0$mcZ$sp.apply(JFunction0$mcZ$sp.java:23)
+[2025-07-18T18:06:06.617+0000] {subprocess.py:93} INFO - 	at org.apache.spark.sql.execution.streaming.MicroBatchExecution.withProgressLocked(MicroBatchExecution.scala:810)
+[2025-07-18T18:06:06.620+0000] {subprocess.py:93} INFO - 	at org.apache.spark.sql.execution.streaming.MicroBatchExecution.constructNextBatch(MicroBatchExecution.scala:475)
+[2025-07-18T18:06:06.621+0000] {subprocess.py:93} INFO - 	at org.apache.spark.sql.execution.streaming.MicroBatchExecution.$anonfun$runActivatedStream$2(MicroBatchExecution.scala:268)
+[2025-07-18T18:06:06.621+0000] {subprocess.py:93} INFO - 	at scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.java:23)
+[2025-07-18T18:06:06.622+0000] {subprocess.py:93} INFO - 	at org.apache.spark.sql.execution.streaming.ProgressReporter.reportTimeTaken(ProgressReporter.scala:427)
+[2025-07-18T18:06:06.622+0000] {subprocess.py:93} INFO - 	at org.apache.spark.sql.execution.streaming.ProgressReporter.reportTimeTaken$(ProgressReporter.scala:425)
+[2025-07-18T18:06:06.622+0000] {subprocess.py:93} INFO - 	at org.apache.spark.sql.execution.streaming.StreamExecution.reportTimeTaken(StreamExecution.scala:67)
+[2025-07-18T18:06:06.623+0000] {subprocess.py:93} INFO - 	at org.apache.spark.sql.execution.streaming.MicroBatchExecution.$anonfun$runActivatedStream$1(MicroBatchExecution.scala:249)
+[2025-07-18T18:06:06.623+0000] {subprocess.py:93} INFO - 	at org.apache.spark.sql.execution.streaming.ProcessingTimeExecutor.execute(TriggerExecutor.scala:67)
+[2025-07-18T18:06:06.629+0000] {subprocess.py:93} INFO - 	at org.apache.spark.sql.execution.streaming.MicroBatchExecution.runActivatedStream(MicroBatchExecution.scala:239)
+[2025-07-18T18:06:06.636+0000] {subprocess.py:93} INFO - 	at org.apache.spark.sql.execution.streaming.StreamExecution.$anonfun$runStream$1(StreamExecution.scala:311)
+[2025-07-18T18:06:06.640+0000] {subprocess.py:93} INFO - 	at scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.java:23)
+[2025-07-18T18:06:06.642+0000] {subprocess.py:93} INFO - 	at org.apache.spark.sql.SparkSession.withActive(SparkSession.scala:900)
+[2025-07-18T18:06:06.643+0000] {subprocess.py:93} INFO - 	at org.apache.spark.sql.execution.streaming.StreamExecution.org$apache$spark$sql$execution$streaming$StreamExecution$$runStream(StreamExecution.scala:289)
+[2025-07-18T18:06:06.644+0000] {subprocess.py:93} INFO - 	at org.apache.spark.sql.execution.streaming.StreamExecution$$anon$1.$anonfun$run$1(StreamExecution.scala:211)
+[2025-07-18T18:06:06.644+0000] {subprocess.py:93} INFO - 	at scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.java:23)
+[2025-07-18T18:06:06.645+0000] {subprocess.py:93} INFO - 	at org.apache.spark.JobArtifactSet$.withActiveJobArtifactState(JobArtifactSet.scala:94)
+[2025-07-18T18:06:06.646+0000] {subprocess.py:93} INFO - 	at org.apache.spark.sql.execution.streaming.StreamExecution$$anon$1.run(StreamExecution.scala:211)
+[2025-07-18T18:06:06.647+0000] {subprocess.py:93} INFO - Caused by: org.apache.hadoop.fs.FileAlreadyExistsException: Rename destination file:/tmp/checkpoints/checkins/scheduled__2025-07-18T17:40:00+00:00/offsets/1 already exists.
+[2025-07-18T18:06:06.648+0000] {subprocess.py:93} INFO - 	at org.apache.hadoop.fs.AbstractFileSystem.renameInternal(AbstractFileSystem.java:770)
+[2025-07-18T18:06:06.649+0000] {subprocess.py:93} INFO - 	at org.apache.hadoop.fs.AbstractFileSystem.rename(AbstractFileSystem.java:720)
+[2025-07-18T18:06:06.649+0000] {subprocess.py:93} INFO - 	at org.apache.hadoop.fs.ChecksumFs.renameInternal(ChecksumFs.java:489)
+[2025-07-18T18:06:06.650+0000] {subprocess.py:93} INFO - 	at org.apache.hadoop.fs.AbstractFileSystem.rename(AbstractFileSystem.java:720)
+[2025-07-18T18:06:06.651+0000] {subprocess.py:93} INFO - 	at org.apache.hadoop.fs.FileContext.rename(FileContext.java:1036)
+[2025-07-18T18:06:06.652+0000] {subprocess.py:93} INFO - 	at org.apache.spark.sql.execution.streaming.FileContextBasedCheckpointFileManager.renameTempFile(CheckpointFileManager.scala:372)
+[2025-07-18T18:06:06.654+0000] {subprocess.py:93} INFO - 	at org.apache.spark.sql.execution.streaming.CheckpointFileManager$RenameBasedFSDataOutputStream.close(CheckpointFileManager.scala:154)
+[2025-07-18T18:06:06.654+0000] {subprocess.py:93} INFO - 	at org.apache.spark.sql.execution.streaming.HDFSMetadataLog.write(HDFSMetadataLog.scala:204)
+[2025-07-18T18:06:06.655+0000] {subprocess.py:93} INFO - 	... 28 more
+[2025-07-18T18:06:06.656+0000] {subprocess.py:93} INFO - 25/07/18 18:06:06 INFO AppInfoParser: App info kafka.admin.client for adminclient-2 unregistered
+[2025-07-18T18:06:06.656+0000] {subprocess.py:93} INFO - 25/07/18 18:06:06 INFO Metrics: Metrics scheduler closed
+[2025-07-18T18:06:06.656+0000] {subprocess.py:93} INFO - 25/07/18 18:06:06 INFO Metrics: Closing reporter org.apache.kafka.common.metrics.JmxReporter
+[2025-07-18T18:06:06.656+0000] {subprocess.py:93} INFO - 25/07/18 18:06:06 INFO Metrics: Metrics reporters closed
+[2025-07-18T18:06:06.657+0000] {subprocess.py:93} INFO - 25/07/18 18:06:06 INFO MicroBatchExecution: Async log purge executor pool for query [id = fb97cc34-75a3-427c-9216-c5f134ec29e0, runId = f6e95ffd-6e36-445f-9261-0a3584fbaabe] has been shutdown
+[2025-07-18T18:06:06.674+0000] {subprocess.py:93} INFO - Traceback (most recent call last):
+[2025-07-18T18:06:06.675+0000] {subprocess.py:93} INFO -   File "/home/iceberg/spark/stream_to_bronze.py", line 97, in <module>
+[2025-07-18T18:06:06.679+0000] {subprocess.py:93} INFO -     spark.streams.awaitAnyTermination(timeout=60)
+[2025-07-18T18:06:06.682+0000] {subprocess.py:93} INFO -   File "/opt/bitnami/spark/python/lib/pyspark.zip/pyspark/sql/streaming/query.py", line 594, in awaitAnyTermination
+[2025-07-18T18:06:06.686+0000] {subprocess.py:93} INFO -   File "/opt/bitnami/spark/python/lib/py4j-0.10.9.7-src.zip/py4j/java_gateway.py", line 1322, in __call__
+[2025-07-18T18:06:06.687+0000] {subprocess.py:93} INFO -   File "/opt/bitnami/spark/python/lib/pyspark.zip/pyspark/errors/exceptions/captured.py", line 185, in deco
+[2025-07-18T18:06:06.737+0000] {subprocess.py:93} INFO - pyspark.errors.exceptions.captured.StreamingQueryException: [STREAM_FAILED] Query [id = c6a875d2-e33f-4a07-888b-9ff6595d768a, runId = 22703879-9409-4f9d-a180-0ca27cf46a83] terminated with exception: Multiple streaming queries are concurrently using file:/tmp/checkpoints/reservations/scheduled__2025-07-18T17:40:00+00:00/offsets.
+[2025-07-18T18:06:06.889+0000] {subprocess.py:93} INFO - 25/07/18 18:06:06 INFO SparkContext: Invoking stop() from shutdown hook
+[2025-07-18T18:06:06.891+0000] {subprocess.py:93} INFO - 25/07/18 18:06:06 INFO SparkContext: SparkContext is stopping with exitCode 0.
+[2025-07-18T18:06:06.928+0000] {subprocess.py:93} INFO - 25/07/18 18:06:06 INFO SparkUI: Stopped Spark web UI at http://77cb57a6bd53:4041
+[2025-07-18T18:06:06.967+0000] {subprocess.py:93} INFO - 25/07/18 18:06:06 INFO MapOutputTrackerMasterEndpoint: MapOutputTrackerMasterEndpoint stopped!
+[2025-07-18T18:06:07.059+0000] {subprocess.py:93} INFO - 25/07/18 18:06:07 INFO MemoryStore: MemoryStore cleared
+[2025-07-18T18:06:07.060+0000] {subprocess.py:93} INFO - 25/07/18 18:06:07 INFO BlockManager: BlockManager stopped
+[2025-07-18T18:06:07.080+0000] {subprocess.py:93} INFO - 25/07/18 18:06:07 INFO BlockManagerMaster: BlockManagerMaster stopped
+[2025-07-18T18:06:07.081+0000] {subprocess.py:93} INFO - 25/07/18 18:06:07 INFO OutputCommitCoordinator$OutputCommitCoordinatorEndpoint: OutputCommitCoordinator stopped!
+[2025-07-18T18:06:07.104+0000] {subprocess.py:93} INFO - 25/07/18 18:06:07 INFO CheckpointFileManager: Writing atomically to file:/tmp/checkpoints/feedback/scheduled__2025-07-18T17:40:00+00:00/offsets/1 using temp file file:/tmp/checkpoints/feedback/scheduled__2025-07-18T17:40:00+00:00/offsets/.1.f3173fbe-09ad-4222-aa86-18900a7a8c3f.tmp
+[2025-07-18T18:06:07.122+0000] {subprocess.py:93} INFO - 25/07/18 18:06:07 INFO SparkContext: Successfully stopped SparkContext
+[2025-07-18T18:06:07.124+0000] {subprocess.py:93} INFO - 25/07/18 18:06:07 INFO ShutdownHookManager: Shutdown hook called
+[2025-07-18T18:06:07.126+0000] {subprocess.py:93} INFO - 25/07/18 18:06:07 INFO ShutdownHookManager: Deleting directory /tmp/spark-a7243fe2-5c02-465f-a358-85988ea39dd2
+[2025-07-18T18:06:07.131+0000] {subprocess.py:93} INFO - 25/07/18 18:06:07 INFO ShutdownHookManager: Deleting directory /tmp/spark-a7243fe2-5c02-465f-a358-85988ea39dd2/pyspark-1d88c509-5943-4046-a93c-acd3a9a7408f
+[2025-07-18T18:06:07.142+0000] {subprocess.py:93} INFO - 25/07/18 18:06:07 INFO ShutdownHookManager: Deleting directory /tmp/spark-088256c1-cfc7-4a2f-a16d-4df095a72f1e
+[2025-07-18T18:06:07.156+0000] {subprocess.py:93} INFO - 25/07/18 18:06:07 INFO MetricsSystemImpl: Stopping s3a-file-system metrics system...
+[2025-07-18T18:06:07.168+0000] {subprocess.py:93} INFO - 25/07/18 18:06:07 INFO MetricsSystemImpl: s3a-file-system metrics system stopped.
+[2025-07-18T18:06:07.170+0000] {subprocess.py:93} INFO - 25/07/18 18:06:07 INFO MetricsSystemImpl: s3a-file-system metrics system shutdown complete.
+[2025-07-18T18:06:07.175+0000] {subprocess.py:93} INFO - 25/07/18 18:06:07 INFO CheckpointFileManager: Renamed temp file file:/tmp/checkpoints/feedback/scheduled__2025-07-18T17:40:00+00:00/offsets/.1.f3173fbe-09ad-4222-aa86-18900a7a8c3f.tmp to file:/tmp/checkpoints/feedback/scheduled__2025-07-18T17:40:00+00:00/offsets/1
+[2025-07-18T18:06:07.178+0000] {subprocess.py:93} INFO - 25/07/18 18:06:07 INFO MicroBatchExecution: Committed offsets for batch 1. Metadata OffsetSeqMetadata(0,1752861967077,Map(spark.sql.streaming.stateStore.providerClass -> org.apache.spark.sql.execution.streaming.state.HDFSBackedStateStoreProvider, spark.sql.streaming.join.stateFormatVersion -> 2, spark.sql.streaming.stateStore.compression.codec -> lz4, spark.sql.optimizer.pruneFiltersCanPruneStreamingSubplan -> false, spark.sql.streaming.stateStore.rocksdb.formatVersion -> 5, spark.sql.streaming.statefulOperator.useStrictDistribution -> true, spark.sql.streaming.flatMapGroupsWithState.stateFormatVersion -> 2, spark.sql.streaming.multipleWatermarkPolicy -> min, spark.sql.streaming.aggregation.stateFormatVersion -> 2, spark.sql.shuffle.partitions -> 200))
+[2025-07-18T18:06:07.770+0000] {subprocess.py:97} INFO - Command exited with return code 1
+[2025-07-18T18:06:07.887+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 0
+[2025-07-18T18:06:08.004+0000] {taskinstance.py:2778} INFO - 0 downstream tasks scheduled from follow-on schedule check

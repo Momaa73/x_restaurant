@@ -1,3 +1,4 @@
+import os
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import col, from_json
 from pyspark.sql.types import StructType, StructField, StringType, IntegerType, BooleanType, DateType, TimestampType, FloatType
@@ -70,25 +71,27 @@ def read_kafka(topic, schema, checkpoint_path, output_path):
         .option("path", output_path) \
         .start()
 
+run_id = os.environ.get("AIRFLOW_CTX_DAG_RUN_ID", "default_run")
+
 read_kafka(
     topic="reservations",
     schema=reservation_schema,
-    checkpoint_path="/tmp/checkpoints/reservations",
+    checkpoint_path=f"/tmp/checkpoints/reservations/{run_id}",
     output_path="my_catalog.bronze.Reservations_raw"
 )
 
 read_kafka(
     topic="checkins",
     schema=checkin_schema,
-    checkpoint_path="/tmp/checkpoints/checkins",
+    checkpoint_path=f"/tmp/checkpoints/checkins/{run_id}",
     output_path="my_catalog.bronze.Checkins_raw"
 )
 
 read_kafka(
     topic="feedback",
     schema=feedback_schema,
-    checkpoint_path="/tmp/checkpoints/feedback",
+    checkpoint_path=f"/tmp/checkpoints/feedback/{run_id}",
     output_path="my_catalog.bronze.Feedback_raw"
 )
 
-spark.streams.awaitAnyTermination()
+spark.streams.awaitAnyTermination(timeout=60)

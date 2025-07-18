@@ -1,0 +1,13 @@
+[2025-07-18T15:05:45.491+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: restaurant_pipeline.generate_json_files manual__2025-07-18T15:05:44.922899+00:00 [queued]>
+[2025-07-18T15:05:45.495+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: restaurant_pipeline.generate_json_files manual__2025-07-18T15:05:44.922899+00:00 [queued]>
+[2025-07-18T15:05:45.495+0000] {taskinstance.py:1361} INFO - Starting attempt 1 of 1
+[2025-07-18T15:05:45.500+0000] {taskinstance.py:1382} INFO - Executing <Task(PythonOperator): generate_json_files> on 2025-07-18 15:05:44.922899+00:00
+[2025-07-18T15:05:45.504+0000] {standard_task_runner.py:57} INFO - Started process 183 to run task
+[2025-07-18T15:05:45.506+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'restaurant_pipeline', 'generate_json_files', 'manual__2025-07-18T15:05:44.922899+00:00', '--job-id', '50', '--raw', '--subdir', 'DAGS_FOLDER/restaurant_pipeline.py', '--cfg-path', '/tmp/tmpybe4v42k']
+[2025-07-18T15:05:45.507+0000] {standard_task_runner.py:85} INFO - Job 50: Subtask generate_json_files
+[2025-07-18T15:05:45.531+0000] {task_command.py:416} INFO - Running <TaskInstance: restaurant_pipeline.generate_json_files manual__2025-07-18T15:05:44.922899+00:00 [running]> on host e0f186224651
+[2025-07-18T15:05:45.574+0000] {taskinstance.py:1662} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='moran' AIRFLOW_CTX_DAG_ID='restaurant_pipeline' AIRFLOW_CTX_TASK_ID='generate_json_files' AIRFLOW_CTX_EXECUTION_DATE='2025-07-18T15:05:44.922899+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-07-18T15:05:44.922899+00:00'
+[2025-07-18T15:05:45.579+0000] {python.py:194} INFO - Done. Returned value was: None
+[2025-07-18T15:05:45.583+0000] {taskinstance.py:1400} INFO - Marking task as SUCCESS. dag_id=restaurant_pipeline, task_id=generate_json_files, execution_date=20250718T150544, start_date=20250718T150545, end_date=20250718T150545
+[2025-07-18T15:05:45.604+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 0
+[2025-07-18T15:05:45.628+0000] {taskinstance.py:2778} INFO - 1 downstream tasks scheduled from follow-on schedule check

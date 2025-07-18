@@ -1,0 +1,16 @@
+[2025-07-18T15:08:00.565+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: restaurant_pipeline.generate_json_files scheduled__2025-07-18T15:06:00+00:00 [queued]>
+[2025-07-18T15:08:00.568+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: restaurant_pipeline.generate_json_files scheduled__2025-07-18T15:06:00+00:00 [queued]>
+[2025-07-18T15:08:00.568+0000] {taskinstance.py:1361} INFO - Starting attempt 1 of 1
+[2025-07-18T15:08:00.574+0000] {taskinstance.py:1382} INFO - Executing <Task(PythonOperator): generate_json_files> on 2025-07-18 15:06:00+00:00
+[2025-07-18T15:08:00.576+0000] {standard_task_runner.py:57} INFO - Started process 223 to run task
+[2025-07-18T15:08:00.578+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'restaurant_pipeline', 'generate_json_files', 'scheduled__2025-07-18T15:06:00+00:00', '--job-id', '56', '--raw', '--subdir', 'DAGS_FOLDER/restaurant_pipeline.py', '--cfg-path', '/tmp/tmp0a4y2p25']
+[2025-07-18T15:08:00.580+0000] {standard_task_runner.py:85} INFO - Job 56: Subtask generate_json_files
+[2025-07-18T15:08:00.602+0000] {task_command.py:416} INFO - Running <TaskInstance: restaurant_pipeline.generate_json_files scheduled__2025-07-18T15:06:00+00:00 [running]> on host e0f186224651
+[2025-07-18T15:08:00.646+0000] {taskinstance.py:1662} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='moran' AIRFLOW_CTX_DAG_ID='restaurant_pipeline' AIRFLOW_CTX_TASK_ID='generate_json_files' AIRFLOW_CTX_EXECUTION_DATE='2025-07-18T15:06:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-07-18T15:06:00+00:00'
+[2025-07-18T15:08:00.650+0000] {python.py:194} INFO - Done. Returned value was: None
+[2025-07-18T15:08:00.658+0000] {taskinstance.py:1400} INFO - Marking task as SUCCESS. dag_id=restaurant_pipeline, task_id=generate_json_files, execution_date=20250718T150600, start_date=20250718T150800, end_date=20250718T150800
+[2025-07-18T15:08:00.681+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 0
+[2025-07-18T15:08:00.683+0000] {local_task_job_runner.py:115} ERROR - Received SIGTERM. Terminating subprocesses
+[2025-07-18T15:08:00.690+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 143
+[2025-07-18T15:08:00.826+0000] {taskinstance.py:2778} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2025-07-18T15:08:00.884+0000] {taskinstance.py:2778} INFO - 0 downstream tasks scheduled from follow-on schedule check

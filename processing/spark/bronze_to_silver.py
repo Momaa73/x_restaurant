@@ -3,6 +3,7 @@ from pyspark.sql.functions import current_timestamp, col, length, substring, whe
 from pyspark.sql.functions import max as spark_max
 from pyspark.sql.window import Window
 from pyspark.sql.functions import row_number
+from pyspark.sql.types import IntegerType, StringType, StructType, StructField
 
 spark = SparkSession.builder \
     .appName("BronzeToSilver") \
@@ -22,7 +23,38 @@ checkins_raw = spark.table("my_catalog.bronze.Checkins_raw")
 feedback_raw = spark.table("my_catalog.bronze.Feedback_raw")
 
 # --- טוען את טבלת הלקוחות הקיימת ---
-customers_df = spark.table("my_catalog.silver.customers")
+def table_exists(spark, table_name):
+    try:
+        spark.table(table_name)
+        return True
+    except Exception:
+        return False
+
+# Ensure the silver schema exists in the catalog before creating tables
+spark.sql("CREATE SCHEMA IF NOT EXISTS my_catalog.silver")
+
+# Ensure the customers table exists using Spark SQL DDL
+spark.sql("""
+CREATE TABLE IF NOT EXISTS my_catalog.silver.customers (
+    customer_id INT,
+    customer_name STRING,
+    phone_number STRING
+)
+USING ICEBERG
+""")
+
+customers_table = "my_catalog.silver.customers"
+if table_exists(spark, customers_table):
+    customers_df = spark.table(customers_table)
+else:
+    # Create empty DataFrame with the correct schema
+    customers_schema = StructType([
+        StructField("customer_id", IntegerType(), True),
+        StructField("customer_name", StringType(), True),
+        StructField("phone_number", StringType(), True)
+    ])
+    customers_df = spark.createDataFrame([], customers_schema)
+    # No need to write to create the table, DDL already did it
 
 # --- איחוד לקוחות ייחודיים מכל טבלאות הברונז ---
 reservations_customers = reservations_raw.select("customer_name", "phone_number").distinct()

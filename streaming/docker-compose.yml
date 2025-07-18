@@ -14,7 +14,9 @@ services:
       - KAFKA_CFG_CONTROLLER_QUORUM_VOTERS=1@localhost:9093
       - ALLOW_PLAINTEXT_LISTENER=yes
     networks:
-      - x_restaurant
+      x_restaurant:
+        aliases:
+          - kafka
     ports:
       - "9092:9092" 
       - "9094:9094" 
