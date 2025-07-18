@@ -9,6 +9,8 @@ This project is a complete end-to-end data engineering solution for a restaurant
 - **Streaming:** Apache Kafka for real-time data ingestion; Python producer for generating messages.
 - **Orchestration:** Apache Airflow for scheduling and managing ETL pipelines.
 
+See the [full architecture diagram](docs/architecture.md) for a visual overview.
+
 ```
           +-------------------+
           |   Data Producer   |
