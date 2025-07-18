@@ -180,6 +180,8 @@ services:
   airflow-worker:
     <<: *airflow-common
     command: celery worker
+    volumes:
+      - ./streaming/messages:/opt/streaming/messages
     healthcheck:
       # yamllint disable rule:line-length
       test:
