@@ -98,3 +98,4 @@
 {"timestamp":"2025-07-18T11:03:20.246395","level":"info","event":"Filling up the DagBag from /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_xcomargs.py","logger":"airflow.models.dagbag.DagBag"}
 {"timestamp":"2025-07-18T11:03:55.883412","level":"info","event":"Filling up the DagBag from /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_xcomargs.py","logger":"airflow.models.dagbag.DagBag"}
 {"timestamp":"2025-07-18T11:04:26.015283","level":"info","event":"Filling up the DagBag from /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_xcomargs.py","logger":"airflow.models.dagbag.DagBag"}
+{"timestamp":"2025-07-18T11:06:28.761523","level":"info","event":"Filling up the DagBag from /home/airflow/.local/lib/python3.12/site-packages/airflow/example_dags/example_xcomargs.py","logger":"airflow.models.dagbag.DagBag"}
