@@ -1,0 +1,19 @@
+{"timestamp":"2025-07-18T11:01:36.493732","level":"info","event":"DAG bundles loaded: dags-folder, example_dags","logger":"airflow.dag_processing.bundles.manager.DagBundlesManager"}
+{"timestamp":"2025-07-18T11:01:36.494002","level":"info","event":"Filling up the DagBag from /opt/airflow/dags/restaurant_pipeline.py","logger":"airflow.models.dagbag.DagBag"}
+{"timestamp":"2025-07-18T11:01:36.544178Z","level":"info","event":"Task instance is in running state","chan":"stdout","logger":"task"}
+{"timestamp":"2025-07-18T11:01:36.544307Z","level":"info","event":" Previous state of the Task instance: TaskInstanceState.QUEUED","chan":"stdout","logger":"task"}
+{"timestamp":"2025-07-18T11:01:36.544365Z","level":"info","event":"Current task name:send_to_kafka","chan":"stdout","logger":"task"}
+{"timestamp":"2025-07-18T11:01:36.544415Z","level":"info","event":"Dag name:restaurant_pipeline","chan":"stdout","logger":"task"}
+{"timestamp":"2025-07-18T11:01:36.532572","level":"info","event":"Tmp dir root location: /tmp","logger":"airflow.task.hooks.airflow.providers.standard.hooks.subprocess.SubprocessHook"}
+{"timestamp":"2025-07-18T11:01:36.533219","level":"info","event":"Running command: ['/usr/bin/bash', '-c', 'python /opt/streaming/producer.py']","logger":"airflow.task.hooks.airflow.providers.standard.hooks.subprocess.SubprocessHook"}
+{"timestamp":"2025-07-18T11:01:36.540406","level":"info","event":"Output:","logger":"airflow.task.hooks.airflow.providers.standard.hooks.subprocess.SubprocessHook"}
+{"timestamp":"2025-07-18T11:01:36.559687","level":"info","event":"Traceback (most recent call last):","logger":"airflow.task.hooks.airflow.providers.standard.hooks.subprocess.SubprocessHook"}
+{"timestamp":"2025-07-18T11:01:36.559748","level":"info","event":"  File \"/opt/streaming/producer.py\", line 1, in <module>","logger":"airflow.task.hooks.airflow.providers.standard.hooks.subprocess.SubprocessHook"}
+{"timestamp":"2025-07-18T11:01:36.560114","level":"info","event":"    from kafka import KafkaProducer","logger":"airflow.task.hooks.airflow.providers.standard.hooks.subprocess.SubprocessHook"}
+{"timestamp":"2025-07-18T11:01:36.560146","level":"info","event":"ModuleNotFoundError: No module named 'kafka'","logger":"airflow.task.hooks.airflow.providers.standard.hooks.subprocess.SubprocessHook"}
+{"timestamp":"2025-07-18T11:01:36.561783","level":"info","event":"Command exited with return code 1","logger":"airflow.task.hooks.airflow.providers.standard.hooks.subprocess.SubprocessHook"}
+{"timestamp":"2025-07-18T11:01:36.562118","level":"error","event":"Task failed with exception","logger":"task","error_detail":[{"exc_type":"AirflowException","exc_value":"Bash command failed. The command returned a non-zero exit code 1.","exc_notes":[],"syntax_error":null,"is_cause":false,"frames":[{"filename":"/home/airflow/.local/lib/python3.12/site-packages/airflow/sdk/execution_time/task_runner.py","lineno":838,"name":"run"},{"filename":"/home/airflow/.local/lib/python3.12/site-packages/airflow/sdk/execution_time/task_runner.py","lineno":1130,"name":"_execute_task"},{"filename":"/home/airflow/.local/lib/python3.12/site-packages/airflow/sdk/bases/operator.py","lineno":408,"name":"wrapper"},{"filename":"/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/standard/operators/bash.py","lineno":233,"name":"execute"}]}]}
+{"timestamp":"2025-07-18T11:01:36.567591Z","level":"info","event":"Task instance in failure state","chan":"stdout","logger":"task"}
+{"timestamp":"2025-07-18T11:01:36.567681Z","level":"info","event":"Task start","chan":"stdout","logger":"task"}
+{"timestamp":"2025-07-18T11:01:36.567727Z","level":"info","event":"Task:<Task(BashOperator): send_to_kafka>","chan":"stdout","logger":"task"}
+{"timestamp":"2025-07-18T11:01:36.567772Z","level":"info","event":"Failure caused by Bash command failed. The command returned a non-zero exit code 1.","chan":"stdout","logger":"task"}

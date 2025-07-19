@@ -1,0 +1,4 @@
+checkin_id,customer_name,phone_number,branch_id,table_id,is_prebooked,checkin_date,checkin_time,guests_count,shift_manager
+10,John Doe,1234567890,1,101,TRUE,2025-07-18,12:05,4,Alice
+11,Jane Smith,2345678901,2,102,FALSE,2025-07-19,18:10,2,Bob
+12,Emily Lee,3456789012,1,103,TRUE,2025-07-20,20:05,3,Charlie 

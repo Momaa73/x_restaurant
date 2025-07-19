@@ -1,8 +1,32 @@
 from pyspark.sql import SparkSession
-from pyspark.sql.functions import current_timestamp, col, length, substring, when
+from pyspark.sql.functions import current_timestamp, col, length, substring, when, expr
 from pyspark.sql.functions import max as spark_max
 from pyspark.sql.window import Window
 from pyspark.sql.functions import row_number
+from pyspark.sql.types import IntegerType, StringType, StructType, StructField
+
+# --- Helper function to map Spark types to SQL types for Iceberg ---
+def spark_type_to_sql_type(data_type):
+    if data_type.typeName() == "null":
+        return "STRING"
+    elif data_type.typeName() == "integer":
+        return "INT"
+    elif data_type.typeName() == "string":
+        return "STRING"
+    elif data_type.typeName() == "boolean":
+        return "BOOLEAN"
+    elif data_type.typeName() == "timestamp":
+        return "TIMESTAMP"
+    elif data_type.typeName() == "date":
+        return "DATE"
+    elif data_type.typeName() == "double":
+        return "DOUBLE"
+    elif data_type.typeName() == "float":
+        return "FLOAT"
+    elif data_type.typeName() == "long":
+        return "BIGINT"
+    else:
+        return data_type.simpleString().upper()
 
 spark = SparkSession.builder \
     .appName("BronzeToSilver") \
@@ -22,7 +46,38 @@ checkins_raw = spark.table("my_catalog.bronze.Checkins_raw")
 feedback_raw = spark.table("my_catalog.bronze.Feedback_raw")
 
 # --- טוען את טבלת הלקוחות הקיימת ---
-customers_df = spark.table("my_catalog.silver.customers")
+def table_exists(spark, table_name):
+    try:
+        spark.table(table_name)
+        return True
+    except Exception:
+        return False
+
+# Ensure the silver schema exists in the catalog before creating tables
+spark.sql("CREATE SCHEMA IF NOT EXISTS my_catalog.silver")
+
+# Ensure the customers table exists using Spark SQL DDL
+spark.sql("""
+CREATE TABLE IF NOT EXISTS my_catalog.silver.customers (
+    customer_id INT,
+    customer_name STRING,
+    phone_number STRING
+)
+USING ICEBERG
+""")
+
+customers_table = "my_catalog.silver.customers"
+if table_exists(spark, customers_table):
+    customers_df = spark.table(customers_table)
+else:
+    # Create empty DataFrame with the correct schema
+    customers_schema = StructType([
+        StructField("customer_id", IntegerType(), True),
+        StructField("customer_name", StringType(), True),
+        StructField("phone_number", StringType(), True)
+    ])
+    customers_df = spark.createDataFrame([], customers_schema)
+    # No need to write to create the table, DDL already did it
 
 # --- איחוד לקוחות ייחודיים מכל טבלאות הברונז ---
 reservations_customers = reservations_raw.select("customer_name", "phone_number").distinct()
@@ -67,12 +122,24 @@ reservations_cleaned = reservations_raw.select(
 ).withColumn("created_at_date", col("created_at").cast("date")) \
  .withColumn("created_at_hour", substring(col("created_at").cast("string"), 12, 5)) \
  .drop("created_at") \
- .withColumn("is_holiday", when(col("reservation_id").isNotNull(), False).otherwise(False)) \
- .withColumn("holiday_name", when(col("reservation_id").isNotNull(), None).otherwise(None)) \
+ .withColumn("is_holiday", when(col("reservation_id").isNotNull(), False).otherwise(False).cast("boolean")) \
+ .withColumn("holiday_name", when(col("reservation_id").isNotNull(), None).otherwise(None).cast("string")) \
  .withColumn("ingestion_time", current_timestamp())
 
 cols_to_check = [c for c in reservations_cleaned.columns if c != "ingestion_time"]
 reservations_cleaned = reservations_cleaned.dropDuplicates(cols_to_check)
+
+# --- Ensure reservations_cleaned table exists ---
+reservations_schema = ", ".join([
+    f"{field.name} {spark_type_to_sql_type(field.dataType)}" for field in reservations_cleaned.schema.fields
+])
+create_reservations_table_sql = f"""
+CREATE TABLE IF NOT EXISTS my_catalog.silver.reservations_cleaned (
+    {reservations_schema}
+)
+USING ICEBERG
+"""
+spark.sql(create_reservations_table_sql)
 
 reservations_cleaned.write.mode("append").format("iceberg").save("my_catalog.silver.reservations_cleaned")
 
@@ -96,13 +163,25 @@ checkins_cleaned = checkins_raw.select(
     "guests_count",
     "shift_manager"
 ).withColumn("time_of_day_id", get_time_of_day_id(col("checkin_time"))) \
- .withColumn("is_holiday", when(col("checkin_id").isNotNull(), False).otherwise(False)) \
- .withColumn("holiday_name", when(col("checkin_id").isNotNull(), None).otherwise(None)) \
+ .withColumn("is_holiday", when(col("checkin_id").isNotNull(), False).otherwise(False).cast("boolean")) \
+ .withColumn("holiday_name", when(col("checkin_id").isNotNull(), None).otherwise(None).cast("string")) \
  .withColumn("ingestion_time", current_timestamp()) \
  .drop("checkin_time")
 
 cols_to_check = [c for c in checkins_cleaned.columns if c != "ingestion_time"]
 checkins_cleaned = checkins_cleaned.dropDuplicates(cols_to_check)
+
+# --- Ensure checkins_cleaned table exists ---
+checkins_schema = ", ".join([
+    f"{field.name} {spark_type_to_sql_type(field.dataType)}" for field in checkins_cleaned.schema.fields
+])
+create_checkins_table_sql = f"""
+CREATE TABLE IF NOT EXISTS my_catalog.silver.checkins_cleaned (
+    {checkins_schema}
+)
+USING ICEBERG
+"""
+spark.sql(create_checkins_table_sql)
 
 checkins_cleaned.write.mode("append").format("iceberg").save("my_catalog.silver.checkins_cleaned")
 
@@ -118,14 +197,157 @@ feedback_cleaned = feedback_raw.select(
     "dining_time"
 ).withColumn("text_length", length(col("feedback_text"))) \
  .withColumn("dining_time_of_day_id", get_time_of_day_id(col("dining_time"))) \
- .withColumn("is_holiday", when(col("feedback_id").isNotNull(), False).otherwise(False)) \
- .withColumn("holiday_name", when(col("feedback_id").isNotNull(), None).otherwise(None)) \
+ .withColumn("is_holiday", when(col("feedback_id").isNotNull(), False).otherwise(False).cast("boolean")) \
+ .withColumn("holiday_name", when(col("feedback_id").isNotNull(), None).otherwise(None).cast("string")) \
  .withColumn("ingestion_time", current_timestamp()) \
  .drop("dining_time")
 
 cols_to_check = [c for c in feedback_cleaned.columns if c != "ingestion_time"]
 feedback_cleaned = feedback_cleaned.dropDuplicates(cols_to_check)
 
+# --- Ensure feedback_cleaned table exists ---
+feedback_schema = ", ".join([
+    f"{field.name} {spark_type_to_sql_type(field.dataType)}" for field in feedback_cleaned.schema.fields
+])
+create_feedback_table_sql = f"""
+CREATE TABLE IF NOT EXISTS my_catalog.silver.feedback_cleaned (
+    {feedback_schema}
+)
+USING ICEBERG
+"""
+spark.sql(create_feedback_table_sql)
+
 feedback_cleaned.write.mode("append").format("iceberg").save("my_catalog.silver.feedback_cleaned")
+
+# --- Ensure reservations_cleaned table exists ---
+# Check for NullType columns and raise error if found
+nulltype_cols = [field.name for field in reservations_cleaned.schema.fields if field.dataType.typeName() == "null"]
+if nulltype_cols:
+    print("ERROR: NullType columns found in reservations_cleaned schema:", nulltype_cols)
+    print(reservations_cleaned.schema)
+    raise Exception(f"NullType columns found in reservations_cleaned: {nulltype_cols}")
+
+# --- Ensure checkins_cleaned table exists ---
+nulltype_cols = [field.name for field in checkins_cleaned.schema.fields if field.dataType.typeName() == "null"]
+if nulltype_cols:
+    print("ERROR: NullType columns found in checkins_cleaned schema:", nulltype_cols)
+    print(checkins_cleaned.schema)
+    raise Exception(f"NullType columns found in checkins_cleaned: {nulltype_cols}")
+
+# --- Ensure feedback_cleaned table exists ---
+nulltype_cols = [field.name for field in feedback_cleaned.schema.fields if field.dataType.typeName() == "null"]
+if nulltype_cols:
+    print("ERROR: NullType columns found in feedback_cleaned schema:", nulltype_cols)
+    print(feedback_cleaned.schema)
+    raise Exception(f"NullType columns found in feedback_cleaned: {nulltype_cols}")
+
+# --- Process reservations_cleaned (last 48 hours) ---
+reservations_recent = reservations_cleaned.filter(
+    expr("created_at_date >= date_sub(current_date(), 2)")
+)
+reservations_recent.createOrReplaceTempView("reservations_updates")
+
+# Upsert into silver.reservations_cleaned using MERGE INTO
+spark.sql("""
+MERGE INTO my_catalog.silver.reservations_cleaned t
+USING reservations_updates s
+ON t.reservation_id = s.reservation_id AND t.created_at_date = s.created_at_date
+WHEN MATCHED THEN UPDATE SET *
+WHEN NOT MATCHED THEN INSERT *
+""")
+
+# --- Process checkins_cleaned (last 48 hours) ---
+checkins_recent = checkins_cleaned.filter(
+    expr("checkin_date >= date_sub(current_date(), 2)")
+)
+checkins_recent.createOrReplaceTempView("checkins_updates")
+
+spark.sql("""
+MERGE INTO my_catalog.silver.checkins_cleaned t
+USING checkins_updates s
+ON t.checkin_id = s.checkin_id AND t.checkin_date = s.checkin_date
+WHEN MATCHED THEN UPDATE SET *
+WHEN NOT MATCHED THEN INSERT *
+""")
+
+# --- Process feedback_cleaned (last 48 hours) ---
+feedback_recent = feedback_cleaned.filter(
+    expr("dining_date >= date_sub(current_date(), 2)")
+)
+feedback_recent.createOrReplaceTempView("feedback_updates")
+
+spark.sql("""
+MERGE INTO my_catalog.silver.feedback_cleaned t
+USING feedback_updates s
+ON t.feedback_id = s.feedback_id AND t.dining_date = s.dining_date
+WHEN MATCHED THEN UPDATE SET *
+WHEN NOT MATCHED THEN INSERT *
+""")
+
+# --- Data Quality Checks: Nulls and Duplicates ---
+
+def dq_check_nulls(df, required_cols, entity_name):
+    nulls = df
+    for colname in required_cols:
+        nulls = nulls.filter(col(colname).isNull())
+    count = nulls.count()
+    if count > 0:
+        print(f"[DQ] {entity_name}: Found {count} records with nulls in {required_cols}.")
+        nulls.show(5)
+    else:
+        print(f"[DQ] {entity_name}: No nulls in {required_cols}.")
+
+def dq_check_duplicates(df, key_cols, entity_name):
+    dups = df.groupBy(key_cols).count().filter(col("count") > 1)
+    count = dups.count()
+    if count > 0:
+        print(f"[DQ] {entity_name}: Found {count} duplicate keys on {key_cols}.")
+        dups.show(5)
+    else:
+        print(f"[DQ] {entity_name}: No duplicate keys on {key_cols}.")
+
+# Reservations: check for nulls and duplicates
+reservations_required = ["reservation_id", "customer_name", "phone_number", "created_at_date"]
+dq_check_nulls(reservations_cleaned, reservations_required, "reservations_cleaned")
+dq_check_duplicates(reservations_cleaned, ["reservation_id", "created_at_date"], "reservations_cleaned")
+
+# Checkins: check for nulls and duplicates
+checkins_required = ["checkin_id", "customer_name", "phone_number", "checkin_date"]
+dq_check_nulls(checkins_cleaned, checkins_required, "checkins_cleaned")
+dq_check_duplicates(checkins_cleaned, ["checkin_id", "checkin_date"], "checkins_cleaned")
+
+# Feedback: check for nulls and duplicates
+feedback_required = ["feedback_id", "customer_name", "phone_number", "dining_date"]
+dq_check_nulls(feedback_cleaned, feedback_required, "feedback_cleaned")
+dq_check_duplicates(feedback_cleaned, ["feedback_id", "dining_date"], "feedback_cleaned")
+
+# --- Referential Integrity Checks ---
+
+def dq_check_fk(df, fk_col, parent_df, pk_col, entity_name, parent_name):
+    missing_fk = df.join(parent_df, df[fk_col] == parent_df[pk_col], "left_anti")
+    count = missing_fk.count()
+    if count > 0:
+        print(f"[DQ] {entity_name}: Found {count} records with missing {fk_col} not in {parent_name}.{pk_col}.")
+        missing_fk.show(5)
+    else:
+        print(f"[DQ] {entity_name}: All {fk_col} values exist in {parent_name}.{pk_col}.")
+
+# Referential integrity for reservations_cleaned
+branches_df = spark.table("my_catalog.silver.scd2_branch").filter(col("is_update") == True)
+tables_df = spark.table("my_catalog.silver.table").filter(col("is_update") == True)
+customers_df = spark.table("my_catalog.silver.customers")
+
+dq_check_fk(reservations_cleaned, "branch_id", branches_df, "branch_id", "reservations_cleaned", "scd2_branch")
+dq_check_fk(reservations_cleaned, "table_id", tables_df, "table_id", "reservations_cleaned", "table")
+dq_check_fk(reservations_cleaned, "phone_number", customers_df, "phone_number", "reservations_cleaned", "customers")
+
+# Referential integrity for checkins_cleaned
+dq_check_fk(checkins_cleaned, "branch_id", branches_df, "branch_id", "checkins_cleaned", "scd2_branch")
+dq_check_fk(checkins_cleaned, "table_id", tables_df, "table_id", "checkins_cleaned", "table")
+dq_check_fk(checkins_cleaned, "phone_number", customers_df, "phone_number", "checkins_cleaned", "customers")
+
+# Referential integrity for feedback_cleaned
+dq_check_fk(feedback_cleaned, "branch_id", branches_df, "branch_id", "feedback_cleaned", "scd2_branch")
+dq_check_fk(feedback_cleaned, "phone_number", customers_df, "phone_number", "feedback_cleaned", "customers")
 
 spark.stop()

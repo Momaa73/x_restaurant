@@ -1,0 +1,4 @@
+reservation_id,customer_name,phone_number,branch_id,table_id,reservation_date,reservation_hour,guests_count,created_at,limited_hours,hours_if_limited
+1,John Doe,1234567890,1,101,2025-07-18,12:00,4,2025-07-16T10:00:00,TRUE,2.0
+2,Jane Smith,2345678901,2,102,2025-07-19,18:00,2,2025-07-17T15:30:00,FALSE,
+3,Emily Lee,3456789012,1,103,2025-07-20,20:00,3,2025-07-18T09:45:00,TRUE,1.5 

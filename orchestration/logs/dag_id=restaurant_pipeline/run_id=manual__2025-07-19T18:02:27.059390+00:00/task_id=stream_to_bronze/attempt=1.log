@@ -1,0 +1,267 @@
+[2025-07-19T18:02:31.409+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: restaurant_pipeline.stream_to_bronze manual__2025-07-19T18:02:27.059390+00:00 [queued]>
+[2025-07-19T18:02:31.413+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: restaurant_pipeline.stream_to_bronze manual__2025-07-19T18:02:27.059390+00:00 [queued]>
+[2025-07-19T18:02:31.413+0000] {taskinstance.py:1361} INFO - Starting attempt 1 of 1
+[2025-07-19T18:02:31.419+0000] {taskinstance.py:1382} INFO - Executing <Task(BashOperator): stream_to_bronze> on 2025-07-19 18:02:27.059390+00:00
+[2025-07-19T18:02:31.420+0000] {standard_task_runner.py:57} INFO - Started process 245 to run task
+[2025-07-19T18:02:31.422+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'restaurant_pipeline', 'stream_to_bronze', 'manual__2025-07-19T18:02:27.059390+00:00', '--job-id', '921', '--raw', '--subdir', 'DAGS_FOLDER/restaurant_pipeline.py', '--cfg-path', '/tmp/tmpxtmt_rzd']
+[2025-07-19T18:02:31.423+0000] {standard_task_runner.py:85} INFO - Job 921: Subtask stream_to_bronze
+[2025-07-19T18:02:31.443+0000] {task_command.py:416} INFO - Running <TaskInstance: restaurant_pipeline.stream_to_bronze manual__2025-07-19T18:02:27.059390+00:00 [running]> on host e3f5d8fc4eef
+[2025-07-19T18:02:31.478+0000] {taskinstance.py:1662} INFO - Exporting env vars: AIRFLOW_CTX_DAG_EMAIL='your@email.com' AIRFLOW_CTX_DAG_OWNER='moran' AIRFLOW_CTX_DAG_ID='restaurant_pipeline' AIRFLOW_CTX_TASK_ID='stream_to_bronze' AIRFLOW_CTX_EXECUTION_DATE='2025-07-19T18:02:27.059390+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-07-19T18:02:27.059390+00:00'
+[2025-07-19T18:02:31.478+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2025-07-19T18:02:31.478+0000] {subprocess.py:75} INFO - Running command: ['/bin/bash', '-c', "docker exec -e AIRFLOW_CTX_DAG_RUN_ID='manual__2025-07-19T18:02:27.059390+00:00' spark-iceberg spark-submit /home/iceberg/spark/stream_to_bronze.py"]
+[2025-07-19T18:02:31.482+0000] {subprocess.py:86} INFO - Output:
+[2025-07-19T18:02:32.775+0000] {subprocess.py:93} INFO - 25/07/19 18:02:32 INFO SparkContext: Running Spark version 3.5.6
+[2025-07-19T18:02:32.776+0000] {subprocess.py:93} INFO - 25/07/19 18:02:32 INFO SparkContext: OS info Linux, 6.10.14-linuxkit, aarch64
+[2025-07-19T18:02:32.777+0000] {subprocess.py:93} INFO - 25/07/19 18:02:32 INFO SparkContext: Java version 17.0.15
+[2025-07-19T18:02:32.789+0000] {subprocess.py:93} INFO - 25/07/19 18:02:32 INFO ResourceUtils: ==============================================================
+[2025-07-19T18:02:32.789+0000] {subprocess.py:93} INFO - 25/07/19 18:02:32 INFO ResourceUtils: No custom resources configured for spark.driver.
+[2025-07-19T18:02:32.789+0000] {subprocess.py:93} INFO - 25/07/19 18:02:32 INFO ResourceUtils: ==============================================================
+[2025-07-19T18:02:32.790+0000] {subprocess.py:93} INFO - 25/07/19 18:02:32 INFO SparkContext: Submitted application: StreamToBronze
+[2025-07-19T18:02:32.798+0000] {subprocess.py:93} INFO - 25/07/19 18:02:32 INFO ResourceProfile: Default ResourceProfile created, executor resources: Map(cores -> name: cores, amount: 1, script: , vendor: , memory -> name: memory, amount: 1024, script: , vendor: , offHeap -> name: offHeap, amount: 0, script: , vendor: ), task resources: Map(cpus -> name: cpus, amount: 1.0)
+[2025-07-19T18:02:32.803+0000] {subprocess.py:93} INFO - 25/07/19 18:02:32 INFO ResourceProfile: Limiting resource is cpu
+[2025-07-19T18:02:32.803+0000] {subprocess.py:93} INFO - 25/07/19 18:02:32 INFO ResourceProfileManager: Added ResourceProfile id: 0
+[2025-07-19T18:02:32.826+0000] {subprocess.py:93} INFO - 25/07/19 18:02:32 INFO SecurityManager: Changing view acls to: root,spark
+[2025-07-19T18:02:32.827+0000] {subprocess.py:93} INFO - 25/07/19 18:02:32 INFO SecurityManager: Changing modify acls to: root,spark
+[2025-07-19T18:02:32.827+0000] {subprocess.py:93} INFO - 25/07/19 18:02:32 INFO SecurityManager: Changing view acls groups to:
+[2025-07-19T18:02:32.827+0000] {subprocess.py:93} INFO - 25/07/19 18:02:32 INFO SecurityManager: Changing modify acls groups to:
+[2025-07-19T18:02:32.827+0000] {subprocess.py:93} INFO - 25/07/19 18:02:32 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users with view permissions: root, spark; groups with view permissions: EMPTY; users with modify permissions: root, spark; groups with modify permissions: EMPTY
+[2025-07-19T18:02:32.853+0000] {subprocess.py:93} INFO - 25/07/19 18:02:32 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+[2025-07-19T18:02:32.975+0000] {subprocess.py:93} INFO - 25/07/19 18:02:32 INFO Utils: Successfully started service 'sparkDriver' on port 33889.
+[2025-07-19T18:02:32.988+0000] {subprocess.py:93} INFO - 25/07/19 18:02:32 INFO SparkEnv: Registering MapOutputTracker
+[2025-07-19T18:02:33.010+0000] {subprocess.py:93} INFO - 25/07/19 18:02:33 INFO SparkEnv: Registering BlockManagerMaster
+[2025-07-19T18:02:33.018+0000] {subprocess.py:93} INFO - 25/07/19 18:02:33 INFO BlockManagerMasterEndpoint: Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
+[2025-07-19T18:02:33.019+0000] {subprocess.py:93} INFO - 25/07/19 18:02:33 INFO BlockManagerMasterEndpoint: BlockManagerMasterEndpoint up
+[2025-07-19T18:02:33.021+0000] {subprocess.py:93} INFO - 25/07/19 18:02:33 INFO SparkEnv: Registering BlockManagerMasterHeartbeat
+[2025-07-19T18:02:33.032+0000] {subprocess.py:93} INFO - 25/07/19 18:02:33 INFO DiskBlockManager: Created local directory at /tmp/blockmgr-569f7aca-ab57-4313-8fc7-1b4876b313aa
+[2025-07-19T18:02:33.039+0000] {subprocess.py:93} INFO - 25/07/19 18:02:33 INFO MemoryStore: MemoryStore started with capacity 434.4 MiB
+[2025-07-19T18:02:33.045+0000] {subprocess.py:93} INFO - 25/07/19 18:02:33 INFO SparkEnv: Registering OutputCommitCoordinator
+[2025-07-19T18:02:33.099+0000] {subprocess.py:93} INFO - 25/07/19 18:02:33 INFO JettyUtils: Start Jetty 0.0.0.0:4040 for SparkUI
+[2025-07-19T18:02:33.132+0000] {subprocess.py:93} INFO - 25/07/19 18:02:33 INFO Utils: Successfully started service 'SparkUI' on port 4040.
+[2025-07-19T18:02:33.174+0000] {subprocess.py:93} INFO - 25/07/19 18:02:33 INFO Executor: Starting executor ID driver on host 8b44f3d35cfa
+[2025-07-19T18:02:33.175+0000] {subprocess.py:93} INFO - 25/07/19 18:02:33 INFO Executor: OS info Linux, 6.10.14-linuxkit, aarch64
+[2025-07-19T18:02:33.175+0000] {subprocess.py:93} INFO - 25/07/19 18:02:33 INFO Executor: Java version 17.0.15
+[2025-07-19T18:02:33.177+0000] {subprocess.py:93} INFO - 25/07/19 18:02:33 INFO Executor: Starting executor with user classpath (userClassPathFirst = false): ''
+[2025-07-19T18:02:33.177+0000] {subprocess.py:93} INFO - 25/07/19 18:02:33 INFO Executor: Created or updated repl class loader org.apache.spark.util.MutableURLClassLoader@47574aca for default.
+[2025-07-19T18:02:33.186+0000] {subprocess.py:93} INFO - 25/07/19 18:02:33 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 41607.
+[2025-07-19T18:02:33.186+0000] {subprocess.py:93} INFO - 25/07/19 18:02:33 INFO NettyBlockTransferService: Server created on 8b44f3d35cfa:41607
+[2025-07-19T18:02:33.187+0000] {subprocess.py:93} INFO - 25/07/19 18:02:33 INFO BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
+[2025-07-19T18:02:33.193+0000] {subprocess.py:93} INFO - 25/07/19 18:02:33 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, 8b44f3d35cfa, 41607, None)
+[2025-07-19T18:02:33.195+0000] {subprocess.py:93} INFO - 25/07/19 18:02:33 INFO BlockManagerMasterEndpoint: Registering block manager 8b44f3d35cfa:41607 with 434.4 MiB RAM, BlockManagerId(driver, 8b44f3d35cfa, 41607, None)
+[2025-07-19T18:02:33.199+0000] {subprocess.py:93} INFO - 25/07/19 18:02:33 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, 8b44f3d35cfa, 41607, None)
+[2025-07-19T18:02:33.199+0000] {subprocess.py:93} INFO - 25/07/19 18:02:33 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, 8b44f3d35cfa, 41607, None)
+[2025-07-19T18:02:33.409+0000] {subprocess.py:93} INFO - 25/07/19 18:02:33 INFO SharedState: Setting hive.metastore.warehouse.dir ('null') to the value of spark.sql.warehouse.dir.
+[2025-07-19T18:02:33.414+0000] {subprocess.py:93} INFO - 25/07/19 18:02:33 INFO SharedState: Warehouse path is 'file:/app/spark-warehouse'.
+[2025-07-19T18:02:34.303+0000] {subprocess.py:93} INFO - 25/07/19 18:02:34 WARN MetricsConfig: Cannot locate configuration: tried hadoop-metrics2-s3a-file-system.properties,hadoop-metrics2.properties
+[2025-07-19T18:02:34.310+0000] {subprocess.py:93} INFO - 25/07/19 18:02:34 INFO MetricsSystemImpl: Scheduled Metric snapshot period at 10 second(s).
+[2025-07-19T18:02:34.310+0000] {subprocess.py:93} INFO - 25/07/19 18:02:34 INFO MetricsSystemImpl: s3a-file-system metrics system started
+[2025-07-19T18:02:34.744+0000] {subprocess.py:93} INFO - 25/07/19 18:02:34 WARN HadoopTableOperations: Error trying to recover version-hint.txt data for s3a://warehouse/bronze/Reservations_raw/metadata/version-hint.text
+[2025-07-19T18:02:34.744+0000] {subprocess.py:93} INFO - java.io.FileNotFoundException: No such file or directory: s3a://warehouse/bronze/Reservations_raw/metadata/version-hint.text
+[2025-07-19T18:02:34.744+0000] {subprocess.py:93} INFO - 	at org.apache.hadoop.fs.s3a.S3AFileSystem.s3GetFileStatus(S3AFileSystem.java:3866)
+[2025-07-19T18:02:34.745+0000] {subprocess.py:93} INFO - 	at org.apache.hadoop.fs.s3a.S3AFileSystem.innerGetFileStatus(S3AFileSystem.java:3688)
+[2025-07-19T18:02:34.745+0000] {subprocess.py:93} INFO - 	at org.apache.hadoop.fs.s3a.S3AFileSystem.extractOrFetchSimpleFileStatus(S3AFileSystem.java:5401)
+[2025-07-19T18:02:34.745+0000] {subprocess.py:93} INFO - 	at org.apache.hadoop.fs.s3a.S3AFileSystem.open(S3AFileSystem.java:1465)
+[2025-07-19T18:02:34.746+0000] {subprocess.py:93} INFO - 	at org.apache.hadoop.fs.s3a.S3AFileSystem.open(S3AFileSystem.java:1441)
+[2025-07-19T18:02:34.746+0000] {subprocess.py:93} INFO - 	at org.apache.hadoop.fs.FileSystem.open(FileSystem.java:976)
+[2025-07-19T18:02:34.746+0000] {subprocess.py:93} INFO - 	at org.apache.iceberg.hadoop.HadoopTableOperations.findVersion(HadoopTableOperations.java:318)
+[2025-07-19T18:02:34.746+0000] {subprocess.py:93} INFO - 	at org.apache.iceberg.hadoop.HadoopTableOperations.refresh(HadoopTableOperations.java:104)
+[2025-07-19T18:02:34.746+0000] {subprocess.py:93} INFO - 	at org.apache.iceberg.hadoop.HadoopTableOperations.current(HadoopTableOperations.java:84)
+[2025-07-19T18:02:34.746+0000] {subprocess.py:93} INFO - 	at org.apache.iceberg.BaseMetastoreCatalog.loadTable(BaseMetastoreCatalog.java:47)
+[2025-07-19T18:02:34.746+0000] {subprocess.py:93} INFO - 	at org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.BoundedLocalCache.lambda$doComputeIfAbsent$14(BoundedLocalCache.java:2406)
+[2025-07-19T18:02:34.746+0000] {subprocess.py:93} INFO - 	at java.base/java.util.concurrent.ConcurrentHashMap.compute(Unknown Source)
+[2025-07-19T18:02:34.746+0000] {subprocess.py:93} INFO - 	at org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.BoundedLocalCache.doComputeIfAbsent(BoundedLocalCache.java:2404)
+[2025-07-19T18:02:34.746+0000] {subprocess.py:93} INFO - 	at org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.BoundedLocalCache.computeIfAbsent(BoundedLocalCache.java:2387)
+[2025-07-19T18:02:34.747+0000] {subprocess.py:93} INFO - 	at org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.LocalCache.computeIfAbsent(LocalCache.java:108)
+[2025-07-19T18:02:34.747+0000] {subprocess.py:93} INFO - 	at org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.LocalManualCache.get(LocalManualCache.java:62)
+[2025-07-19T18:02:34.747+0000] {subprocess.py:93} INFO - 	at org.apache.iceberg.CachingCatalog.loadTable(CachingCatalog.java:166)
+[2025-07-19T18:02:34.747+0000] {subprocess.py:93} INFO - 	at org.apache.iceberg.spark.SparkCatalog.load(SparkCatalog.java:643)
+[2025-07-19T18:02:34.747+0000] {subprocess.py:93} INFO - 	at org.apache.iceberg.spark.SparkCatalog.loadTable(SparkCatalog.java:159)
+[2025-07-19T18:02:34.747+0000] {subprocess.py:93} INFO - 	at org.apache.iceberg.spark.source.IcebergSource.getTable(IcebergSource.java:107)
+[2025-07-19T18:02:34.747+0000] {subprocess.py:93} INFO - 	at org.apache.iceberg.spark.source.IcebergSource.inferPartitioning(IcebergSource.java:90)
+[2025-07-19T18:02:34.747+0000] {subprocess.py:93} INFO - 	at org.apache.spark.sql.execution.datasources.v2.DataSourceV2Utils$.getTableFromProvider(DataSourceV2Utils.scala:82)
+[2025-07-19T18:02:34.747+0000] {subprocess.py:93} INFO - 	at org.apache.spark.sql.streaming.DataStreamWriter.startInternal(DataStreamWriter.scala:399)
+[2025-07-19T18:02:34.748+0000] {subprocess.py:93} INFO - 	at org.apache.spark.sql.streaming.DataStreamWriter.start(DataStreamWriter.scala:251)
+[2025-07-19T18:02:34.748+0000] {subprocess.py:93} INFO - 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+[2025-07-19T18:02:34.748+0000] {subprocess.py:93} INFO - 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+[2025-07-19T18:02:34.748+0000] {subprocess.py:93} INFO - 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+[2025-07-19T18:02:34.748+0000] {subprocess.py:93} INFO - 	at java.base/java.lang.reflect.Method.invoke(Unknown Source)
+[2025-07-19T18:02:34.748+0000] {subprocess.py:93} INFO - 	at py4j.reflection.MethodInvoker.invoke(MethodInvoker.java:244)
+[2025-07-19T18:02:34.748+0000] {subprocess.py:93} INFO - 	at py4j.reflection.ReflectionEngine.invoke(ReflectionEngine.java:374)
+[2025-07-19T18:02:34.748+0000] {subprocess.py:93} INFO - 	at py4j.Gateway.invoke(Gateway.java:282)
+[2025-07-19T18:02:34.748+0000] {subprocess.py:93} INFO - 	at py4j.commands.AbstractCommand.invokeMethod(AbstractCommand.java:132)
+[2025-07-19T18:02:34.748+0000] {subprocess.py:93} INFO - 	at py4j.commands.CallCommand.execute(CallCommand.java:79)
+[2025-07-19T18:02:34.749+0000] {subprocess.py:93} INFO - 	at py4j.ClientServerConnection.waitForCommands(ClientServerConnection.java:182)
+[2025-07-19T18:02:34.749+0000] {subprocess.py:93} INFO - 	at py4j.ClientServerConnection.run(ClientServerConnection.java:106)
+[2025-07-19T18:02:34.749+0000] {subprocess.py:93} INFO - 	at java.base/java.lang.Thread.run(Unknown Source)
+[2025-07-19T18:02:34.789+0000] {subprocess.py:93} INFO - Traceback (most recent call last):
+[2025-07-19T18:02:34.790+0000] {subprocess.py:93} INFO -   File "/home/iceberg/spark/stream_to_bronze.py", line 93, in <module>
+[2025-07-19T18:02:34.790+0000] {subprocess.py:93} INFO -     read_kafka(
+[2025-07-19T18:02:34.790+0000] {subprocess.py:93} INFO -   File "/home/iceberg/spark/stream_to_bronze.py", line 89, in read_kafka
+[2025-07-19T18:02:34.790+0000] {subprocess.py:93} INFO -     .start()
+[2025-07-19T18:02:34.790+0000] {subprocess.py:93} INFO -      ^^^^^^^
+[2025-07-19T18:02:34.791+0000] {subprocess.py:93} INFO -   File "/opt/bitnami/spark/python/lib/pyspark.zip/pyspark/sql/streaming/readwriter.py", line 1527, in start
+[2025-07-19T18:02:34.791+0000] {subprocess.py:93} INFO -   File "/opt/bitnami/spark/python/lib/py4j-0.10.9.7-src.zip/py4j/java_gateway.py", line 1322, in __call__
+[2025-07-19T18:02:34.791+0000] {subprocess.py:93} INFO -   File "/opt/bitnami/spark/python/lib/pyspark.zip/pyspark/errors/exceptions/captured.py", line 179, in deco
+[2025-07-19T18:02:34.791+0000] {subprocess.py:93} INFO -   File "/opt/bitnami/spark/python/lib/py4j-0.10.9.7-src.zip/py4j/protocol.py", line 326, in get_return_value
+[2025-07-19T18:02:34.792+0000] {subprocess.py:93} INFO - py4j.protocol.Py4JJavaError: An error occurred while calling o67.start.
+[2025-07-19T18:02:34.793+0000] {subprocess.py:93} INFO - : org.apache.iceberg.exceptions.RuntimeIOException: Failed to refresh the table
+[2025-07-19T18:02:34.793+0000] {subprocess.py:93} INFO - 	at org.apache.iceberg.hadoop.HadoopTableOperations.refresh(HadoopTableOperations.java:126)
+[2025-07-19T18:02:34.793+0000] {subprocess.py:93} INFO - 	at org.apache.iceberg.hadoop.HadoopTableOperations.current(HadoopTableOperations.java:84)
+[2025-07-19T18:02:34.793+0000] {subprocess.py:93} INFO - 	at org.apache.iceberg.BaseMetastoreCatalog.loadTable(BaseMetastoreCatalog.java:47)
+[2025-07-19T18:02:34.793+0000] {subprocess.py:93} INFO - 	at org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.BoundedLocalCache.lambda$doComputeIfAbsent$14(BoundedLocalCache.java:2406)
+[2025-07-19T18:02:34.793+0000] {subprocess.py:93} INFO - 	at java.base/java.util.concurrent.ConcurrentHashMap.compute(Unknown Source)
+[2025-07-19T18:02:34.793+0000] {subprocess.py:93} INFO - 	at org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.BoundedLocalCache.doComputeIfAbsent(BoundedLocalCache.java:2404)
+[2025-07-19T18:02:34.793+0000] {subprocess.py:93} INFO - 	at org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.BoundedLocalCache.computeIfAbsent(BoundedLocalCache.java:2387)
+[2025-07-19T18:02:34.793+0000] {subprocess.py:93} INFO - 	at org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.LocalCache.computeIfAbsent(LocalCache.java:108)
+[2025-07-19T18:02:34.793+0000] {subprocess.py:93} INFO - 	at org.apache.iceberg.shaded.com.github.benmanes.caffeine.cache.LocalManualCache.get(LocalManualCache.java:62)
+[2025-07-19T18:02:34.793+0000] {subprocess.py:93} INFO - 	at org.apache.iceberg.CachingCatalog.loadTable(CachingCatalog.java:166)
+[2025-07-19T18:02:34.793+0000] {subprocess.py:93} INFO - 	at org.apache.iceberg.spark.SparkCatalog.load(SparkCatalog.java:643)
+[2025-07-19T18:02:34.794+0000] {subprocess.py:93} INFO - 	at org.apache.iceberg.spark.SparkCatalog.loadTable(SparkCatalog.java:159)
+[2025-07-19T18:02:34.794+0000] {subprocess.py:93} INFO - 	at org.apache.iceberg.spark.source.IcebergSource.getTable(IcebergSource.java:107)
+[2025-07-19T18:02:34.794+0000] {subprocess.py:93} INFO - 	at org.apache.iceberg.spark.source.IcebergSource.inferPartitioning(IcebergSource.java:90)
+[2025-07-19T18:02:34.794+0000] {subprocess.py:93} INFO - 	at org.apache.spark.sql.execution.datasources.v2.DataSourceV2Utils$.getTableFromProvider(DataSourceV2Utils.scala:82)
+[2025-07-19T18:02:34.794+0000] {subprocess.py:93} INFO - 	at org.apache.spark.sql.streaming.DataStreamWriter.startInternal(DataStreamWriter.scala:399)
+[2025-07-19T18:02:34.794+0000] {subprocess.py:93} INFO - 	at org.apache.spark.sql.streaming.DataStreamWriter.start(DataStreamWriter.scala:251)
+[2025-07-19T18:02:34.794+0000] {subprocess.py:93} INFO - 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+[2025-07-19T18:02:34.794+0000] {subprocess.py:93} INFO - 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+[2025-07-19T18:02:34.794+0000] {subprocess.py:93} INFO - 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+[2025-07-19T18:02:34.794+0000] {subprocess.py:93} INFO - 	at java.base/java.lang.reflect.Method.invoke(Unknown Source)
+[2025-07-19T18:02:34.794+0000] {subprocess.py:93} INFO - 	at py4j.reflection.MethodInvoker.invoke(MethodInvoker.java:244)
+[2025-07-19T18:02:34.794+0000] {subprocess.py:93} INFO - 	at py4j.reflection.ReflectionEngine.invoke(ReflectionEngine.java:374)
+[2025-07-19T18:02:34.794+0000] {subprocess.py:93} INFO - 	at py4j.Gateway.invoke(Gateway.java:282)
+[2025-07-19T18:02:34.794+0000] {subprocess.py:93} INFO - 	at py4j.commands.AbstractCommand.invokeMethod(AbstractCommand.java:132)
+[2025-07-19T18:02:34.794+0000] {subprocess.py:93} INFO - 	at py4j.commands.CallCommand.execute(CallCommand.java:79)
+[2025-07-19T18:02:34.794+0000] {subprocess.py:93} INFO - 	at py4j.ClientServerConnection.waitForCommands(ClientServerConnection.java:182)
+[2025-07-19T18:02:34.795+0000] {subprocess.py:93} INFO - 	at py4j.ClientServerConnection.run(ClientServerConnection.java:106)
+[2025-07-19T18:02:34.795+0000] {subprocess.py:93} INFO - 	at java.base/java.lang.Thread.run(Unknown Source)
+[2025-07-19T18:02:34.795+0000] {subprocess.py:93} INFO - Caused by: org.apache.hadoop.fs.s3a.UnknownStoreException: `s3a://warehouse/bronze/Reservations_raw/metadata/v0.metadata.json': getFileStatus on s3a://warehouse/bronze/Reservations_raw/metadata/v0.metadata.json: com.amazonaws.services.s3.model.AmazonS3Exception: The specified bucket does not exist (Service: Amazon S3; Status Code: 404; Error Code: NoSuchBucket; Request ID: 1853B90F2961E627; S3 Extended Request ID: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8; Proxy: null), S3 Extended Request ID: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8:NoSuchBucket: The specified bucket does not exist (Service: Amazon S3; Status Code: 404; Error Code: NoSuchBucket; Request ID: 1853B90F2961E627; S3 Extended Request ID: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8; Proxy: null)
+[2025-07-19T18:02:34.795+0000] {subprocess.py:93} INFO - 	at org.apache.hadoop.fs.s3a.S3AUtils.translateException(S3AUtils.java:263)
+[2025-07-19T18:02:34.795+0000] {subprocess.py:93} INFO - 	at org.apache.hadoop.fs.s3a.S3AUtils.translateException(S3AUtils.java:175)
+[2025-07-19T18:02:34.795+0000] {subprocess.py:93} INFO - 	at org.apache.hadoop.fs.s3a.S3AFileSystem.s3GetFileStatus(S3AFileSystem.java:3858)
+[2025-07-19T18:02:34.795+0000] {subprocess.py:93} INFO - 	at org.apache.hadoop.fs.s3a.S3AFileSystem.innerGetFileStatus(S3AFileSystem.java:3688)
+[2025-07-19T18:02:34.795+0000] {subprocess.py:93} INFO - 	at org.apache.hadoop.fs.s3a.S3AFileSystem.lambda$exists$34(S3AFileSystem.java:4703)
+[2025-07-19T18:02:34.795+0000] {subprocess.py:93} INFO - 	at org.apache.hadoop.fs.statistics.impl.IOStatisticsBinding.lambda$trackDurationOfOperation$5(IOStatisticsBinding.java:499)
+[2025-07-19T18:02:34.795+0000] {subprocess.py:93} INFO - 	at org.apache.hadoop.fs.statistics.impl.IOStatisticsBinding.trackDuration(IOStatisticsBinding.java:444)
+[2025-07-19T18:02:34.795+0000] {subprocess.py:93} INFO - 	at org.apache.hadoop.fs.s3a.S3AFileSystem.trackDurationAndSpan(S3AFileSystem.java:2337)
+[2025-07-19T18:02:34.795+0000] {subprocess.py:93} INFO - 	at org.apache.hadoop.fs.s3a.S3AFileSystem.trackDurationAndSpan(S3AFileSystem.java:2356)
+[2025-07-19T18:02:34.795+0000] {subprocess.py:93} INFO - 	at org.apache.hadoop.fs.s3a.S3AFileSystem.exists(S3AFileSystem.java:4701)
+[2025-07-19T18:02:34.796+0000] {subprocess.py:93} INFO - 	at org.apache.iceberg.hadoop.HadoopTableOperations.getMetadataFile(HadoopTableOperations.java:241)
+[2025-07-19T18:02:34.796+0000] {subprocess.py:93} INFO - 	at org.apache.iceberg.hadoop.HadoopTableOperations.refresh(HadoopTableOperations.java:106)
+[2025-07-19T18:02:34.796+0000] {subprocess.py:93} INFO - 	... 28 more
+[2025-07-19T18:02:34.796+0000] {subprocess.py:93} INFO - Caused by: com.amazonaws.services.s3.model.AmazonS3Exception: The specified bucket does not exist (Service: Amazon S3; Status Code: 404; Error Code: NoSuchBucket; Request ID: 1853B90F2961E627; S3 Extended Request ID: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8; Proxy: null), S3 Extended Request ID: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8
+[2025-07-19T18:02:34.796+0000] {subprocess.py:93} INFO - 	at com.amazonaws.http.AmazonHttpClient$RequestExecutor.handleErrorResponse(AmazonHttpClient.java:1879)
+[2025-07-19T18:02:34.796+0000] {subprocess.py:93} INFO - 	at com.amazonaws.http.AmazonHttpClient$RequestExecutor.handleServiceErrorResponse(AmazonHttpClient.java:1418)
+[2025-07-19T18:02:34.796+0000] {subprocess.py:93} INFO - 	at com.amazonaws.http.AmazonHttpClient$RequestExecutor.executeOneRequest(AmazonHttpClient.java:1387)
+[2025-07-19T18:02:34.796+0000] {subprocess.py:93} INFO - 	at com.amazonaws.http.AmazonHttpClient$RequestExecutor.executeHelper(AmazonHttpClient.java:1157)
+[2025-07-19T18:02:34.796+0000] {subprocess.py:93} INFO - 	at com.amazonaws.http.AmazonHttpClient$RequestExecutor.doExecute(AmazonHttpClient.java:814)
+[2025-07-19T18:02:34.796+0000] {subprocess.py:93} INFO - 	at com.amazonaws.http.AmazonHttpClient$RequestExecutor.executeWithTimer(AmazonHttpClient.java:781)
+[2025-07-19T18:02:34.796+0000] {subprocess.py:93} INFO - 	at com.amazonaws.http.AmazonHttpClient$RequestExecutor.execute(AmazonHttpClient.java:755)
+[2025-07-19T18:02:34.796+0000] {subprocess.py:93} INFO - 	at com.amazonaws.http.AmazonHttpClient$RequestExecutor.access$500(AmazonHttpClient.java:715)
+[2025-07-19T18:02:34.796+0000] {subprocess.py:93} INFO - 	at com.amazonaws.http.AmazonHttpClient$RequestExecutionBuilderImpl.execute(AmazonHttpClient.java:697)
+[2025-07-19T18:02:34.796+0000] {subprocess.py:93} INFO - 	at com.amazonaws.http.AmazonHttpClient.execute(AmazonHttpClient.java:561)
+[2025-07-19T18:02:34.796+0000] {subprocess.py:93} INFO - 	at com.amazonaws.http.AmazonHttpClient.execute(AmazonHttpClient.java:541)
+[2025-07-19T18:02:34.797+0000] {subprocess.py:93} INFO - 	at com.amazonaws.services.s3.AmazonS3Client.invoke(AmazonS3Client.java:5456)
+[2025-07-19T18:02:34.797+0000] {subprocess.py:93} INFO - 	at com.amazonaws.services.s3.AmazonS3Client.invoke(AmazonS3Client.java:5403)
+[2025-07-19T18:02:34.797+0000] {subprocess.py:93} INFO - 	at com.amazonaws.services.s3.AmazonS3Client.invoke(AmazonS3Client.java:5397)
+[2025-07-19T18:02:34.797+0000] {subprocess.py:93} INFO - 	at com.amazonaws.services.s3.AmazonS3Client.listObjectsV2(AmazonS3Client.java:971)
+[2025-07-19T18:02:34.797+0000] {subprocess.py:93} INFO - 	at org.apache.hadoop.fs.s3a.S3AFileSystem.lambda$listObjects$11(S3AFileSystem.java:2595)
+[2025-07-19T18:02:34.797+0000] {subprocess.py:93} INFO - 	at org.apache.hadoop.fs.statistics.impl.IOStatisticsBinding.lambda$trackDurationOfOperation$5(IOStatisticsBinding.java:499)
+[2025-07-19T18:02:34.797+0000] {subprocess.py:93} INFO - 	at org.apache.hadoop.fs.s3a.Invoker.retryUntranslated(Invoker.java:414)
+[2025-07-19T18:02:34.797+0000] {subprocess.py:93} INFO - 	at org.apache.hadoop.fs.s3a.Invoker.retryUntranslated(Invoker.java:377)
+[2025-07-19T18:02:34.797+0000] {subprocess.py:93} INFO - 	at org.apache.hadoop.fs.s3a.S3AFileSystem.listObjects(S3AFileSystem.java:2586)
+[2025-07-19T18:02:34.797+0000] {subprocess.py:93} INFO - 	at org.apache.hadoop.fs.s3a.S3AFileSystem.s3GetFileStatus(S3AFileSystem.java:3832)
+[2025-07-19T18:02:34.797+0000] {subprocess.py:93} INFO - 	... 37 more
+[2025-07-19T18:02:34.797+0000] {subprocess.py:93} INFO - 
+[2025-07-19T18:02:34.816+0000] {subprocess.py:93} INFO - 25/07/19 18:02:34 INFO SparkContext: Invoking stop() from shutdown hook
+[2025-07-19T18:02:34.816+0000] {subprocess.py:93} INFO - 25/07/19 18:02:34 INFO SparkContext: SparkContext is stopping with exitCode 0.
+[2025-07-19T18:02:34.821+0000] {subprocess.py:93} INFO - 25/07/19 18:02:34 INFO SparkUI: Stopped Spark web UI at http://8b44f3d35cfa:4040
+[2025-07-19T18:02:34.826+0000] {subprocess.py:93} INFO - 25/07/19 18:02:34 INFO MapOutputTrackerMasterEndpoint: MapOutputTrackerMasterEndpoint stopped!
+[2025-07-19T18:02:34.831+0000] {subprocess.py:93} INFO - 25/07/19 18:02:34 INFO MemoryStore: MemoryStore cleared
+[2025-07-19T18:02:34.831+0000] {subprocess.py:93} INFO - 25/07/19 18:02:34 INFO BlockManager: BlockManager stopped
+[2025-07-19T18:02:34.834+0000] {subprocess.py:93} INFO - 25/07/19 18:02:34 INFO BlockManagerMaster: BlockManagerMaster stopped
+[2025-07-19T18:02:34.835+0000] {subprocess.py:93} INFO - 25/07/19 18:02:34 INFO OutputCommitCoordinator$OutputCommitCoordinatorEndpoint: OutputCommitCoordinator stopped!
+[2025-07-19T18:02:34.839+0000] {subprocess.py:93} INFO - 25/07/19 18:02:34 INFO SparkContext: Successfully stopped SparkContext
+[2025-07-19T18:02:34.839+0000] {subprocess.py:93} INFO - 25/07/19 18:02:34 INFO ShutdownHookManager: Shutdown hook called
+[2025-07-19T18:02:34.839+0000] {subprocess.py:93} INFO - 25/07/19 18:02:34 INFO ShutdownHookManager: Deleting directory /tmp/spark-08174cba-6185-436d-b20b-49fc00c21b78
+[2025-07-19T18:02:34.840+0000] {subprocess.py:93} INFO - 25/07/19 18:02:34 INFO ShutdownHookManager: Deleting directory /tmp/spark-08174cba-6185-436d-b20b-49fc00c21b78/pyspark-29edc949-a6c6-494a-8e98-eafea4398ebb
+[2025-07-19T18:02:34.841+0000] {subprocess.py:93} INFO - 25/07/19 18:02:34 INFO ShutdownHookManager: Deleting directory /tmp/spark-80071f88-e27f-44ed-9efd-9dd34623c01a
+[2025-07-19T18:02:34.844+0000] {subprocess.py:93} INFO - 25/07/19 18:02:34 INFO MetricsSystemImpl: Stopping s3a-file-system metrics system...
+[2025-07-19T18:02:34.844+0000] {subprocess.py:93} INFO - 25/07/19 18:02:34 INFO MetricsSystemImpl: s3a-file-system metrics system stopped.
+[2025-07-19T18:02:34.844+0000] {subprocess.py:93} INFO - 25/07/19 18:02:34 INFO MetricsSystemImpl: s3a-file-system metrics system shutdown complete.
+[2025-07-19T18:02:34.878+0000] {subprocess.py:97} INFO - Command exited with return code 1
+[2025-07-19T18:02:34.884+0000] {taskinstance.py:1937} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/bash.py", line 210, in execute
+    raise AirflowException(
+airflow.exceptions.AirflowException: Bash command failed. The command returned a non-zero exit code 1.
+[2025-07-19T18:02:34.886+0000] {taskinstance.py:1400} INFO - Marking task as FAILED. dag_id=restaurant_pipeline, task_id=stream_to_bronze, execution_date=20250719T180227, start_date=20250719T180231, end_date=20250719T180234
+[2025-07-19T18:02:34.896+0000] {logging_mixin.py:154} WARNING - /home/***/.local/lib/python3.8/site-packages/***/utils/email.py:154 RemovedInAirflow3Warning: Fetching SMTP credentials from configuration variables will be deprecated in a future release. Please set credentials using a connection instead.
+[2025-07-19T18:02:34.896+0000] {configuration.py:1050} WARNING - section/key [smtp/smtp_user] not found in config
+[2025-07-19T18:02:34.896+0000] {email.py:270} INFO - Email alerting: attempt 1
+[2025-07-19T18:02:34.900+0000] {configuration.py:1050} WARNING - section/key [smtp/smtp_user] not found in config
+[2025-07-19T18:02:34.900+0000] {email.py:270} INFO - Email alerting: attempt 1
+[2025-07-19T18:02:34.900+0000] {taskinstance.py:2007} ERROR - Failed to send email to: ['your@email.com']
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 1518, in _run_raw_task
+    self._execute_task_with_callbacks(context, test_mode, session=session)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 1681, in _execute_task_with_callbacks
+    result = self._execute_task(context, task_orig)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 1744, in _execute_task
+    result = execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/bash.py", line 210, in execute
+    raise AirflowException(
+airflow.exceptions.AirflowException: Bash command failed. The command returned a non-zero exit code 1.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 2420, in email_alert
+    send_email(task.email, subject, html_content)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/utils/email.py", line 80, in send_email
+    return backend(
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/utils/email.py", line 154, in send_email_smtp
+    send_mime_email(e_from=mail_from, e_to=recipients, mime_msg=msg, conn_id=conn_id, dryrun=dryrun)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/utils/email.py", line 272, in send_mime_email
+    smtp_conn = _get_smtp_connection(smtp_host, smtp_port, smtp_timeout, smtp_ssl)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/utils/email.py", line 316, in _get_smtp_connection
+    return smtplib.SMTP(host=host, port=port, timeout=timeout)
+  File "/usr/local/lib/python3.8/smtplib.py", line 255, in __init__
+    (code, msg) = self.connect(host, port)
+  File "/usr/local/lib/python3.8/smtplib.py", line 339, in connect
+    self.sock = self._get_socket(host, port, self.timeout)
+  File "/usr/local/lib/python3.8/smtplib.py", line 310, in _get_socket
+    return socket.create_connection((host, port), timeout,
+  File "/usr/local/lib/python3.8/socket.py", line 808, in create_connection
+    raise err
+  File "/usr/local/lib/python3.8/socket.py", line 796, in create_connection
+    sock.connect(sa)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 2005, in handle_failure
+    self.email_alert(error, task)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 2422, in email_alert
+    send_email(task.email, subject, html_content_err)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/utils/email.py", line 80, in send_email
+    return backend(
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/utils/email.py", line 154, in send_email_smtp
+    send_mime_email(e_from=mail_from, e_to=recipients, mime_msg=msg, conn_id=conn_id, dryrun=dryrun)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/utils/email.py", line 272, in send_mime_email
+    smtp_conn = _get_smtp_connection(smtp_host, smtp_port, smtp_timeout, smtp_ssl)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/utils/email.py", line 316, in _get_smtp_connection
+    return smtplib.SMTP(host=host, port=port, timeout=timeout)
+  File "/usr/local/lib/python3.8/smtplib.py", line 255, in __init__
+    (code, msg) = self.connect(host, port)
+  File "/usr/local/lib/python3.8/smtplib.py", line 339, in connect
+    self.sock = self._get_socket(host, port, self.timeout)
+  File "/usr/local/lib/python3.8/smtplib.py", line 310, in _get_socket
+    return socket.create_connection((host, port), timeout,
+  File "/usr/local/lib/python3.8/socket.py", line 808, in create_connection
+    raise err
+  File "/usr/local/lib/python3.8/socket.py", line 796, in create_connection
+    sock.connect(sa)
+ConnectionRefusedError: [Errno 111] Connection refused
+[2025-07-19T18:02:34.906+0000] {standard_task_runner.py:104} ERROR - Failed to execute job 921 for task stream_to_bronze (Bash command failed. The command returned a non-zero exit code 1.; 245)
+[2025-07-19T18:02:34.934+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 1
+[2025-07-19T18:02:34.957+0000] {taskinstance.py:2778} INFO - 0 downstream tasks scheduled from follow-on schedule check

@@ -1,3 +1,4 @@
+import os
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import col, from_json
 from pyspark.sql.types import StructType, StructField, StringType, IntegerType, BooleanType, DateType, TimestampType, FloatType
@@ -63,6 +64,25 @@ def read_kafka(topic, schema, checkpoint_path, output_path):
         .select(from_json(col("json"), schema).alias("data")) \
         .select("data.*")
 
+    # Add watermarking and deduplication for late-arriving data (up to 48 hours)
+    if topic == "reservations":
+        # Use created_at as event time
+        df = df.withWatermark("created_at", "48 hours")
+        df = df.dropDuplicates(["reservation_id", "created_at"])
+    elif topic == "checkins":
+        # Combine checkin_date and checkin_time into a proper timestamp
+        from pyspark.sql.functions import concat_ws, to_timestamp
+        df = df.withColumn(
+            "checkin_timestamp",
+            to_timestamp(concat_ws(" ", col("checkin_date").cast("string"), col("checkin_time")))
+        )
+        df = df.withWatermark("checkin_timestamp", "48 hours")
+        df = df.dropDuplicates(["checkin_id", "checkin_timestamp"])
+    elif topic == "feedback":
+        # Use submission_time as event time
+        df = df.withWatermark("submission_time", "48 hours")
+        df = df.dropDuplicates(["feedback_id", "submission_time"])
+
     df.writeStream \
         .format("iceberg") \
         .outputMode("append") \
@@ -70,25 +90,27 @@ def read_kafka(topic, schema, checkpoint_path, output_path):
         .option("path", output_path) \
         .start()
 
+run_id = os.environ.get("AIRFLOW_CTX_DAG_RUN_ID", "default_run")
+
 read_kafka(
     topic="reservations",
     schema=reservation_schema,
-    checkpoint_path="/tmp/checkpoints/reservations",
+    checkpoint_path=f"/tmp/checkpoints/reservations/{run_id}",
     output_path="my_catalog.bronze.Reservations_raw"
 )
 
 read_kafka(
     topic="checkins",
     schema=checkin_schema,
-    checkpoint_path="/tmp/checkpoints/checkins",
+    checkpoint_path=f"/tmp/checkpoints/checkins/{run_id}",
     output_path="my_catalog.bronze.Checkins_raw"
 )
 
 read_kafka(
     topic="feedback",
     schema=feedback_schema,
-    checkpoint_path="/tmp/checkpoints/feedback",
+    checkpoint_path=f"/tmp/checkpoints/feedback/{run_id}",
     output_path="my_catalog.bronze.Feedback_raw"
 )
 
-spark.streams.awaitAnyTermination()
+spark.streams.awaitAnyTermination(timeout=60)

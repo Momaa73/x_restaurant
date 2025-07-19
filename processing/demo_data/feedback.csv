@@ -1,0 +1,4 @@
+feedback_id,branch_id,customer_name,phone_number,feedback_text,rating,dining_date,dining_time,submission_time
+100,1,John Doe,1234567890,"Great service!",5,2025-07-18,12:00,2025-07-18T14:00:00
+101,2,Jane Smith,2345678901,"Food was cold.",2,2025-07-19,18:00,2025-07-19T20:00:00
+102,1,Emily Lee,3456789012,"Loved the ambiance.",4,2025-07-20,20:00,2025-07-20T22:00:00 

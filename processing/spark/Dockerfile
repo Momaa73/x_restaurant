@@ -18,6 +18,12 @@ RUN mkdir -p /app/jars && \
       https://repo1.maven.org/maven2/org/apache/commons/commons-pool2/2.11.1/commons-pool2-2.11.1.jar && \
     cp /app/jars/*.jar /opt/bitnami/spark/jars/
 
+# Install Great Expectations for data quality checks
+RUN pip install great_expectations
+
+# Add pip binary directory to PATH for Great Expectations CLI
+ENV PATH="/opt/bitnami/python/bin:$PATH"
+
 COPY create_tables_bronze.py /app/create_tables_bronze.py
 COPY create_tables_silver.py /app/create_tables_silver.py
 COPY create_tables_gold.py /app/create_tables_gold.py

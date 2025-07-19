@@ -1,0 +1,94 @@
+[2025-07-18T18:15:11.249+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: restaurant_pipeline.bronze_to_silver scheduled__2025-07-18T18:12:00+00:00 [queued]>
+[2025-07-18T18:15:11.255+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: restaurant_pipeline.bronze_to_silver scheduled__2025-07-18T18:12:00+00:00 [queued]>
+[2025-07-18T18:15:11.255+0000] {taskinstance.py:1361} INFO - Starting attempt 1 of 1
+[2025-07-18T18:15:11.263+0000] {taskinstance.py:1382} INFO - Executing <Task(BashOperator): bronze_to_silver> on 2025-07-18 18:12:00+00:00
+[2025-07-18T18:15:11.266+0000] {standard_task_runner.py:57} INFO - Started process 2996 to run task
+[2025-07-18T18:15:11.268+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'restaurant_pipeline', 'bronze_to_silver', 'scheduled__2025-07-18T18:12:00+00:00', '--job-id', '339', '--raw', '--subdir', 'DAGS_FOLDER/restaurant_pipeline.py', '--cfg-path', '/tmp/tmp30wgfgk6']
+[2025-07-18T18:15:11.270+0000] {standard_task_runner.py:85} INFO - Job 339: Subtask bronze_to_silver
+[2025-07-18T18:15:11.303+0000] {task_command.py:416} INFO - Running <TaskInstance: restaurant_pipeline.bronze_to_silver scheduled__2025-07-18T18:12:00+00:00 [running]> on host 9bcfb43e0ab7
+[2025-07-18T18:15:11.349+0000] {taskinstance.py:1662} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='moran' AIRFLOW_CTX_DAG_ID='restaurant_pipeline' AIRFLOW_CTX_TASK_ID='bronze_to_silver' AIRFLOW_CTX_EXECUTION_DATE='2025-07-18T18:12:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-07-18T18:12:00+00:00'
+[2025-07-18T18:15:11.350+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2025-07-18T18:15:11.350+0000] {subprocess.py:75} INFO - Running command: ['/bin/bash', '-c', 'docker exec spark-iceberg spark-submit /home/iceberg/spark/bronze_to_silver.py']
+[2025-07-18T18:15:11.357+0000] {subprocess.py:86} INFO - Output:
+[2025-07-18T18:15:12.794+0000] {subprocess.py:93} INFO - 25/07/18 18:15:12 INFO SparkContext: Running Spark version 3.5.6
+[2025-07-18T18:15:12.795+0000] {subprocess.py:93} INFO - 25/07/18 18:15:12 INFO SparkContext: OS info Linux, 6.10.14-linuxkit, aarch64
+[2025-07-18T18:15:12.796+0000] {subprocess.py:93} INFO - 25/07/18 18:15:12 INFO SparkContext: Java version 17.0.15
+[2025-07-18T18:15:12.812+0000] {subprocess.py:93} INFO - 25/07/18 18:15:12 INFO ResourceUtils: ==============================================================
+[2025-07-18T18:15:12.812+0000] {subprocess.py:93} INFO - 25/07/18 18:15:12 INFO ResourceUtils: No custom resources configured for spark.driver.
+[2025-07-18T18:15:12.813+0000] {subprocess.py:93} INFO - 25/07/18 18:15:12 INFO ResourceUtils: ==============================================================
+[2025-07-18T18:15:12.813+0000] {subprocess.py:93} INFO - 25/07/18 18:15:12 INFO SparkContext: Submitted application: BronzeToSilver
+[2025-07-18T18:15:12.824+0000] {subprocess.py:93} INFO - 25/07/18 18:15:12 INFO ResourceProfile: Default ResourceProfile created, executor resources: Map(cores -> name: cores, amount: 1, script: , vendor: , memory -> name: memory, amount: 1024, script: , vendor: , offHeap -> name: offHeap, amount: 0, script: , vendor: ), task resources: Map(cpus -> name: cpus, amount: 1.0)
+[2025-07-18T18:15:12.829+0000] {subprocess.py:93} INFO - 25/07/18 18:15:12 INFO ResourceProfile: Limiting resource is cpu
+[2025-07-18T18:15:12.829+0000] {subprocess.py:93} INFO - 25/07/18 18:15:12 INFO ResourceProfileManager: Added ResourceProfile id: 0
+[2025-07-18T18:15:12.857+0000] {subprocess.py:93} INFO - 25/07/18 18:15:12 INFO SecurityManager: Changing view acls to: root,spark
+[2025-07-18T18:15:12.857+0000] {subprocess.py:93} INFO - 25/07/18 18:15:12 INFO SecurityManager: Changing modify acls to: root,spark
+[2025-07-18T18:15:12.858+0000] {subprocess.py:93} INFO - 25/07/18 18:15:12 INFO SecurityManager: Changing view acls groups to:
+[2025-07-18T18:15:12.858+0000] {subprocess.py:93} INFO - 25/07/18 18:15:12 INFO SecurityManager: Changing modify acls groups to:
+[2025-07-18T18:15:12.858+0000] {subprocess.py:93} INFO - 25/07/18 18:15:12 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users with view permissions: root, spark; groups with view permissions: EMPTY; users with modify permissions: root, spark; groups with modify permissions: EMPTY
+[2025-07-18T18:15:12.889+0000] {subprocess.py:93} INFO - 25/07/18 18:15:12 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+[2025-07-18T18:15:13.078+0000] {subprocess.py:93} INFO - 25/07/18 18:15:13 INFO Utils: Successfully started service 'sparkDriver' on port 45875.
+[2025-07-18T18:15:13.098+0000] {subprocess.py:93} INFO - 25/07/18 18:15:13 INFO SparkEnv: Registering MapOutputTracker
+[2025-07-18T18:15:13.120+0000] {subprocess.py:93} INFO - 25/07/18 18:15:13 INFO SparkEnv: Registering BlockManagerMaster
+[2025-07-18T18:15:13.132+0000] {subprocess.py:93} INFO - 25/07/18 18:15:13 INFO BlockManagerMasterEndpoint: Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
+[2025-07-18T18:15:13.132+0000] {subprocess.py:93} INFO - 25/07/18 18:15:13 INFO BlockManagerMasterEndpoint: BlockManagerMasterEndpoint up
+[2025-07-18T18:15:13.136+0000] {subprocess.py:93} INFO - 25/07/18 18:15:13 INFO SparkEnv: Registering BlockManagerMasterHeartbeat
+[2025-07-18T18:15:13.151+0000] {subprocess.py:93} INFO - 25/07/18 18:15:13 INFO DiskBlockManager: Created local directory at /tmp/blockmgr-afc2c05d-b1d8-40e2-9350-c19332661d63
+[2025-07-18T18:15:13.155+0000] {subprocess.py:93} INFO - 25/07/18 18:15:13 INFO MemoryStore: MemoryStore started with capacity 434.4 MiB
+[2025-07-18T18:15:13.164+0000] {subprocess.py:93} INFO - 25/07/18 18:15:13 INFO SparkEnv: Registering OutputCommitCoordinator
+[2025-07-18T18:15:13.221+0000] {subprocess.py:93} INFO - 25/07/18 18:15:13 INFO JettyUtils: Start Jetty 0.0.0.0:4040 for SparkUI
+[2025-07-18T18:15:13.249+0000] {subprocess.py:93} INFO - 25/07/18 18:15:13 INFO Utils: Successfully started service 'SparkUI' on port 4040.
+[2025-07-18T18:15:13.298+0000] {subprocess.py:93} INFO - 25/07/18 18:15:13 INFO Executor: Starting executor ID driver on host 77cb57a6bd53
+[2025-07-18T18:15:13.299+0000] {subprocess.py:93} INFO - 25/07/18 18:15:13 INFO Executor: OS info Linux, 6.10.14-linuxkit, aarch64
+[2025-07-18T18:15:13.299+0000] {subprocess.py:93} INFO - 25/07/18 18:15:13 INFO Executor: Java version 17.0.15
+[2025-07-18T18:15:13.302+0000] {subprocess.py:93} INFO - 25/07/18 18:15:13 INFO Executor: Starting executor with user classpath (userClassPathFirst = false): ''
+[2025-07-18T18:15:13.302+0000] {subprocess.py:93} INFO - 25/07/18 18:15:13 INFO Executor: Created or updated repl class loader org.apache.spark.util.MutableURLClassLoader@f13cada for default.
+[2025-07-18T18:15:13.311+0000] {subprocess.py:93} INFO - 25/07/18 18:15:13 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 36425.
+[2025-07-18T18:15:13.312+0000] {subprocess.py:93} INFO - 25/07/18 18:15:13 INFO NettyBlockTransferService: Server created on 77cb57a6bd53:36425
+[2025-07-18T18:15:13.312+0000] {subprocess.py:93} INFO - 25/07/18 18:15:13 INFO BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
+[2025-07-18T18:15:13.320+0000] {subprocess.py:93} INFO - 25/07/18 18:15:13 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, 77cb57a6bd53, 36425, None)
+[2025-07-18T18:15:13.323+0000] {subprocess.py:93} INFO - 25/07/18 18:15:13 INFO BlockManagerMasterEndpoint: Registering block manager 77cb57a6bd53:36425 with 434.4 MiB RAM, BlockManagerId(driver, 77cb57a6bd53, 36425, None)
+[2025-07-18T18:15:13.324+0000] {subprocess.py:93} INFO - 25/07/18 18:15:13 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, 77cb57a6bd53, 36425, None)
+[2025-07-18T18:15:13.324+0000] {subprocess.py:93} INFO - 25/07/18 18:15:13 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, 77cb57a6bd53, 36425, None)
+[2025-07-18T18:15:13.539+0000] {subprocess.py:93} INFO - 25/07/18 18:15:13 INFO SharedState: Setting hive.metastore.warehouse.dir ('null') to the value of spark.sql.warehouse.dir.
+[2025-07-18T18:15:13.543+0000] {subprocess.py:93} INFO - 25/07/18 18:15:13 INFO SharedState: Warehouse path is 'file:/app/spark-warehouse'.
+[2025-07-18T18:15:14.160+0000] {subprocess.py:93} INFO - 25/07/18 18:15:14 WARN MetricsConfig: Cannot locate configuration: tried hadoop-metrics2-s3a-file-system.properties,hadoop-metrics2.properties
+[2025-07-18T18:15:14.166+0000] {subprocess.py:93} INFO - 25/07/18 18:15:14 INFO MetricsSystemImpl: Scheduled Metric snapshot period at 10 second(s).
+[2025-07-18T18:15:14.166+0000] {subprocess.py:93} INFO - 25/07/18 18:15:14 INFO MetricsSystemImpl: s3a-file-system metrics system started
+[2025-07-18T18:15:14.825+0000] {subprocess.py:93} INFO - 25/07/18 18:15:14 INFO BaseMetastoreCatalog: Table loaded by catalog: my_catalog.bronze.Reservations_raw
+[2025-07-18T18:15:15.152+0000] {subprocess.py:93} INFO - 25/07/18 18:15:15 INFO BaseMetastoreCatalog: Table loaded by catalog: my_catalog.bronze.Checkins_raw
+[2025-07-18T18:15:15.276+0000] {subprocess.py:93} INFO - 25/07/18 18:15:15 INFO BaseMetastoreCatalog: Table loaded by catalog: my_catalog.bronze.Feedback_raw
+[2025-07-18T18:15:15.719+0000] {subprocess.py:93} INFO - Traceback (most recent call last):
+[2025-07-18T18:15:15.720+0000] {subprocess.py:93} INFO -   File "/home/iceberg/spark/bronze_to_silver.py", line 45, in <module>
+[2025-07-18T18:15:15.721+0000] {subprocess.py:93} INFO -     customers_df.write.format("iceberg").mode("overwrite").save(customers_table)
+[2025-07-18T18:15:15.721+0000] {subprocess.py:93} INFO -   File "/opt/bitnami/spark/python/lib/pyspark.zip/pyspark/sql/readwriter.py", line 1463, in save
+[2025-07-18T18:15:15.721+0000] {subprocess.py:93} INFO -   File "/opt/bitnami/spark/python/lib/py4j-0.10.9.7-src.zip/py4j/java_gateway.py", line 1322, in __call__
+[2025-07-18T18:15:15.721+0000] {subprocess.py:93} INFO -   File "/opt/bitnami/spark/python/lib/pyspark.zip/pyspark/errors/exceptions/captured.py", line 185, in deco
+[2025-07-18T18:15:15.725+0000] {subprocess.py:93} INFO - pyspark.errors.exceptions.captured.AnalysisException: [TABLE_OR_VIEW_NOT_FOUND] The table or view silver.customers cannot be found. Verify the spelling and correctness of the schema and catalog.
+[2025-07-18T18:15:15.726+0000] {subprocess.py:93} INFO - If you did not qualify the name with a schema, verify the current_schema() output, or qualify the name with the correct schema and catalog.
+[2025-07-18T18:15:15.726+0000] {subprocess.py:93} INFO - To tolerate the error on drop use DROP VIEW IF EXISTS or DROP TABLE IF EXISTS.
+[2025-07-18T18:15:15.745+0000] {subprocess.py:93} INFO - 25/07/18 18:15:15 INFO SparkContext: Invoking stop() from shutdown hook
+[2025-07-18T18:15:15.747+0000] {subprocess.py:93} INFO - 25/07/18 18:15:15 INFO SparkContext: SparkContext is stopping with exitCode 0.
+[2025-07-18T18:15:15.751+0000] {subprocess.py:93} INFO - 25/07/18 18:15:15 INFO SparkUI: Stopped Spark web UI at http://77cb57a6bd53:4040
+[2025-07-18T18:15:15.758+0000] {subprocess.py:93} INFO - 25/07/18 18:15:15 INFO MapOutputTrackerMasterEndpoint: MapOutputTrackerMasterEndpoint stopped!
+[2025-07-18T18:15:15.766+0000] {subprocess.py:93} INFO - 25/07/18 18:15:15 INFO MemoryStore: MemoryStore cleared
+[2025-07-18T18:15:15.766+0000] {subprocess.py:93} INFO - 25/07/18 18:15:15 INFO BlockManager: BlockManager stopped
+[2025-07-18T18:15:15.769+0000] {subprocess.py:93} INFO - 25/07/18 18:15:15 INFO BlockManagerMaster: BlockManagerMaster stopped
+[2025-07-18T18:15:15.771+0000] {subprocess.py:93} INFO - 25/07/18 18:15:15 INFO OutputCommitCoordinator$OutputCommitCoordinatorEndpoint: OutputCommitCoordinator stopped!
+[2025-07-18T18:15:15.776+0000] {subprocess.py:93} INFO - 25/07/18 18:15:15 INFO SparkContext: Successfully stopped SparkContext
+[2025-07-18T18:15:15.777+0000] {subprocess.py:93} INFO - 25/07/18 18:15:15 INFO ShutdownHookManager: Shutdown hook called
+[2025-07-18T18:15:15.777+0000] {subprocess.py:93} INFO - 25/07/18 18:15:15 INFO ShutdownHookManager: Deleting directory /tmp/spark-a3b9b89e-4efa-47fc-a834-49d4fb4374cd/pyspark-66d48710-44c7-4ec6-bdc3-0f70a134d1c5
+[2025-07-18T18:15:15.778+0000] {subprocess.py:93} INFO - 25/07/18 18:15:15 INFO ShutdownHookManager: Deleting directory /tmp/spark-73f96469-4af8-4e06-a15b-4c299c9bd050
+[2025-07-18T18:15:15.780+0000] {subprocess.py:93} INFO - 25/07/18 18:15:15 INFO ShutdownHookManager: Deleting directory /tmp/spark-a3b9b89e-4efa-47fc-a834-49d4fb4374cd
+[2025-07-18T18:15:15.783+0000] {subprocess.py:93} INFO - 25/07/18 18:15:15 INFO MetricsSystemImpl: Stopping s3a-file-system metrics system...
+[2025-07-18T18:15:15.783+0000] {subprocess.py:93} INFO - 25/07/18 18:15:15 INFO MetricsSystemImpl: s3a-file-system metrics system stopped.
+[2025-07-18T18:15:15.784+0000] {subprocess.py:93} INFO - 25/07/18 18:15:15 INFO MetricsSystemImpl: s3a-file-system metrics system shutdown complete.
+[2025-07-18T18:15:15.829+0000] {subprocess.py:97} INFO - Command exited with return code 1
+[2025-07-18T18:15:15.837+0000] {taskinstance.py:1937} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/bash.py", line 210, in execute
+    raise AirflowException(
+airflow.exceptions.AirflowException: Bash command failed. The command returned a non-zero exit code 1.
+[2025-07-18T18:15:15.839+0000] {taskinstance.py:1400} INFO - Marking task as FAILED. dag_id=restaurant_pipeline, task_id=bronze_to_silver, execution_date=20250718T181200, start_date=20250718T181511, end_date=20250718T181515
+[2025-07-18T18:15:15.848+0000] {standard_task_runner.py:104} ERROR - Failed to execute job 339 for task bronze_to_silver (Bash command failed. The command returned a non-zero exit code 1.; 2996)
+[2025-07-18T18:15:15.894+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 1
+[2025-07-18T18:15:15.919+0000] {taskinstance.py:2778} INFO - 0 downstream tasks scheduled from follow-on schedule check
