@@ -108,7 +108,7 @@ python3 producer.py
 This will send demo reservations, checkins, and feedback to Kafka.
 
 ### **4. Trigger the Airflow DAG**
-- Open Airflow UI: [http://localhost:8082](http://localhost:8082)
+- Open Airflow UI: [http://localhost:8082](http://localhost:8082) (user: airflow, password: airflow)
 - Find the `restaurant_pipeline` DAG and **trigger it manually** (or wait for the schedule).
 
 ### **5. Monitor Pipeline Progress**
