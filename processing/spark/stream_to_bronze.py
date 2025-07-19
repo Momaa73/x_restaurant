@@ -70,10 +70,12 @@ def read_kafka(topic, schema, checkpoint_path, output_path):
         df = df.withWatermark("created_at", "48 hours")
         df = df.dropDuplicates(["reservation_id", "created_at"])
     elif topic == "checkins":
-        # Use checkin_time as event time (cast to timestamp if needed)
-        # If checkin_time is string, you may want to cast to timestamp for watermarking
-        # For simplicity, we'll use checkin_date and checkin_time as a composite key
-        df = df.withColumn("checkin_timestamp", col("checkin_date").cast("string") + " " + col("checkin_time"))
+        # Combine checkin_date and checkin_time into a proper timestamp
+        from pyspark.sql.functions import concat_ws, to_timestamp
+        df = df.withColumn(
+            "checkin_timestamp",
+            to_timestamp(concat_ws(" ", col("checkin_date").cast("string"), col("checkin_time")))
+        )
         df = df.withWatermark("checkin_timestamp", "48 hours")
         df = df.dropDuplicates(["checkin_id", "checkin_timestamp"])
     elif topic == "feedback":

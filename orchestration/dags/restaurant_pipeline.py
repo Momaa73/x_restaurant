@@ -79,9 +79,8 @@ def write_json_files():
 # ----- הגדרות ה-DAG -----
 default_args = {
     "owner": "moran",
-    "retries": 0,
-    "email_on_failure": True,  # Send email on task failure
-    "email": ["your@email.com"],  # Update to your real email
+    "retries": 0
+    # Removed email_on_failure and email to suppress SMTP errors
 }
 
 with DAG(

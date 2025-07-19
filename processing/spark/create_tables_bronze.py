@@ -37,6 +37,9 @@ CREATE TABLE IF NOT EXISTS my_catalog.bronze.Reservations_raw (
 ) USING iceberg
 """)
 
+# Drop the table if it exists to ensure schema update
+spark.sql("DROP TABLE IF EXISTS my_catalog.bronze.Checkins_raw")
+
 # Checkins_raw
 spark.sql("""
 CREATE TABLE IF NOT EXISTS my_catalog.bronze.Checkins_raw (
@@ -49,7 +52,8 @@ CREATE TABLE IF NOT EXISTS my_catalog.bronze.Checkins_raw (
     checkin_date DATE,
     checkin_time STRING,
     guests_count INT,
-    shift_manager STRING
+    shift_manager STRING,
+    checkin_timestamp TIMESTAMP
 ) USING iceberg
 """)
 

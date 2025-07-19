@@ -36,7 +36,9 @@ services:
       - CATALOG_IO__IMPL=org.apache.iceberg.aws.s3.S3FileIO
       - CATALOG_S3_ENDPOINT=http://minio:9000
   great_expectations:
-    image: great_expectations/great_expectations:latest
+    build:
+      context: .
+      dockerfile: great_expectations.Dockerfile
     container_name: great_expectations
     volumes:
       - ./:/workspace

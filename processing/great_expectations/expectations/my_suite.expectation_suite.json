@@ -1,0 +1,15 @@
+{
+  "expectation_suite_name": "my_suite",
+  "expectations": [
+    {
+      "expectation_type": "expect_column_values_to_not_be_null",
+      "kwargs": {
+        "column": "reservation_id"
+      },
+      "meta": {}
+    }
+  ],
+  "meta": {
+    "great_expectations_version": "0.17.21"
+  }
+} 

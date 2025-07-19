@@ -235,6 +235,36 @@ MIT License
 
 ---
 
+## Data Quality Bonus: Great Expectations Integration
+
+This project includes a minimal [Great Expectations](https://greatexpectations.io/) setup in `processing/great_expectations/` for bonus data quality validation:
+
+- **Expectation Suite:** `my_suite.expectation_suite.json` checks that the `reservation_id` column in your data is never null.
+- **Checkpoint:** `my_checkpoint.yml` is ready for running validations.
+- **How to run a validation:**
+
+  1. Install Great Expectations in your local environment:
+     ```bash
+     pip install great_expectations
+     ```
+  2. Run the following Python script in the `processing/` directory to validate `demo_data/reservations.csv`:
+     ```python
+     import great_expectations as ge
+     from great_expectations.data_context import FileDataContext
+
+     context = FileDataContext("great_expectations")
+     df = ge.read_csv("demo_data/reservations.csv")
+     results = context.validate(
+         df,
+         expectation_suite_name="my_suite"
+     )
+     print(results)
+     ```
+- **How to extend:** Add more expectations to the suite or create new suites for other tables and columns.
+- **Note:** This structure is ready for use with the Great Expectations Python API or CLI (if available).
+
+---
+
 ## How to Reset the Environment
 If you want to start from a clean slate (remove all data, containers, and volumes):
 
@@ -286,5 +316,50 @@ Follow these steps to demonstrate the entire pipeline from data generation to an
    - Use Spark SQL or a notebook to query Iceberg tables as described above.
 6. **Test late-arriving data:**
    - Edit a message in `streaming/messages/` with a recent timestamp and re-run the producer, then re-trigger the DAG.
+
+--- 
+
+---
+
+## Persisting and Backing Up Your Data
+
+### How to Safely Stop and Restart Your Stack
+- To stop all services without losing data:
+  ```bash
+  docker-compose down
+  ```
+- To start again later:
+  ```bash
+  docker-compose up -d
+  ```
+- **Do NOT use `-v` with `down` unless you want to delete all data!**
+
+### Where Is My Data Stored?
+- **MinIO:**
+  - Data is stored in a Docker volume (e.g., `minio_data`) or a bind mount (e.g., `./minio_data`).
+- **Spark/Iceberg:**
+  - Data is stored in the `./warehouse` directory (bind mount) or a Docker volume.
+
+### How to Back Up Your Data
+- **Back up MinIO volume:**
+  ```bash
+  docker run --rm -v minio_data:/data -v $(pwd):/backup busybox cp -r /data /backup/minio_data_backup
+  ```
+- **Back up Iceberg warehouse:**
+  - Copy the `./warehouse` directory to a safe location:
+    ```bash
+    cp -r ./warehouse ./warehouse_backup
+    ```
+
+### How to Restore Your Data
+- **Restore MinIO volume:**
+  ```bash
+  docker run --rm -v minio_data:/data -v $(pwd):/backup busybox cp -r /backup/minio_data_backup/* /data/
+  ```
+- **Restore Iceberg warehouse:**
+  - Copy your backup back to `./warehouse` before starting services:
+    ```bash
+    cp -r ./warehouse_backup/* ./warehouse/
+    ```
 
 --- 
