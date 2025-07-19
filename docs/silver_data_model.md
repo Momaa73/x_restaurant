@@ -1,5 +1,16 @@
 # Silver Layer Data Model
 
+## Business Context
+The silver layer contains cleaned, enriched, and conformed data. Here, raw data from the bronze layer is validated, deduplicated, and joined with reference data. Business logic is applied, such as handling late-arriving data, deduplication, and referential integrity. This layer is the foundation for analytics and reporting.
+
+### Table Descriptions
+- **CUSTOMERS**: Unique list of customers, deduplicated by phone number, with assigned IDs. Used for joining facts to customer attributes.
+- **SCD2_BRANCH**: Slowly Changing Dimension Type 2 table for branches. Tracks the full history of branch attributes (name, city, address, capacity, open/close dates). Allows analysis of branch changes over time.
+- **TABLE**: List of tables in each branch, including type and seat count. Used for seating analytics and joins with reservations/checkins.
+- **CHECKINS_CLEANED**: Cleaned and deduplicated check-in events, enriched with time-of-day and holiday info. Used for operational analytics.
+- **RESERVATIONS_CLEANED**: Cleaned and deduplicated reservation events, enriched with creation time, holiday info, and booking details. Used for reservation analytics.
+- **FEEDBACK_CLEANED**: Cleaned customer feedback, with calculated text length and time-of-day. Used for customer satisfaction analytics.
+
 ```mermaid
 erDiagram
     CUSTOMERS {

@@ -147,33 +147,60 @@ Repeat for `checkins.csv` and `feedback.csv` as needed.
 
 ## Component Descriptions
 ### /orchestration
-- Contains Airflow DAGs and configuration for orchestrating the ETL pipeline.
+- Contains Airflow DAGs and configuration for orchestrating the ETL pipeline. Airflow schedules and manages the end-to-end data flow, triggering Spark jobs and monitoring pipeline health.
 
 ### /streaming
-- Contains Kafka setup and a Python producer for generating real-time messages.
+- Contains Kafka setup and a Python producer for generating real-time messages. Simulates real-time data ingestion by sending demo events to Kafka topics.
 
 ### /processing
-- Contains Spark batch and streaming jobs for ETL, SCD2, and data quality.
+- Contains Spark batch and streaming jobs for ETL, SCD2, and data quality. All data transformations, cleaning, and enrichment logic are implemented here. Spark jobs read/write Iceberg tables on MinIO.
 
 ### /docs
-- Contains data model diagrams and architecture documentation.
+- Contains data model diagrams (in Mermaid.js) and architecture documentation. Explains the structure and relationships of all tables in the bronze, silver, and gold layers.
+
+---
 
 ## Data Quality
-- Data quality checks are implemented in Spark jobs and/or as Airflow tasks.
-- Checks include: null value checks, duplicate detection, referential integrity.
-- (Bonus) [Great Expectations](https://greatexpectations.io/) integration for advanced validation (if implemented).
+Data quality checks are implemented in Spark jobs, primarily in `processing/spark/bronze_to_silver.py`.
 
-### Implemented Data Quality Checks
-- **Null Checks:**
-  - For each entity (reservations, checkins, feedback), required columns are checked for nulls (e.g., IDs, event times, customer info).
-  - If any nulls are found, the count and a sample are printed in the Spark job logs.
-- **Duplicate Checks:**
-  - For each entity, checks for duplicate primary keys (e.g., reservation_id + created_at_date).
-  - If any duplicates are found, the count and a sample are printed in the Spark job logs.
-- **Referential Integrity Checks:**
-  - For each entity, checks that all foreign keys (e.g., branch_id, table_id, phone_number) exist in the corresponding parent tables (e.g., scd2_branch, table, customers).
-  - If any violations are found, the count and a sample are printed in the Spark job logs.
-- These checks are implemented in `processing/spark/bronze_to_silver.py` and run before upsert/merge logic.
+- **Null Checks:** Required columns for each entity (reservations, checkins, feedback) are checked for nulls. If any are found, the count and a sample are printed in the Spark job logs.
+- **Duplicate Checks:** Checks for duplicate primary keys (e.g., reservation_id + created_at_date). Duplicates are reported in the logs.
+- **Referential Integrity Checks:** Ensures all foreign keys (e.g., branch_id, table_id, phone_number) exist in the corresponding parent tables. Violations are reported in the logs.
+
+**How to View Results:**
+- Run the pipeline via Airflow or directly with Spark jobs. Data quality issues will be printed in the Spark job logs (viewable via Docker logs or Spark UI).
+
+---
+
+## How to Test Late-Arriving Data
+The pipeline is designed to handle late-arriving data (up to 48 hours after event time) using Spark watermarking and upsert logic.
+
+**To test:**
+1. Edit a message in `streaming/messages/` (e.g., `reservations.json`) and set the event time (e.g., `created_at` or `reservation_date`) to a value within the last 48 hours, but after the initial pipeline run.
+2. Re-run the Python producer to send the message to Kafka.
+3. Trigger the Airflow DAG or run the Spark streaming job again.
+4. The new/late event will be ingested and upserted into the bronze and silver tables, updating the analytics as needed.
+
+---
+
+## How to Inspect Iceberg Tables
+You can inspect the contents of Iceberg tables using Spark SQL or the Spark shell.
+
+**Option 1: Spark Shell (inside the processing container):**
+```bash
+docker exec -it spark-iceberg spark-sql --packages org.apache.iceberg:iceberg-spark-runtime-3.5_2.12:1.5.0
+```
+Then run:
+```sql
+SELECT * FROM my_catalog.bronze.Reservations_raw LIMIT 10;
+SELECT * FROM my_catalog.silver.reservations_cleaned LIMIT 10;
+SELECT * FROM my_catalog.gold.fact_reservations LIMIT 10;
+```
+**Option 2: Use a notebook:**
+- Start a Jupyter notebook (if available) in the processing container and use PySpark to query tables.
+
+**Option 3: MinIO UI:**
+- Browse the raw Parquet files in MinIO at http://localhost:9000 (user: admin, password: password). Note: This shows files, not table structure.
 
 ## SCD2 (Slowly Changing Dimension Type 2)
 - The pipeline implements SCD2 logic for the `branch` dimension in the silver layer.
@@ -205,3 +232,59 @@ Repeat for `checkins.csv` and `feedback.csv` as needed.
 
 ## License
 MIT License 
+
+---
+
+## How to Reset the Environment
+If you want to start from a clean slate (remove all data, containers, and volumes):
+
+1. **Stop all running containers:**
+   ```bash
+   docker-compose down -v
+   # Run in each of the orchestration, processing, and streaming folders
+   ```
+2. **Remove all Docker volumes (optional, will delete all data!):**
+   ```bash
+   docker volume prune -f
+   ```
+3. **Delete any leftover local data directories (e.g., warehouse, minio_data):**
+   ```bash
+   rm -rf processing/warehouse orchestration/minio_data
+   ```
+4. **Rebuild images (if needed):**
+   ```bash
+   docker-compose build
+   ```
+5. **Restart all services as described below.**
+
+---
+
+## How to Run a Full End-to-End Demo
+Follow these steps to demonstrate the entire pipeline from data generation to analytics-ready tables:
+
+1. **Start all services:**
+   - In three terminals, run:
+     ```bash
+     cd streaming && docker-compose up -d
+     cd ../processing && docker-compose up -d
+     cd ../orchestration && docker-compose up -d
+     ```
+2. **Generate and send demo data:**
+   - In the `streaming` folder, run:
+     ```bash
+     python producer.py
+     ```
+   - This will send demo reservations, checkins, and feedback to Kafka.
+3. **Trigger the Airflow DAG:**
+   - Open Airflow UI at [http://localhost:8082](http://localhost:8082)
+   - Find the `restaurant_pipeline` DAG and trigger it manually (or wait for the schedule).
+4. **Monitor pipeline progress:**
+   - Use Airflow UI to see task status.
+   - Use Spark UI (http://localhost:4040, when jobs are running) to monitor Spark jobs.
+   - Use MinIO UI (http://localhost:9000, user: admin, password: password) to browse data files.
+5. **Inspect results:**
+   - Use Spark SQL or a notebook to query Iceberg tables as described above.
+6. **Test late-arriving data:**
+   - Edit a message in `streaming/messages/` with a recent timestamp and re-run the producer, then re-trigger the DAG.
+
+--- 
